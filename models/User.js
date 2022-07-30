@@ -14,13 +14,14 @@ User.init(
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
       },
-      username: {
+      //Change the username to email >>change the validate key to email
+      email: {
         type: DataTypes.STRING,
+        isUnique: true,
         allowNull: false,
         validate: {
-            notNull: true,
-            len: [1,14],
-            isAlphanumeric: true,
+            isEmail: true,
+            notNull: true,   
         },
       },
       password: {
