@@ -17,24 +17,24 @@ signinBtn.addEventListener('click', async (event) => {
         alert('Please enter a valid password. Password must be 6 characters long.');
         return;
     }
-});
     // posts the user input to the /api/signup endpoint
-//     try {
-//         const response = await fetch('/api/signin', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({
-//                 email,
-//                 password,
-//             })
-//         });
+    try {
+        const response = await fetch('/api/user/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email,
+                password,
+            })
+        });
 
-//         await response.json();
-//         // change user window to the /users endpoint
-//         window.location.href = '/environment';
-//     } catch (error) {
-//         alert(error);
-//     }
-// });
+        await response.json();
+        console.log(response);
+        // change user window to the /users endpoint
+        // window.location.href = '/environment';
+    } catch (error) {
+        alert(error);
+    }
+});
