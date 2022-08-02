@@ -1,5 +1,7 @@
 require('dotenv').config();
 const express = require('express');
+const socket = require('socket.io');
+const { createServer } = require('http');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -38,7 +40,11 @@ app.use(express.urlencoded({ extended: true}));
 
 app.use(routes);
 
+// create socket server
+const server = createServer(app);
+const io = socket(server);
+
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log(`Listening on PORT: ${PORT} Yass mama!`));
+    server.listen(PORT, () => console.log(`Listening on PORT: ${PORT} Yass mama!`));
 })
