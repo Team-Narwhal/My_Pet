@@ -1,12 +1,19 @@
-const signinBtn = document.getElementById('signinBtn');
-const signinEmailInput = document.getElementById('signinEmailInput');
-const signinPasswordInput = document.getElementById('pwInput');
+const signUpBtn = document.getElementById('signUpBtn');
+const signUpEmailInput = document.getElementById('signUpEmailInput');
+const signUpPasswordInput = document.getElementById('signUpPasswordInput');
+const signUpPasswordConfirmInput = document.getElementById('signUpPasswordConfirmInput');
 
-signinBtn.addEventListener('click', async (event) => {
+signUpBtn.addEventListener('click', async (event) => {
     event.preventDefault();
-    const email = signinEmailInput.value;
-    const password = signinPasswordInput.value;
+    const email = signUpEmailInput.value;
+    const password = signUpPasswordInput.value;
+    const passwordConfirm = signUpPasswordConfirmInput.value;
 
+    // Checks to see if email inputs match
+    if (password !== passwordConfirm) {
+        alert('Your passwords do not match.');
+        return;
+    }
     // checks to make sure username is not empty
     if (email.trim().length === 0) {
         alert('Please enter a valid email');

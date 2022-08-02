@@ -1,17 +1,21 @@
 <form class="signupForm">
     <div class="form-group">
-        <label for="exampleInputName">Name</label>
-        <input type="text" class="form-control" id="exampleInputName" placeholder="Name">
+        <label for="signUpNameInput">Name</label>
+        <input type="text" class="form-control" id="signUpNameInput" placeholder="Name">
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+        <label for="signUpEmailInput">Email address</label>
+        <input type="email" class="form-control" id="signUpEmailInput" aria-describedby="emailHelp"
             placeholder="Enter email">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <label for="signUpPasswordInput">Password</label>
+        <input type="password" class="form-control" id="signUpPasswordInput" placeholder="Password">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="form-group">
+        <label for="signUpPasswordConfirmInput">Confirm Your Password</label>
+        <input type="password" class="form-control" id="signUpPasswordConfirmInput" placeholder="Password Confirm">
+    </div>
+    <button id="signUpBtn" type="submit" class="btn btn-primary">Submit</button>
 </form>
