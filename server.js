@@ -21,7 +21,7 @@ const sessionSettings = {
     saveUninitialized: false,
     store: new SequelizeStore({
         db: sequelize,
-      }),
+    }),
 };
 
 const app = express();
@@ -36,13 +36,34 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 app.use(session(sessionSettings));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 
 // create socket server
 const server = createServer(app);
 const io = socket(server);
+
+// Add server listeners here!
+// Ask how and where to export.
+io.on("connection", (socket) => {
+    console.log("Made socket connection", socket.id);
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+      });
+
+    socket.on("ew", (data) => {
+        console.log(data);
+        io.emit("ew", data);
+    });
+
+    socket.on("yass", (data) => {
+        console.log(data);
+        io.emit("yass", data);
+    });
+
+});
 
 
 sequelize.sync({ force: false }).then(() => {
