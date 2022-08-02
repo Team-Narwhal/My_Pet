@@ -38,8 +38,8 @@ signUpBtn.addEventListener('click', async (event) => {
         });
         await response.json();
         console.log(response);
-        // change user window to the /users endpoint
-        // window.location.href = '/environment';
+        // change user window to the /playpen endpoint
+        window.location.href = '/environment';
     } catch (error) {
         alert(error);
     }

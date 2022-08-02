@@ -31,6 +31,10 @@ signinBtn.addEventListener('click', async (event) => {
         });
         await response.json();
         console.log(response);
+
+         // change user window to the /playpen endpoint
+        window.location.href = '/environment';
+        
     } catch (error) {
         console.log(error);
         res.status(500).json({ error });
