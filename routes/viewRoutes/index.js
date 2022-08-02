@@ -8,9 +8,16 @@ const router = require('express').Router();
 // Renders landing_page.handlebars
 router.get('/', (req, res) => {
     // Will add more here later.
-    res.render('/', {
+    res.render('landing_page', {
         isLoggedIn: req.session.isLoggedIn || false,
     });
+});
+
+// Nifer
+// Renders signup.handlebars
+router.get('/signup', (req, res) => {
+    // Will add more here later.
+    res.render('signup');
 });
 
 // Nolan
