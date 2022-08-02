@@ -36,7 +36,6 @@ signUpBtn.addEventListener('click', async (event) => {
                 password,
             })
         });
-
         await response.json();
         console.log(response);
         // change user window to the /users endpoint
