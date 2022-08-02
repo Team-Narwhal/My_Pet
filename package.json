@@ -1,7 +1,7 @@
 {
   "name": "my_pet",
   "version": "1.0.0",
-  "description": "",
+  "description": "Make and take care of a pet",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/Unicorn-Barf/My_Pet.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Team NaNarwahl",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Unicorn-Barf/My_Pet/issues"

@@ -13,6 +13,13 @@ router.get('/', (req, res) => {
     });
 });
 
+// Nifer
+// Renders signup.handlebars
+router.get('/signup', (req, res) => {
+    // Will add more here later.
+    res.render('signup');
+});
+
 // Nolan
 // Renders the environment.handlebars
 router.get('/playpen', (req, res) => {
