@@ -26,6 +26,10 @@ const sessionSettings = {
 
 const app = express();
 
+// create socket server
+const server = createServer(app);
+const io = socket(server);
+
 const PORT = process.env.PORT || 3001;
 
 // Template Engine Setup: sets up express with handlebars
@@ -40,9 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 
-// create socket server
-const server = createServer(app);
-const io = socket(server);
+
 
 // Add server listeners here!
 // Ask how and where to export.
@@ -55,12 +57,15 @@ io.on("connection", (socket) => {
 
     socket.on("ew", (data) => {
         console.log(data);
-        io.emit("ew", data);
+        socket.broadcast.emit("ew", data);
     });
 
     socket.on("yass", (data) => {
         console.log(data);
-        io.emit("yass", data);
+        // to exclude sender use broadcast
+        socket.broadcast.emit("yass", data);
+        // to include sender use 
+        // io.emit('yass', data);
     });
 
 });
