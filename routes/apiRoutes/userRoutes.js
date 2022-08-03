@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAllUsers, signUp, signIn } = require('../../controllers/userController');
+const { getAllUsers, signUp, signIn, signOut } = require('../../controllers/userController');
 const { Pet } = require('../../models');
 
 
@@ -13,16 +13,12 @@ router.post('/signin', signIn);
 //route for /signup
 router.post('/signup', signUp);
 
-
-// Angie
+// Angie 
+//Asha updated Modularization 
 // Destroys the session when a user signs out.
-router.post('/signout', async (req, res) => {
-    if (req.session.isLoggedIn) {
-        req.session.destroy(() => {
-            res.json({ success: true });
-        });
-    }
-});
+router.post('/signout', signOut);
+
+//
 
 // Sample get route to /api/user to get all users
 router.route('/')
