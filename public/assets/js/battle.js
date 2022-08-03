@@ -21,3 +21,15 @@ socket.on('ew', (data) => {
 socket.on('yass', (data) => {
     document.getElementById('socket-alert').textContent = data;
 });
+
+// generate a random room id if no rooms open
+
+
+// Load the User's pet from database
+// Create a JS class instance
+// Create a game Class instance
+
+// Figure out socket rooms and connect to a game
+
+
+
