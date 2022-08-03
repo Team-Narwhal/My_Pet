@@ -24,6 +24,9 @@
                 <div class="navbar-nav">
                     {{#if isLoggedIn}}
                     <button id="signOutBtn" href="api/signout">Sign Out</button>
+                    {{else }}
+                    <button type="submit" class="btn btn-primary" id="signinBtn">Visit your pet!</button>
+                    <button id="signUpBtn" type="submit" class="btn btn-primary">Submit</button>
                     {{/if}}
                 </div>
             </div>

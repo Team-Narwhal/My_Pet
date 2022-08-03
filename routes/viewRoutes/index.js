@@ -27,7 +27,7 @@ router.get('/playpen', (req, res) => {
     if (!req.session.isLoggedIn) {
         return res.redirect('/');
     };
-    res.render('environment', {
+    res.render('playpen', {
         isLoggedIn: req.session.isLoggedIn || false,
     })
 });
