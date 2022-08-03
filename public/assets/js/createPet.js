@@ -14,20 +14,23 @@ createPetBtn.addEventListener('click', async (event) => {
     }
     // posts the user input to the  endpoint
     try {
-        const response = await fetch('/api', {
+        const response = await fetch('/api/pet', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+
+// !!!!need to pass in user ID
+
                 petType,
                 petName,
             })
         });
         await response.json();
         console.log(response);
-        // change user window to the /createPet endpoint
-        window.location.href = '/createPet';
+        // change user window to the /playpen (environment) endpoint
+        window.location.href = '/playpen';
     } catch (error) {
         alert(error);
     }
