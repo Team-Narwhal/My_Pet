@@ -1,0 +1,33 @@
+<h3>Now the exciting part! Let's create your pet!</h3>
+
+<div class="dropdownMenus col-md-12">
+    <div class='form-field'>
+        <label for='choosePet'>What kind of pet would you like?</label>
+        <select id='choosePet' class='form-control'>
+            <option>Choose pet</option>
+            {{#each petType}}
+            <option value="{{this}}">{{this.petType}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <label for="choosePetInput">Choose your type of pet!</label>
+        <input type="email" class="form-control" id="signUpEmailInput" aria-describedby="emailHelp"
+            placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="signUpPasswordInput">Password</label>
+        <input type="password" class="form-control" id="signUpPasswordInput" placeholder="Password">
+        <small id="passwordHelp" class="form-text text-muted">Please make a password greater than 6 characters
+            long.</small>
+    </div>
+    <div class="form-group">
+        <label for="signUpPasswordConfirmInput">Confirm Your Password</label>
+        <input type="password" class="form-control" id="signUpPasswordConfirmInput" placeholder="Password Confirm">
+    </div>
+    <button id="signUpBtn" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <script src="/assets/js/signUp.js"></script>
