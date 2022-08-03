@@ -39,7 +39,7 @@ signUpBtn.addEventListener('click', async (event) => {
         await response.json();
         console.log(response);
         // change user window to the /playpen endpoint
-        window.location.href = '/playpen';
+        window.location.href = '/createPet';
     } catch (error) {
         alert(error);
     }
