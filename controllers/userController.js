@@ -41,19 +41,19 @@ const signIn = async (req, res) => {
       },
     });
     if (!existingUser) {
-      return res.status(401).json({ error: "Your Credentials are not valid" });
+      return res.status(401).json({ error: "Your credentials are not valid." });
     }
     const passwordMatch = await bcrypt.compare(
       req.body.password,
       existingUser.password
     );
     if (!passwordMatch) {
-      return res.status(401).json({ error: "Your Password doesnot match" });
+      return res.status(401).json({ error: "Your password does not match." });
     }
     req.session.save(() => {
       req.session.user = existingUser;
       req.session.isLoggedIn = true;
-      res.json({ sucess: true });
+      res.json({ success: true });
     });
   } catch (error) {
     console.log(error);
