@@ -31,6 +31,7 @@ wakeBtn.addEventListener('click', async (event) => {
 
 
 
+
 // A button to feed your hungry pet
 feedBtn.addEventListener('click', async (event) => {
  
@@ -42,6 +43,7 @@ feedBtn.addEventListener('click', async (event) => {
         alert(error);
     }
 });
+
 
 
 
