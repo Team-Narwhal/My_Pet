@@ -9,7 +9,7 @@ createPetBtn.addEventListener('click', async (event) => {
     const name = petNameInput.value;
 
     // checks to make sure petName is not empty
-    if (petName.trim().length === 0) {
+    if (name.trim().length === 0) {
         alert('Please give a name to your pet.');
         return;
     }
