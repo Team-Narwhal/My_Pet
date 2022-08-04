@@ -79,11 +79,25 @@ initBattle();
 
 
 // generate a random room id if no rooms open
-
-
-// Load the User's pet from database
-// Create a JS class instance
 // Create a game Class instance
-
 // Figure out socket rooms and connect to a game
+
+//Asha
+//Load the User's pet from database
+// Create a JS class instance
+//
+const petCanvas = document.getElementById('petCanvas');
+const battleButtons = document.querySelectorAll('.battle-button')
+//Initialize the function which will start the same 
+//Add Event listeners to the buttons
+console.log(battleButtons);
+battleButtons.forEach(btn => {
+    console.log('loop');
+    btn.addEventListener( 'click',(event) => {
+    const direction = event.target.dataset.description;
+    console.log(direction);
+
+    })
+});
+
 
