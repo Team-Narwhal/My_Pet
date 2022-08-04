@@ -1,16 +1,30 @@
-<form>
-    <div class="mb-3">
-        <label for="signInEmailInput" class="form-label">Email</label>
-        <input type="text" class="form-control" id="signInEmailInput" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">Please enter your email address.</div>
-    </div>
-    <div class="mb-3">
-        <label for="signInPasswordInput" class="form-label">Password</label>
-        <input type="password" class="form-control" id="signInPasswordInput">
-    </div>
-    <button type="submit" class="btn btn-primary" id="signinBtn">Visit your pet!</button>
+<section class="col-6 offset-3 align-content-center">
+    <h2 class="text-center">Welcome to Wild NaNimals!</h2>
+    <p class="text-center">Sign in below to visit your pet.</p>
 
-    <p id="signup">Dont have an account?
-        <a id="signUpHereBtn" href="/signup">Make your pet here!</a>
-    </p>
-</form>
+    <form id="signInForm">
+        <div class="row mb-3">
+            <label for="signInEmailInput" class="form-label">Email</label>
+            <input type="text" class="form-control" id="signInEmailInput" placeholder="example@example.com"
+                aria-describedby="emailHelp">
+            {{!-- <div id="emailHelp" class="form-text">Please enter your email address.</div> --}}
+        </div>
+        <div class="row mb-3">
+            <label for="signInPasswordInput" class="form-label">Password</label>
+            <input type="password" class="form-control" id="signInPasswordInput"
+                placeholder="Super Secret Password Here">
+            {{!-- <div id="passwordHelp" class="form-text">Please enter your password.</div> --}}
+
+        </div>
+        <div class="col text-center">
+            <button type="submit" class="btn btn-primary" id="signinBtn">Visit your pet!</button>
+        </div>
+        <br />
+
+        <p id="signup" class="text-center">Dont have an account?
+            <a id="signUpHereBtn" href="/signup">Sign up here!</a>
+        </p>
+    </form>
+</section>
+
+<script src="/assets/js/logInOut.js"></script>
