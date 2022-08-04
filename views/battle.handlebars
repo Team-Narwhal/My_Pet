@@ -6,8 +6,17 @@
 <button id="yass-btn" type="button" class="btn-lg btn-success">Yass</button>
 <button id="ew-btn" type="button" class="btn-lg btn-danger">Ewww</button>
 
+{{!--HTML Boilerplate--}}
+{{!--Get Canvas elements
+one div with four buttons up down right left --}}
+<canvas id="petCanvas" width="480" height="'320"style="background-color: #0000ff;"></canvas>
 
-
+<div id="gamingButtons">
+<button type="button" data-description='u' class="nes-btn is-primary battle-button">Up</button>
+<button type="button" data-description='d' class="nes-btn is-success battle-button">Down</button>
+<button type="button" data-description='l' class="nes-btn is-warning battle-button">left</button>
+<button type="button" data-description='r' class="nes-btn is-error battle-button">right</button>
+</div>
 {{!-- Socket Scripts --}}
 <script src="/socket.io/socket.io.js"></script>
 
