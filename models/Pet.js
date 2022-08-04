@@ -47,10 +47,10 @@ Pet.init(
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
-    // isActive: {
-    //   type: DataTypes.BOOLEAN,
-    //   defaultValue: true,
-    // },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
     poop: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
@@ -64,6 +64,42 @@ Pet.init(
       defaultValue: 0,
       validate: {
         isNumeric: true,
+      }
+    },
+    isHappy: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    attack: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isNumeric: true,
+        isNull: false,
+      }
+    },
+    hp: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isNumeric: true,
+        isNull: false,
+      }
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isAlphanumeric: true,
+        isNull: false,
+      }
+    },
+    defense: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isNumeric: true,
+        isNull: false,
       }
     },
     userId: {
