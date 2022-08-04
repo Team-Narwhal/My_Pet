@@ -38,8 +38,8 @@ router.get('/playpen', (req, res) => {
 router.get('/battle', (req, res) => {
     // redirect to landing_page if not logged in
     if (!req.session.isLoggedIn) {
-        return res.redirect('/');
-    };
+    return res.redirect('/');
+     };
     res.render('battle', {
         isLoggedIn: req.session.isLoggedIn || false,
     });
