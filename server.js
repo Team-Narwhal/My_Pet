@@ -49,7 +49,7 @@ app.use(routes);
 // Add server listeners here!
 // Ask how and where to export.
 io.on("connection", (socket) => {
-    console.log("Made socket connection", socket.id);
+    console.log("Made socket connection", socket.id, Array.from(io.sockets.adapter.rooms));
 
     socket.on('disconnect', () => {
         console.log('user disconnected');
