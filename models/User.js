@@ -2,6 +2,7 @@
 const { Model, DataTypes } = require('sequelize');
 // import our database connection from config.js
 const sequelize = require('../config/connection');
+const bcrypt = require('bcryptjs');
 
 // Initialize Product model (table) by extending off Sequelize's Model class
 class User extends Model {}
@@ -36,6 +37,28 @@ User.init(
     {
       sequelize,
       modelName: 'users',
+      hooks: {
+        beforeCreate: async (user) => {
+          try {
+            const hashedPassword = await bcrypt.hash(user.password, 8);
+            user.password = hashedPassword;
+            return user;
+          } catch (error) {
+            throw new Error(error);
+          }
+        },
+        beforeUpdate: async (user) => {
+          if (user.password.trim().length > 0) {
+            try {
+              const hashedPassword = await bcrypt.hash(user.password, 8);
+              user.password = hashedPassword;
+              return user;
+            } catch (error) {
+              throw new Error(error);
+            }
+          }
+        },
+      },
     }
   );
   

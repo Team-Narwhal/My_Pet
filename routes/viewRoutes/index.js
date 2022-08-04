@@ -36,9 +36,9 @@ router.get('/playpen', (req, res) => {
 // Renders the battle.handlebars
 router.get('/battle', (req, res) => {
     // redirect to landing_page if not logged in
-    if (!req.session.isLoggedIn) {
-        return res.redirect('/');
-    };
+    // if (!req.session.isLoggedIn) {
+    //     return res.redirect('/');
+    // };
     res.render('battle', {
         isLoggedIn: req.session.isLoggedIn || false,
     });
