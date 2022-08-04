@@ -48,12 +48,39 @@ app.use(routes);
 
 // Add server listeners here!
 // Ask how and where to export.
-io.on("connection", (socket) => {
-    console.log("Made socket connection", socket.id, Array.from(io.sockets.adapter.rooms));
+
+// Create map for Connected users
+// let sequenceNumberByClient = new Map();
+// let userArray = [];
+
+io.on("connection", async (socket) => {
+    console.log(`Client connected ID: ${socket.id}`, io.sockets.connected);
+    console.log(io);
+
+    // Example connects just the first two users
+    
+    const connect = setInterval(async () => {
+        const sockets = await io.fetchSockets();
+        let userArray = sockets;
+        
+        if (userArray[0].id === socket.id && userArray[1]) {
+            console.log(userArray);
+            console.log('yes!');
+            socket.join(userArray[1].id);
+            clearInterval(connect);
+        }
+    }, 1000);
+
+    // Add Users socket.id to a user array
+    socket.on('joined', (data) => {
+        console.log('hello', data);
+        socket.broadcast.emit('joined', socket.id);
+    })
 
     socket.on('disconnect', () => {
-        console.log('user disconnected');
-      });
+        // sequenceNumberByClient.delete(socket);
+        console.log(`User disconnected ID: ${socket.id}`);
+    });
 
     socket.on("ew", (data) => {
         console.log(data);
@@ -67,7 +94,6 @@ io.on("connection", (socket) => {
         // to include sender use 
         // io.emit('yass', data);
     });
-
 });
 
 
