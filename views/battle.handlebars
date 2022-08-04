@@ -6,10 +6,13 @@
 <button id="yass-btn" type="button" class="btn-lg btn-success">Yass</button>
 <button id="ew-btn" type="button" class="btn-lg btn-danger">Ewww</button>
 
+<div id="sequence-div" style="width: 300px; height: 300px;">
+</div>
 
 
 {{!-- Socket Scripts --}}
 <script src="/socket.io/socket.io.js"></script>
 
 {{!-- Custon Battle Script --}}
-<script src="/assets/js/battle.js"></script>
+<script type="module" src="/assets/js/battle.js"></script>
+<script type="module" src="/assets/lib/Battle.js"></script>
