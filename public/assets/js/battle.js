@@ -1,3 +1,5 @@
+import { Battle } from '../lib/Battle.js';
+
 // Establish Socket Connection
 const socket = io();
 socket.emit('joined');
@@ -22,6 +24,60 @@ socket.on('yass', (data) => {
     document.getElementById('socket-alert').textContent = data;
 });
 
+let myBattle;
+let myPet;
+
+const initBattle = async () => {
+    // Handles await loading pet from database
+    // creates Pet class instance
+    // Creates a new Battle class instance
+    myBattle = new Battle;
+    // start the battle
+    startBattle();
+
+}
+
+// Function for Starts Battle
+const startBattle = () => {
+    // generate a new sequence
+    myBattle.generateSequence();
+    // display the sequence
+    displaySequence();
+};
+
+// Display Senquence Function
+// This will be an interval function to display the sequence to 
+// memorize to the player
+const displaySequence = async () => {
+    // Get the sequence div to append to
+    const sequenceDiv = document.getElementById('sequence-div');
+    // Get the new sequence from the Battle object
+    const sequence = myBattle.sequence;
+    // Timeout function to clear the sequenceDiv
+    const clearDiv = async () => await new Promise(resolve => {
+        setTimeout(() => {
+            sequenceDiv.innerHTML = '';
+            setTimeout(() => resolve(), 800);
+        }, 1000);
+    });
+    // Loop through the sequence and display to user
+    for (const direction of sequence) {
+        let arrowImg = document.createElement('img');
+        arrowImg.src = '/assets/images/battle/' + direction + 'Arrow.svg';
+        sequenceDiv.append(arrowImg);
+        // Clear the div before next append
+        await clearDiv();
+    };
+    // Show buttons to the user
+}
+
+// Function to emit success or fail to other socket user
+
+// Function to listen for other socket user success or fail
+
+initBattle();
+
+
 // generate a random room id if no rooms open
 
 
@@ -30,6 +86,4 @@ socket.on('yass', (data) => {
 // Create a game Class instance
 
 // Figure out socket rooms and connect to a game
-
-
 
