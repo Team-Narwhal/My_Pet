@@ -1,3 +1,5 @@
+import { Battle } from '../lib/Battle.js';
+
 // Establish Socket Connection
 const socket = io();
 socket.emit("joined");
@@ -194,7 +196,6 @@ const defend = (success) => {
 // Listen for other socket user defend or noDefend
 // if defend: change to this players turn
 // if noDefend: subtract player's attack from opponents Pet hp
-
 initBattle();
 
 // generate a random room id if no rooms open
