@@ -39,7 +39,3 @@ class Battle {
 
 
 }
-
-export {
-    Battle
-};
