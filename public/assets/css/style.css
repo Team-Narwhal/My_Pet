@@ -1,0 +1,83 @@
+:root {
+    --light-green: #63C561;
+    --dark-green: #35A433;
+    --pink: #E92A9C;
+    --maroon: #BF0073;
+    --light-gray: #838282;
+    --dark-gray: #4F4F4F;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    /* background-image: ; */
+}
+
+.navbar {
+    /* background-color: var(--light-green); */
+    border-bottom: 5px solid var(--dark-gray);
+    /* margin-bottom: 5vh; */
+    background-image: linear-gradient(to right, 
+    #fff 40%, 
+    var(--light-green), 
+    var(--pink));
+
+    /* color: white;
+    background-image: linear-gradient(45deg,
+     #ffffff 12.50%, 
+     #e92a9c 12.50%, 
+     #e92a9c 25%, 
+     #bf0073 25%, 
+     #bf0073 37.50%, 
+     #35a433 37.50%, 
+     #35a433 50%, 
+     #ffffff 50%, 
+     #ffffff 62.50%, 
+     #e92a9c 62.50%, 
+     #e92a9c 75%, 
+     #bf0073 75%, 
+     #bf0073 87.50%, 
+     #35a433 87.50%, 
+     #35a433 100%);
+    background-size: 113.14px 113.14px; */
+}
+
+.navbar-brand {
+    font-family: strumpf-std-contour, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+}
+
+#header-freak {
+    font-family: strumpf-std-contour, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+}
+
+#main {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    background-image: url('/assets/images/bg-meadow.jpg');
+    background-size: cover;
+}
+
+/* #main::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0, 0.6);
+} */
+
+.btn {
+    color: #fff;
+    background-color: var(--maroon);
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: var(--dark-green);
+}

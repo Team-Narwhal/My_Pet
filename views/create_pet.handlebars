@@ -10,8 +10,8 @@
                 <select id='choosePetType' class='form-control'>
                     <option value="" selected disabled>Choose a critter!</option>
                     <option value="jackalope">Jackalope</option>
-                    <option value="demon">Demon</option>
-                    <option value="gnome">Gnome</option>
+                    <option value="demon">Yeti</option>
+                    <option value="gnome">Unicorn</option>
                     {{#each petType}}
                     <option value="{{this}}">{{this.petType}}</option>
                     {{/each}}
@@ -41,7 +41,7 @@
                 <div id="namePetHelp" class="form-text">You cannot change the name of your pet once it is created.</div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary" id="createPetBtn">Create your pet now!</button>
+                <button type="submit" class="btn" id="createPetBtn">Create your pet now!</button>
             </div>
     </form>
 </section>
