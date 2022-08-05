@@ -1,0 +1,39 @@
+<h3>Now the exciting part! Let's create your pet!</h3>
+
+<form>
+    <div class="dropdown col-md-12">
+        <div class='form-field'>
+            <label for='choosePet'>What kind of pet would you like?</label>
+            <select id='choosePetType' class='form-control'>
+                <option>Choose pet</option>
+                {{#each petType}}
+                <option value="{{this}}">{{this.petType}}</option>
+                {{/each}}
+            </select>
+        </div>
+        {{!-- Option to add color in future development --}}
+        {{!-- <div class="btn-group">
+            <button id="colorSelectBtn" type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Color</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Red</a>
+                <a class="dropdown-item" href="#">Orange</a>
+                <a class="dropdown-item" href="#">Yellow</a>
+                <a class="dropdown-item" href="#">Green</a>
+                <a class="dropdown-item" href="#">Blue</a>
+                <a class="dropdown-item" href="#">Purple</a>
+                <a class="dropdown-item" href="#">Black</a>
+                <a class="dropdown-item" href="#">Brown</a>
+                <a class="dropdown-item" href="#">Grey</a>
+                <a class="dropdown-item" href="#">White</a>
+            </div>
+        </div> --}}
+        <div class="mb-3">
+            <label for="petNameInput" class="form-label">What would you like to name your pet?</label>
+            <input type="text" class="form-control" id="petNameInput" aria-describedby="namePetHelp">
+            <div id="namePetHelp" class="form-text">You cannot change the name of your pet once it is created.</div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="createPetBtn">Create your pet now!</button>
+</form>
+
+<script src="/assets/js/createPet.js"></script>
