@@ -16,11 +16,10 @@ const getUserPet = async () => {
   // console.log(userId);
   const petResponse = await fetch(`/api/pet/${userId}`);
   console.log(petResponse);
-  const myPet = await petResponse.json();
+  myPet = await petResponse.json();
   // console.log(myPet);
   return myPet;
 };
-getUserPet();
 
 // Establish Socket Connection
 const socket = io();
@@ -34,6 +33,7 @@ const init = async () => {
     // Creates a new Battle class instance
     myBattle = new Battle;
     // show start button once everything is loaded
+    await getUserPet ();
     startDiv.style.display = 'block';
 };
 
@@ -62,7 +62,9 @@ socket.on('transfer-pet', (pet) => {
 // 'defend' listener
 // needs to appropriately handle Pet's hp value for our enemyPet
 // needs to call startBattle()
-socket.on('defend', () => {
+socket.on('defend', (enemyHp) => {
+  enemyPet.hp = enemyHp;
+  console.log(enemyHp);
     startBattle();
 });
 
@@ -70,6 +72,11 @@ socket.on('defend', () => {
 // write a 'no-defend' listener
 // needs to appropriately handle Pet's hp value
 // needs to call startBattle()
+socket.on('no-defend', (enemyHp) => {
+  enemyPet.hp = enemyHp;
+  console.log(enemyHp);
+    startBattle();
+});
 
 // Nolan
 // Function for Starts Battle
@@ -117,12 +124,22 @@ const displaySequence = async () => {
 const defend = (success) => {
     // Hide buttons from User
     const gammingBtnDiv = document.getElementById('gamingButtons');
-    gammingBtnDiv.style.display = 'block';
+    gammingBtnDiv.style.display = 'none';
     if (success) {
         // emit a 'defend' using socket
+        //emit an event
+        //This is for the client being attack
+        console.log(myPet.hp);
+        myPet.hp -= (enemyPet.attack - myPet.defense)
+        console.log(myPet.hp);
+        socket.emit('defend',myBattle.room,myPet.hp)
+          // console.log('success')
     }
     else {
         // emit a 'no-defend' using socket
+        myPet.hp -= enemyPet.attack
+        socket.emit('no-defend',myBattle.room,myPet.hp)
+        console.log('fail')
     }
 };
 
