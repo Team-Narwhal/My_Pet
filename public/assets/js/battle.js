@@ -1,6 +1,3 @@
-import { DatabaseError } from "sequelize/types/index.js";
-import { Battle } from "../lib/Battle.js";
-
 // Establish Socket Connection
 const socket = io();
 socket.emit("joined");
@@ -37,9 +34,15 @@ const getUserPet = async () => {
   //Check to see if the pet is Active through userId
   const response = await fetch("/api/user/getUserId");
   const userId = await response.json();
-  console.log(userId);
+  // console.log(userId);
+  const petResponse = await fetch(`/api/pet/${userId}`);
+  console.log(petResponse);
+  const myPet = await petResponse.json();
+  // console.log(myPet);
+  return myPet;
 };
 getUserPet();
+
 // Socketio Join another player's room
 // This is io.fetchSockets();
 // [

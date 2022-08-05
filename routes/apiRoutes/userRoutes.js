@@ -2,8 +2,6 @@ const router = require('express').Router();
 const { getAllUsers, signUp, signIn, signOut, getUserId } = require('../../controllers/userController');
 const { Pet } = require('../../models');
 
-router.get('/getUserId' , getUserId)
-
 
 // Routes for /api/user
 //renders signup/landing page
