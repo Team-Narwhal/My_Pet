@@ -21,6 +21,12 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
+// Nifer
+// Renders create_pet.handlebars
+router.get('/create_pet', (req, res) => {
+    res.render('create_pet');
+});
+
 // Nolan
 // Renders the environment.handlebars
 router.get('/playpen', (req, res) => {
