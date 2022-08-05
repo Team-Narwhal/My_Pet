@@ -48,38 +48,45 @@ app.use(routes);
 
 
 // Add server listeners here!
-// Ask how and where to export.
 
-// Create map for Connected users
-// let sequenceNumberByClient = new Map();
-// let userArray = [];
+// This stores the room to send to User for reference
+// to the room id that they joined
+let room;
 
-io.on("connection", async (socket) => {
-    console.log(`Client connected ID: ${socket.id}`, io.sockets.connected);
-    console.log(io);
+io.on("connection", (socket) => {
+    console.log(`Client connected ID: ${socket.id}`);
+    console.log('room', io.sockets.adapter.rooms);
 
-    // Example connects just the first two users
-    
-    const connect = setInterval(async () => {
-        const sockets = await io.fetchSockets();
-        let userArray = sockets;
-        
-        if (userArray[0].id === socket.id && userArray[1]) {
-            console.log(userArray);
-            console.log('yes!');
-            socket.join(userArray[1].id);
-            clearInterval(connect);
-        }
-    }, 1000);
 
     // Add Users socket.id to a user array
     socket.on('joined', (data) => {
-        console.log('hello', data);
-        socket.broadcast.emit('joined', socket.id);
-    })
+        const rooms = io.sockets.adapter.rooms;
+        for (const [id, members] of rooms) {
+            if (/^room/.test(id) && members.size < 2) {
+                console.log(`User ${socket.id} joining room, joined room: ${id}`);
+                room = id;
+                socket.join(room);
+                socket.to(room).emit('you-first', room);
+                return;
+            };
+        };
+        room = `room-${rooms.size}`;
+        console.log(`This is the room: ${room} with user ${socket.id}`);
+        socket.join(room);
+        // socket.to(room).emit('lets-start', room);
+    });
+
+    socket.on('you-second', (roomId, pet) => {
+        socket.to(roomId).emit('you-second', roomId, pet);
+    });
+
+    socket.on('transfer-pet', (roomId, pet) => {
+        socket.to(roomId).emit('transfer-pet', pet);
+    });
 
     socket.on('disconnect', () => {
-        // sequenceNumberByClient.delete(socket);
+        // emit kill switch to roommate
+        // remove both users from room and delete room
         console.log(`User disconnected ID: ${socket.id}`);
     });
 

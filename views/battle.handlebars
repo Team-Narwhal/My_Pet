@@ -13,12 +13,16 @@ one div with four buttons up down right left --}}
 <div id="sequence-div" style="width: 300px; height: 300px;">
 </div>
 
-<div id="gamingButtons">
+<div id="gamingButtons" style="display: none;">
 <button type="button" data-description='u' class="nes-btn is-primary battle-button">Up</button>
 <button type="button" data-description='d' class="nes-btn is-success battle-button">Down</button>
 <button type="button" data-description='l' class="nes-btn is-warning battle-button">left</button>
 <button type="button" data-description='r' class="nes-btn is-error battle-button">right</button>
 </div>
+<div id="start-div" style="display: none;">
+    <button type="button" class="nes-btn is-success start-btn">Start</button>
+</div>
+
 {{!-- Socket Scripts --}}
 <script src="/socket.io/socket.io.js"></script>
 
