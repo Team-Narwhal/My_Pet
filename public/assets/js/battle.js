@@ -4,6 +4,24 @@ let myPet;
 let enemyPet;
 let room;
 
+//Asha
+//Write a function to fetch login user's active pet
+//inside the function we need to use the data to create the new instance of appropriate subclasses
+const getUserPet = async () => {
+  //get the users USERID using UUID
+  //Check to see relation to the pet
+  //Check to see if the pet is Active through userId
+  const response = await fetch("/api/user/getUserId");
+  const userId = await response.json();
+  // console.log(userId);
+  const petResponse = await fetch(`/api/pet/${userId}`);
+  console.log(petResponse);
+  const myPet = await petResponse.json();
+  // console.log(myPet);
+  return myPet;
+};
+getUserPet();
+
 // Establish Socket Connection
 const socket = io();
 
@@ -56,27 +74,28 @@ socket.on('defend', () => {
 // Nolan
 // Function for Starts Battle
 const startBattle = () => {
-    // generate a new sequence
-    myBattle.generateSequence();
-    // display the sequence
-    displaySequence();
+  // generate a new sequence
+  myBattle.generateSequence();
+  // display the sequence
+  displaySequence();
 };
 
 // Nolan
 // Display Senquence Function
-// Uses a setTimeout function to display the sequence to 
+// Uses a setTimeout function to display the sequence to
 // memorize to the player, arrows 'flash' one at a time
 const displaySequence = async () => {
-    // Get the sequence div to append to
-    const sequenceDiv = document.getElementById('sequence-div');
-    // Get the new sequence from the Battle object
-    const sequence = myBattle.sequence;
-    // Timeout function to clear the sequenceDiv
-    const clearDiv = async () => await new Promise(resolve => {
-        setTimeout(() => {
-            sequenceDiv.innerHTML = '';
-            setTimeout(() => resolve(), 800);
-        }, 1000);
+  // Get the sequence div to append to
+  const sequenceDiv = document.getElementById("sequence-div");
+  // Get the new sequence from the Battle object
+  const sequence = myBattle.sequence;
+  // Timeout function to clear the sequenceDiv
+  const clearDiv = async () =>
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        sequenceDiv.innerHTML = "";
+        setTimeout(() => resolve(), 800);
+      }, 1000);
     });
     // Loop through the sequence and display to user
     for (const direction of sequence) {
@@ -112,18 +131,27 @@ const defend = (success) => {
 //Load the User's pet from database
 // Create a JS class instance
 //
-const petCanvas = document.getElementById('petCanvas');
-const battleButtons = document.querySelectorAll('.battle-button')
-//Initialize the function which will start the same 
-//Add Event listeners to the buttons
+const petCanvas = document.getElementById("petCanvas");
+const battleButtons = document.querySelectorAll(".battle-button");
+//Initialize the function which will start the same
+//Add Event listeners to the buttons and grabbing the value of the buttons
 console.log(battleButtons);
-battleButtons.forEach(btn => {
-    console.log('loop');
-    btn.addEventListener( 'click',(event) => {
+battleButtons.forEach((btn) => {
+  console.log("loop");
+  btn.addEventListener("click", (event) => {
     const direction = event.target.dataset.description;
     console.log(direction);
-
-    })
+    myBattle.sequenceGuess.push(direction);
+    const check = myBattle.sequenceCheck();
+    if (check === "continue") {
+      return;
+    } else {
+      defend(check);
+      //check if the check is false
+      //so the opponents attack this player.
+      //substract opponent attack value from this player's pet HP value
+    }
+  });
 });
 
 // Nolan
