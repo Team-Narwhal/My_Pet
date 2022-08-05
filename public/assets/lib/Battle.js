@@ -3,6 +3,7 @@ class Battle {
         this.sequence = [];
         this.sequenceGuess = [];
         this.turn = true;
+        this.roomId = '';
     }
 
     // Function to generate a random sequence of u, d, r, l
