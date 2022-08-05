@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAllUsers, signUp, signIn, signOut } = require('../../controllers/userController');
+const { getAllUsers, signUp, signIn, signOut, getUserId } = require('../../controllers/userController');
 const { Pet } = require('../../models');
 
 
@@ -18,7 +18,7 @@ router.post('/signup', signUp);
 // Destroys the session when a user signs out.
 router.post('/signout', signOut);
 
-//
+router.get('/getUserId' , getUserId)
 
 // Sample get route to /api/user to get all users
 router.route('/')

@@ -67,10 +67,19 @@ const signOut = async (req, res) => {
     });
   }
 };
+const getUserId = async (req, res) => {
+  if (req.session.isLoggedIn) {
+    res.json(req.session.user.id);
+  } else {
+    res.json({ error: "not logged in" });
+  }
+}; 
+
 
 module.exports = {
   getAllUsers,
   signIn,
   signUp,
   signOut,
+  getUserId
 };

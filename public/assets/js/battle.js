@@ -1,3 +1,4 @@
+import { DatabaseError } from "sequelize/types/index.js";
 import { Battle } from "../lib/Battle.js";
 
 // Establish Socket Connection
@@ -24,15 +25,21 @@ socket.on("yass", (data) => {
   document.getElementById("socket-alert").textContent = data;
 });
 
-
 // Global Variables
 let myBattle;
 let myPet;
 //Asha
 //Write a function to fetch login user's active pet
 //inside the function we need to use the data to create the new instance of appropriate subclasses
-const getUserPet = async () => {};
-
+const getUserPet = async () => {
+  //get the users USERID using UUID
+  //Check to see relation to the pet
+  //Check to see if the pet is Active through userId
+  const response = await fetch("/api/user/getUserId");
+  const userId = await response.json();
+  console.log(userId);
+};
+getUserPet();
 // Socketio Join another player's room
 // This is io.fetchSockets();
 // [
@@ -120,15 +127,18 @@ const getUserPet = async () => {};
 // Nolan
 // Function for page initialization
 const initBattle = async () => {
-
-    // Handles await loading pet from database
-    // creates Pet class instance
-    // Creates a new Battle class instance
-    myBattle = new Battle();
-    // start the battle
-    startBattle();
-
-}
+  // Handles await loading pet from database
+  //send our pets stats to other socket.io user
+  myPet = {
+    // petFromDatabase.hp,
+    // petFromDatabase.attack,
+    // petFromDatabase.defense,
+  };
+  // Creates a new Battle class instance
+  myBattle = new Battle();
+  // start the battle
+  startBattle();
+};
 
 // Nolan
 // Function for Starts Battle
@@ -141,7 +151,7 @@ const startBattle = () => {
 
 // Nolan
 // Display Senquence Function
-// Uses a setTimeout function to display the sequence to 
+// Uses a setTimeout function to display the sequence to
 // memorize to the player, arrows 'flash' one at a time
 const displaySequence = async () => {
   // Get the sequence div to append to
@@ -156,28 +166,27 @@ const displaySequence = async () => {
         setTimeout(() => resolve(), 800);
       }, 1000);
     });
-    // Loop through the sequence and display to user
-    for (const direction of sequence) {
-        // Create and append appropriate Arrow image for every
-        // direction in the sequence array one at a time
-        let arrowImg = document.createElement('img');
-        arrowImg.src = '/assets/images/battle/' + direction + 'Arrow.svg';
-        sequenceDiv.append(arrowImg);
-        // Call clearDiv() to clear div with setTimeout timing
-        await clearDiv();
-    };
-    // Show buttons to the user
-}
+  // Loop through the sequence and display to user
+  for (const direction of sequence) {
+    // Create and append appropriate Arrow image for every
+    // direction in the sequence array one at a time
+    let arrowImg = document.createElement("img");
+    arrowImg.src = "/assets/images/battle/" + direction + "Arrow.svg";
+    sequenceDiv.append(arrowImg);
+    // Call clearDiv() to clear div with setTimeout timing
+    await clearDiv();
+  }
+  // Show buttons to the user
+};
 
 // Function to emit success or fail to other socket user
 // Param is either true for guessed sequence or false for failed guess
 const defend = (success) => {
-    if (success) {
-        // emit a defend using socket
-    }
-    else {
-        // emit a noDefend using socket
-    }
+  if (success) {
+    // emit a defend using socket
+  } else {
+    // emit a noDefend using socket
+  }
 };
 // Listen for other socket user defend or noDefend
 // if defend: change to this players turn
@@ -205,13 +214,8 @@ battleButtons.forEach((btn) => {
     console.log(direction);
     myBattle.sequenceGuess.push(direction);
     const check = myBattle.sequenceCheck();
-    if (check) {
-      //if the check is true handle the win case
-      //this player block opponents attack
-      defend(check);
-    } else if (check === "continue") {
+    if (check === "continue") {
       return;
-      
     } else {
       defend(check);
       //check if the check is false
