@@ -39,7 +39,8 @@ Pet.init(
       type: DataTypes.INTEGER,
       defaultValue: 8,
       validate: {
-        len: [1,8],
+        max: 8,
+        min: 1,
         isNumeric: true,
       }
     },
@@ -55,7 +56,8 @@ Pet.init(
       type: DataTypes.INTEGER,
       defaultValue: 0,
       validate: {
-        len: [0,4],
+        max: 4,
+        min: 0,
         isNumeric: true,
       }
     },
