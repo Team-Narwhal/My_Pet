@@ -1,7 +1,18 @@
 let canvas = document.getElementById("playpen");
 let ctx = canvas.getContext("2d");
 
-ctx.globalCompositeOperation = 'source-over';
+// ctx.globalCompositeOperation = 'source-over';
+
+const drawImg = async (filePath, x1, x2, y1, y2) => {
+    let img = new Image();
+    await new Promise((resolve) => {
+        img.onload = function () {
+            ctx.drawImage(img, x1, x2, y1, y2);
+            resolve();
+        };
+        img.src = filePath;
+    });
+};
 
 // drawing ball
 // to be replace with character
@@ -29,16 +40,6 @@ const draw = async () => {
     drawBall();
 }
 
-const drawImg = async (filePath, x1, x2, y1, y2) => {
-    let img = new Image();
-    await new Promise((resolve) => {
-        img.onload = function () {
-            ctx.drawImage(img, x1, x2, y1, y2);
-            resolve();
-        };
-        img.src = filePath;
-    });
-};
 
 // drawing ball
 // to be replace with character
