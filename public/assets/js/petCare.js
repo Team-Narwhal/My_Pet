@@ -11,6 +11,7 @@ const startBattleBtn = document.getElementById('startBattleBtn');
 
 // A button to feed your hungry pet
 feedBtn.addEventListener('click', async (event) => {
+    console.log("feed");
     init();
     if (myPet.hunger >= 1000) {
         alert(`${myPet.name} is already full!`);
@@ -42,6 +43,7 @@ feedBtn.addEventListener('click', async (event) => {
          // TODO: call a updateDatabase() to give medicine to the pet 
         // return with updated pet
 medicineBtn.addEventListener('click', async (event) => {
+    console.log("medicine");
     init();
     if (myPet.health = 8) {
         alert(`${myPet.name} doesn't need medicine!`);
@@ -74,6 +76,7 @@ medicineBtn.addEventListener('click', async (event) => {
          // TODO: call a updateDatabase() to clean up after the pet
         // return with updated playpen
 cleanBtn.addEventListener('click', async (event) => {
+    console.log("cleaning up!");
     init();
     if (myPet.poop > 0) {
         alert(`${myPet.name}'s playpen is clean. Yay!`);
@@ -105,11 +108,6 @@ cleanBtn.addEventListener('click', async (event) => {
 
 // Takes current iteration of pet to battle page
 startBattleBtn.addEventListener('click', async (event) => {
-    try {
-        // Takes current instance/status of pet and passes it to the battle page
-
+    console.log("battle!");
         window.location.href = '/battle';
-    } catch (error) {
-        alert(error);
-    }
 });
