@@ -1,11 +1,11 @@
 // Add required files/modules
-const sequelize = require('sequelize');
-const {
-    Pet,
-    Jackalope,
-    Unicorn,
-    Yeti,
-} = require('../../models');
+// const sequelize = require('sequelize');
+// const {
+//     Pet,
+//     Jackalope,
+//     Unicorn,
+//     Yeti,
+// } = require('../../models');
 
 /*use create()
 every time you finish something, it should update its status
@@ -34,16 +34,28 @@ const init = async () => {
 
     // Add logic to create instance of creature class
     if (petData.type === 'Jackalope') {
-        myPet = new Jackalope;
+        myPet = new Jackalope(petData);
     } else if (petData.type === 'Unicorn') {
-        myPet = new Unicorn;
+        myPet = new Unicorn(petData);
     } else if (petData.type === 'Yeti') {
-        myPet = new Yeti;
+        myPet = new Yeti(petData);
     }
+
+    console.log(myPet);
+    decay(petData.updatedAt);
+    fastForward(petData.updatedAt);
 }
 
-fastForward(lastUpdatedAt) {
+function decay(updatedAt) {
+    // subtract attribute points at intervals (e.g., hunger, energy, etc.)
+    console.log(updatedAt);
+}
+
+function fastForward(updatedAt) {
+    console.log(updatedAt);
     // Last updated at vs current time
+
+    // const dateNow = new Date
 }
 
 /* Add asychronous init function
@@ -63,11 +75,6 @@ myPet.init('addStuffHere', async (req, res) => {
         canvasDrawing();
     }
 });
-
-decay() {
-
-    // subtract attribute points at intervals (e.g., hunger, energy, etc.)
-}
 
 updateDatabase(async (req, res) => {
         try {
@@ -112,3 +119,5 @@ decay() {
 //         alert(error);
 //     }
 // });
+
+init();
