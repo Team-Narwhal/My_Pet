@@ -25,11 +25,12 @@ const startBattleBtn = document.getElementById('startBattleBtn');
 // A button to feed your hungry pet
 feedBtn.addEventListener('click', async (event) => {
     init();
-    if (myPet.hunger <= 50) {
+    if (myPet.hunger >= 1000) {
         // !!TODO: Sends message to user, I'm full!
         return;
     }
         try {
+            myPet.feed();
             const hunger = petData.hunger;
             const id = petData.id;
             const response = await fetch(`/api/pet/${id}`, {
@@ -38,11 +39,13 @@ feedBtn.addEventListener('click', async (event) => {
                     'Content-Type': 'application/json',
                         },
                 body: JSON.stringify({
-                    hunger,
+                    hunger: hunger,
                             })
                         });
-                        await response.json();
-                        console.log(response);
+            await response.json();
+            console.log(response);
+      // !!! Input actual funct name from Ivy !! Sends hungerlevel to canvass
+             canvassHunger(hunger);      
         } catch (error) {
             alert(error);
             }
@@ -53,13 +56,34 @@ feedBtn.addEventListener('click', async (event) => {
 
 
 // A button give medicine to improve health
-medicineBtn.addEventListener('click', async (event) => {
-    try {
          // TODO: call a updateDatabase() to give medicine to the pet 
         // return with updated pet
-    } catch (error) {
-        alert(error);
+medicineBtn.addEventListener('click', async (event) => {
+    init();
+    if (myPet.health = 8) {
+        // !!TODO: Sends message to user, your pet doesnt need medicine!
+        return;
     }
+        try {
+            myPet.health();
+            const health = petData.health;
+            const id = petData.id;
+            const response = await fetch(`/api/pet/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                        },
+                body: JSON.stringify({
+                    health: health,
+                            })
+                        });
+            await response.json();
+            console.log(response);
+      // !!! Input actual funct name from Ivy !! Sends healthlevel to canvass
+             canvassHealth(health);      
+        } catch (error) {
+            alert(error);
+            }
 });
 
 
