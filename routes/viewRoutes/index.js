@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
     // Will add more here later.
     res.render('landing_page', {
         isLoggedIn: req.session.isLoggedIn || false,
-        style: 'style.css',
     });
 });
 
