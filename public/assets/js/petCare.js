@@ -8,25 +8,12 @@ const cleanBtn = document.getElementById('cleanBtn');
 const startBattleBtn = document.getElementById('startBattleBtn');
 
 // Feature for future devel: button to wake up your pet if sleeping
-// wakeBtn.addEventListener('click', async (event) => {
-//     // TODO: if sleeping, wake up. Otherwise do nothing 
-//     // (Would be fun to add later, that it annoys the pet if you try to wake it up and it's already up, LOL)
-//     try {
-//         // TODO: call a updateDatabase() to change status to isActive 
-//         // Pass to Function for Canvass to change pet's status
-//     } catch (error) {
-//         alert(error);
-//     }
-// });
-
-
-
 
 // A button to feed your hungry pet
 feedBtn.addEventListener('click', async (event) => {
     init();
     if (myPet.hunger >= 1000) {
-        // !!TODO: Sends message to user, I'm full!
+        alert(`${myPet.name} is already full!`);
         return;
     }
         try {
@@ -51,17 +38,13 @@ feedBtn.addEventListener('click', async (event) => {
             }
 });
 
-
-
-
-
 // A button give medicine to improve health
          // TODO: call a updateDatabase() to give medicine to the pet 
         // return with updated pet
 medicineBtn.addEventListener('click', async (event) => {
     init();
     if (myPet.health = 8) {
-        // !!TODO: Sends message to user, your pet doesnt need medicine!
+        alert(`${myPet.name} doesn't need medicine!`);
         return;
     }
         try {
@@ -88,13 +71,35 @@ medicineBtn.addEventListener('click', async (event) => {
 
 
 // A button to clean up poop
-cleanBtn.addEventListener('click', async (event) => {
-    try {
          // TODO: call a updateDatabase() to clean up after the pet
         // return with updated playpen
-    } catch (error) {
-        alert(error);
+cleanBtn.addEventListener('click', async (event) => {
+    init();
+    if (myPet.poop > 0) {
+        alert(`${myPet.name}'s playpen is clean. Yay!`);
+        return;
     }
+        try {
+            myPet.cleanPoop();
+            // !!!The pet.js needs to set poop to 0 when called.IE, this.poop = 0;
+            const poop = petData.poop;
+            const id = petData.id;
+            const response = await fetch(`/api/pet/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                        },
+                body: JSON.stringify({
+                    poop: poop,
+                            })
+                        });
+            await response.json();
+            console.log(response);
+      // !!! Input actual funct name from Ivy !! Sends pooplevel to canvass
+             canvassPoop(poop);      
+        } catch (error) {
+            alert(error);
+            }
 });
 
 
