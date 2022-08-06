@@ -34,8 +34,31 @@ const init = async () => {
     myBattle = new Battle;
     // show start button once everything is loaded
     await getUserPet ();
+    myPet.maxHp = myPet.hp
+    let maxHp = document.getElementById('my-hp')
+    maxHp.setAttribute ('max', myPet.hp);
+    updateHealthBar();
+    console.log(enemyPet);
+    //need to get the pet
+    // myHp.setAttribute('progress',);
     startDiv.style.display = 'block';
 };
+//Calculation function/
+
+ const updateHealthBar = async () => {
+  let myHp = document.getElementById('my-hp')
+   myHp.setAttribute ('value', myPet.hp);
+    myHp.textContent = `${myPet.hp/myPet.maxHp}%`;
+    console.log(myPet.hp);
+    console.log(enemyPet)
+    if (enemyPet){
+      let enemyhp = document.getElementById('enemy-hp')
+      enemyhp.setAttribute ('value', enemyPet.hp);
+      enemyhp.textContent = `${enemyPet.hp/enemyPet.maxHp}%`;
+    }
+
+};
+//After each turn compare the currenthealth to total health
 
 socket.on('you-first', (roomId) => {
     // emit you-second event to send to other user
@@ -49,13 +72,21 @@ socket.on('you-first', (roomId) => {
 socket.on('you-second', (roomId, pet) => {
     room = roomId;
     enemyPet = pet;
+    enemyPet.maxHp = enemyPet.hp
     myBattle.room = roomId;
     socket.emit('transfer-pet', roomId, myPet);
+    let maxHp = document.getElementById('enemy-hp')
+    maxHp.setAttribute ('max', enemyPet.hp);
+    updateHealthBar();
 });
 
 // If you-first, this gets enemyPet
 socket.on('transfer-pet', (pet) => {
     enemyPet = pet;
+    enemyPet.maxHp = enemyPet.hp
+    let maxHp = document.getElementById('enemy-hp')
+    maxHp.setAttribute ('max', enemyPet.hp);
+    updateHealthBar();
 });
 
 // Asha
@@ -66,6 +97,7 @@ socket.on('defend', (enemyHp) => {
   enemyPet.hp = enemyHp;
   console.log(enemyHp);
     startBattle();
+    updateHealthBar();
 });
 
 // Asha
@@ -76,6 +108,7 @@ socket.on('no-defend', (enemyHp) => {
   enemyPet.hp = enemyHp;
   console.log(enemyHp);
     startBattle();
+    updateHealthBar();
 });
 
 // Nolan
@@ -125,24 +158,37 @@ const defend = (success) => {
     // Hide buttons from User
     const gammingBtnDiv = document.getElementById('gamingButtons');
     gammingBtnDiv.style.display = 'none';
-    if (success) {
+    if (success) { 
         // emit a 'defend' using socket
         //emit an event
         //This is for the client being attack
         console.log(myPet.hp);
-        myPet.hp -= (enemyPet.attack - myPet.defense)
-        console.log(myPet.hp);
+        if(enemyPet.attack > myPet.defense){
+          myPet.hp -= (enemyPet.attack - myPet.defense)
+        }
+        if (myPet.hp <= 0) {
+          //endBattle
+          //call endBattle ();
+          //endBattle emit;
+          console.log('endBattle');
+        }
+        else {
+          socket.emit('defend',myBattle.room,myPet.hp)
+
+        }
+        // console.log(myPet.hp);
         socket.emit('defend',myBattle.room,myPet.hp)
           // console.log('success')
+          updateHealthBar();
     }
     else {
         // emit a 'no-defend' using socket
         myPet.hp -= enemyPet.attack
         socket.emit('no-defend',myBattle.room,myPet.hp)
+        updateHealthBar();
         console.log('fail')
     }
 };
-
 
 //Asha
 //Load the User's pet from database
