@@ -73,5 +73,5 @@ class Pet {
 // module.exports = Pet;
 
 export {
-    Pet
+    Pet,
 };
