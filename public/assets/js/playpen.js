@@ -121,3 +121,8 @@ decay() {
 // });
 
 init();
+
+
+
+// Exports init() to use in petCare.js
+module.exports = { init };
