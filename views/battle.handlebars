@@ -1,9 +1,7 @@
 {{!--HTML Boilerplate--}}
-<div id="sequence-div" style="width: 300px; height: 300px;">
-</div>
+<div id="character-container" class="row nes-container is-rounded d-flex justify-content-between">
 
-<div id="character-container" class="nes-container is-rounded d-flex justify-content-between">
-    <div id="me-div" class="d-flex flex-column align-items-start">
+    <div id="me-div" class="col-5 d-flex flex-column align-items-start">
         <progress id="my-hp" class="nes-progress is-primary" value="600" max="600"></progress>
         <div class="d-flex">
             <img id="me-img" src="/assets/images/battle/fullHeart.png" alt="heart" style="width: 30%; height: 30%;">
@@ -13,13 +11,18 @@
         </div>
     </div>
 
-    <div class="d-flex flex-column align-items-end">
-        <progress id="enemy-hp" class="nes-progress is-primary" value="600" max="600" style="transform: rotate(180deg);"></progress>
+    <div id="sequence-div" class="col-2 d-flex align-items-center">
+    </div>
+
+    <div id="enemy-div" class="col-5 d-flex flex-column align-items-end">
+        <progress id="enemy-hp" class="nes-progress is-primary" value="600" max="600"
+            style="transform: rotate(180deg);"></progress>
         <div id="character-div" class="d-flex">
             <div class="nes-balloon from-right" style="display: none;">
                 <p id="enemy-talk">I'm bad!</p>
             </div>
-            <img id="enemy-img" src="/assets/images/battle/halfHeart.png" alt="half heart" style="width: 30%; height: 30%;">
+            <img id="enemy-img" src="/assets/images/battle/halfHeart.png" alt="half heart"
+                style="width: 30%; height: 30%;">
         </div>
     </div>
 
