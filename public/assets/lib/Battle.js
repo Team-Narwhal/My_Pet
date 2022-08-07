@@ -7,9 +7,9 @@ class Battle {
     this.roomId = '';
     this.phrases = {
       greeting: [
-        'Welcome to your death day!',
+        'Welcome to your demise!',
         "I don't think you can handle this!",
-        "Surprised you're not running yet.",
+        "Surprised you're not scared.",
       ],
       noDefend: [
         'OUCH!',
@@ -19,12 +19,12 @@ class Battle {
       defend: [
         "Can't touch this!",
         "Well that didn't hurt...",
-        "You might as well have given up!",
+        "Just give up!",
       ],
       attack: [
         "This is gonna hurt!",
         "WooooAAHHHHH!",
-        "Brace yourself, I going to get you!",
+        "Brace yourself!",
       ]
 
     }
