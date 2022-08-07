@@ -44,7 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 
-// Add server listeners here!
+// SocketIO server side listeners/emitters
 
 // This stores the room to send to User for reference
 // to the room id that they joined
@@ -52,9 +52,8 @@ let room;
 
 io.on("connection", (socket) => {
   console.log(`Client connected ID: ${socket.id}`);
-  console.log("room", io.sockets.adapter.rooms);
 
-  // Add Users socket.id to a user array
+  // Join users to first come, first serve two people rooms
   socket.on("joined", (data) => {
     const rooms = io.sockets.adapter.rooms;
     for (const [id, members] of rooms) {
@@ -67,9 +66,8 @@ io.on("connection", (socket) => {
       }
     }
     room = `room-${rooms.size}`;
-    console.log(`This is the room: ${room} with user ${socket.id}`);
     socket.join(room);
-    // socket.to(room).emit('lets-start', room);
+    console.log(`User: ${socket.id} joined room: ${room}`);
   });
 
   socket.on("you-second", (roomId, pet) => {
@@ -80,30 +78,20 @@ io.on("connection", (socket) => {
     socket.to(roomId).emit("transfer-pet", pet);
   });
 
-  socket.on("disconnect", () => {
-    // emit kill switch to roommate
-    // remove both users from room and delete room
-    console.log(`User disconnected ID: ${socket.id}`);
-  });
-
-  socket.on("ew", (data) => {
-    console.log(data);
-    socket.broadcast.emit("ew", data);
-  });
-
-  socket.on("yass", (data) => {
-    console.log(data);
-    // to exclude sender use broadcast
-    socket.broadcast.emit("yass", data);
-    // to include sender use
-    // io.emit('yass', data);
-  });
   socket.on("defend", (roomId, enemyHp) => {
     socket.to(roomId).emit("defend", enemyHp);
   });
+  
   socket.on("no-defend", (roomId, enemyHp) => {
     socket.to(roomId).emit("no-defend", enemyHp);
   });
+
+  socket.on("disconnect", () => {
+    // emit kill switch to roommate
+    // remove both users from room and delete room
+    console.log(`User disconnected ID: ${socket.id}`, socket.rooms);
+  });
+
 });
 
 sequelize.sync({ force: false }).then(() => {
