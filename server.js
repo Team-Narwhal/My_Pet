@@ -81,15 +81,23 @@ io.on("connection", (socket) => {
   socket.on("defend", (roomId, enemyHp) => {
     socket.to(roomId).emit("defend", enemyHp);
   });
-  
+
   socket.on("no-defend", (roomId, enemyHp) => {
     socket.to(roomId).emit("no-defend", enemyHp);
   });
 
-  socket.on("disconnect", () => {
+  socket.on('disconnecting', () => {
+    for (const room of socket.rooms) {
+      if (room !== socket.id) {
+        socket.to(room).emit('user-left');
+      };
+    };
+  });
+
+  socket.on("disconnect", (data) => {
     // emit kill switch to roommate
     // remove both users from room and delete room
-    console.log(`User disconnected ID: ${socket.id}`, socket.rooms);
+    console.log(`User disconnected ID: ${socket.id}`, data);
   });
 
 });

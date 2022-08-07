@@ -85,6 +85,12 @@ const conversation = (type, who) => {
 };
 
 
+// If opponent disconnects, end game
+socket.on('user-left', () => {
+  // Call end game function with win case
+  console.log('Opponent left');
+})
+
 socket.on('you-first', (roomId) => {
   // emit you-second event to send to other user
   // send the room Id, and this user's pet
