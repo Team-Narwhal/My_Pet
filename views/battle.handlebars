@@ -1,15 +1,36 @@
-
 {{!--HTML Boilerplate--}}
 <div id="sequence-div" style="width: 300px; height: 300px;">
 </div>
-<progress id="my-hp" class="nes-progress is-primary" value="600" max="600"></progress>
-<progress id="enemy-hp" class="nes-progress is-primary" value="600" max="600"></progress>
+
+<div id="character-container" class="nes-container is-rounded d-flex justify-content-between">
+    <div id="me-div" class="d-flex flex-column align-items-start">
+        <progress id="my-hp" class="nes-progress is-primary" value="600" max="600"></progress>
+        <div class="d-flex">
+            <img id="me-img" src="/assets/images/battle/fullHeart.png" alt="heart" style="width: 30%; height: 30%;">
+            <div class="nes-balloon from-left" style="display: none;">
+                <p id="me-talk">I'm good!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column align-items-end">
+        <progress id="enemy-hp" class="nes-progress is-primary" value="600" max="600" style="transform: rotate(180deg);"></progress>
+        <div id="character-div" class="d-flex">
+            <div class="nes-balloon from-right" style="display: none;">
+                <p id="enemy-talk">I'm bad!</p>
+            </div>
+            <img id="enemy-img" src="/assets/images/battle/halfHeart.png" alt="half heart" style="width: 30%; height: 30%;">
+        </div>
+    </div>
+
+</div>
+
 
 <div id="gamingButtons" style="display: none;">
-<button type="button" data-description='u' class="nes-btn is-primary battle-button">Up</button>
-<button type="button" data-description='d' class="nes-btn is-success battle-button">Down</button>
-<button type="button" data-description='l' class="nes-btn is-warning battle-button">left</button>
-<button type="button" data-description='r' class="nes-btn is-error battle-button">right</button>
+    <button type="button" data-description='u' class="nes-btn is-primary battle-button">Up</button>
+    <button type="button" data-description='d' class="nes-btn is-success battle-button">Down</button>
+    <button type="button" data-description='l' class="nes-btn is-warning battle-button">left</button>
+    <button type="button" data-description='r' class="nes-btn is-error battle-button">right</button>
 </div>
 <div id="start-div" style="display: none;">
     <button type="button" class="nes-btn is-success start-btn">Start</button>
@@ -22,4 +43,3 @@
 
 <script src="/assets/lib/Battle.js"></script>
 <script src="/assets/js/battle.js"></script>
-
