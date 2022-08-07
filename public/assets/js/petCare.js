@@ -1,5 +1,5 @@
 // Retreive user pet from DB
-const { init } = require('./playpen')
+import { init, myPet } from './playpen.js';
 // Event listeners
 const wakeBtn = document.getElementById('wakeBtn');
 const feedBtn = document.getElementById('feedBtn');
@@ -10,7 +10,7 @@ const startBattleBtn = document.getElementById('startBattleBtn');
 // Feature for future devel: button to wake up your pet if sleeping
 
 // A button to feed your hungry pet
-feedBtn.addEventListener('click', async (event) => {
+feedBtn.addEventListener('click', async () => {
     console.log("feed");
     init();
     if (myPet.hunger >= 1000) {
@@ -32,6 +32,7 @@ feedBtn.addEventListener('click', async (event) => {
                         });
             await response.json();
             console.log(response);
+            console.log("success! line 35");
       // !!! Input actual funct name from Ivy !! Sends hungerlevel to canvass
              canvassHunger(hunger);      
         } catch (error) {
