@@ -71,6 +71,7 @@ class Battle {
           continue;
         }
         else {
+          this.sequenceGuess = [];
           return false;
         };
       };

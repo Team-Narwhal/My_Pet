@@ -241,7 +241,6 @@ const battleButtons = document.querySelectorAll(".battle-button");
 //Add Event listeners to the buttons and grabbing the value of the buttons
 console.log(battleButtons);
 battleButtons.forEach((btn) => {
-  console.log("loop");
   btn.addEventListener("click", (event) => {
     const direction = event.target.dataset.description;
     console.log(direction);
