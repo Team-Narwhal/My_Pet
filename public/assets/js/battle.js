@@ -152,8 +152,10 @@ socket.on('no-defend', (enemyHp) => {
 // Function for Starts Battle
 const startBattle = () => {
   conversation('attack', 'me');
+  // Increment Round
+  myBattle.round++
   // generate a new sequence
-  myBattle.generateSequence();
+  myBattle.generateSequence(myBattle.round + 3);
   // display the sequence
   displaySequence();
 };
@@ -168,13 +170,18 @@ const displaySequence = async () => {
   // Get the new sequence from the Battle object
   const sequence = myBattle.sequence;
   // Timeout function to clear the sequenceDiv
-  const clearDiv = async () =>
+  // Shorter timeout each round
+  const clearDiv = async () => {
+    console.log('HEELLOOOO', myBattle.round);
+    const hideTime = 4000 / (myBattle.round + 3);
+    const pauseTime = 3200 / (myBattle.round + 3);
     await new Promise((resolve) => {
       setTimeout(() => {
         sequenceDiv.innerHTML = "";
-        setTimeout(() => resolve(), 800);
-      }, 1000);
+        setTimeout(() => resolve(), pauseTime);
+      }, hideTime);
     });
+  };
   // Loop through the sequence and display to user
   for (const direction of sequence) {
     // Create and append appropriate Arrow image for every
@@ -188,7 +195,7 @@ const displaySequence = async () => {
   // Show buttons to the user
   const gammingBtnDiv = document.getElementById('gamingButtons');
   gammingBtnDiv.style.display = 'block';
-}
+};
 
 // Function to emit success or fail to other socket user
 // Param is either true for guessed sequence or false for failed guess

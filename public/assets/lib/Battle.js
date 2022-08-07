@@ -3,7 +3,7 @@ class Battle {
   constructor() {
     this.sequence = [];
     this.sequenceGuess = [];
-    this.turn = true;
+    this.round = 0;
     this.roomId = '';
     this.phrases = {
       greeting: [
