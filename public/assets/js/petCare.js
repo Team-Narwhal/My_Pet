@@ -33,7 +33,7 @@ feedBtn.addEventListener('click', async () => {
             await response.json();
             console.log(response);
             console.log("success! line 35");
-      // !!! Input actual funct name from Ivy !! Sends hungerlevel to canvass
+      // !!!TODO: Input actual funct name from Ivy !! Sends hungerlevel to canvass
              canvassHunger(hunger);      
         } catch (error) {
             alert(error);
