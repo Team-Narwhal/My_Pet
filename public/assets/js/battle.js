@@ -129,6 +129,8 @@ socket.on('transfer-pet', (pet) => {
 // needs to appropriately handle Pet's hp value for our enemyPet
 // needs to call startBattle()
 socket.on('defend', (enemyHp) => {
+  // if enemeyHp is less than 0
+  // Call endGame(true) aka win case
   enemyPet.hp = enemyHp;
   console.log(enemyHp);
   conversation('defend', 'enemy');
@@ -141,6 +143,8 @@ socket.on('defend', (enemyHp) => {
 // needs to appropriately handle Pet's hp value
 // needs to call startBattle()
 socket.on('no-defend', (enemyHp) => {
+  // if enemeyHp is less than 0
+  // Call endGame(true) aka win case
   enemyPet.hp = enemyHp;
   console.log(enemyHp);
   conversation('noDefend', 'enemy');
