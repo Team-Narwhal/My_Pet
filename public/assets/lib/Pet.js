@@ -31,8 +31,8 @@ class Pet {
     // You can comment ideas for new features so you can easily add them later!
 
     cleanPoop() {
-        // This can maybe be edited as you write the environment
-        // code.  For testing maybe alert like this
+        // Nifer -- added so that it sets poop to 0 when called from petCare.js when cleanBtn is used
+        this.poop = 0;
         alert('You cleaned a lot of poop.');
     };
 

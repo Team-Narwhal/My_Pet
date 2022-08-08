@@ -1,7 +1,7 @@
 // Retreive user pet from DB
 import { init, myPet } from './playpen.js';
 // Event listeners
-const wakeBtn = document.getElementById('wakeBtn');
+// const wakeBtn = document.getElementById('wakeBtn');
 const feedBtn = document.getElementById('feedBtn');
 const medicineBtn = document.getElementById('medicineBtn');
 const cleanBtn = document.getElementById('cleanBtn');
@@ -11,7 +11,7 @@ const startBattleBtn = document.getElementById('startBattleBtn');
 
 // A button to feed your hungry pet
 feedBtn.addEventListener('click', async () => {
-    console.log("feed");
+    console.log("feed btn clicked");
     init();
     if (myPet.hunger >= 1000) {
         alert(`${myPet.name} is already full!`);
@@ -44,7 +44,7 @@ feedBtn.addEventListener('click', async () => {
          // TODO: call a updateDatabase() to give medicine to the pet 
         // return with updated pet
 medicineBtn.addEventListener('click', async (event) => {
-    console.log("medicine");
+    console.log("medicine btn clicked");
     init();
     if (myPet.health = 8) {
         alert(`${myPet.name} doesn't need medicine!`);
@@ -65,7 +65,7 @@ medicineBtn.addEventListener('click', async (event) => {
                         });
             await response.json();
             console.log(response);
-      // !!! Input actual funct name from Ivy !! Sends healthlevel to canvass
+      // !!! TODO: Input actual funct name from Ivy !! Sends healthlevel to canvass
              canvassHealth(health);      
         } catch (error) {
             alert(error);
@@ -74,10 +74,8 @@ medicineBtn.addEventListener('click', async (event) => {
 
 
 // A button to clean up poop
-         // TODO: call a updateDatabase() to clean up after the pet
-        // return with updated playpen
 cleanBtn.addEventListener('click', async (event) => {
-    console.log("cleaning up!");
+    console.log("cleaning btn clicked");
     init();
     if (myPet.poop > 0) {
         alert(`${myPet.name}'s playpen is clean. Yay!`);
@@ -85,7 +83,6 @@ cleanBtn.addEventListener('click', async (event) => {
     }
         try {
             myPet.cleanPoop();
-            // !!!The pet.js needs to set poop to 0 when called.IE, this.poop = 0;
             const poop = petData.poop;
             const id = petData.id;
             const response = await fetch(`/api/pet/${id}`, {
@@ -99,7 +96,7 @@ cleanBtn.addEventListener('click', async (event) => {
                         });
             await response.json();
             console.log(response);
-      // !!! Input actual funct name from Ivy !! Sends pooplevel to canvass
+      // !!!TODO: Input actual funct name from Ivy !! Sends pooplevel to canvass
              canvassPoop(poop);      
         } catch (error) {
             alert(error);
@@ -109,6 +106,6 @@ cleanBtn.addEventListener('click', async (event) => {
 
 // Takes current iteration of pet to battle page
 startBattleBtn.addEventListener('click', async (event) => {
-    console.log("battle!");
+    console.log("battle btn clicked!");
         window.location.href = '/battle';
 });
