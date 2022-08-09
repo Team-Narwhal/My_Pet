@@ -1,0 +1,77 @@
+/* Character Container */
+#character-container {
+    width: 90vw;
+    height: 50vw;
+    max-height: 634px;
+    background-color: rgb(228, 238, 248);
+    border-radius: 18px;
+    border: 10px double black;
+}
+
+/* Sequence Arrow */
+#sequence-div img {
+    width: 17vw;
+    height: auto;
+}
+
+
+/* Start Button */
+#start-div {
+    display: none;
+}
+
+.start-btn {
+    width: 50px;
+    height: 40px;
+}
+
+/* Battle Buttons */
+#gamingButtons {
+    display: none;
+}
+
+.battle-button {
+    width: 50px;
+    height: 40px;
+}
+
+/* Character Div */
+/* #me-div, #enemy-div {
+    height: 100%;
+} */
+
+/* Health Bars */
+#enemy-hp {
+    transform: rotate(180deg);
+}
+
+.health-bar {
+    height: 30px;
+}
+
+/* Balloons */
+.nes-balloon {
+    display: none;
+}
+
+/* Character Images */
+.character-img {
+    width: 50%;
+    height: 50%;
+}
+
+@media only screen and (max-width: 568px) {
+    #character-container {
+        width: 100vw;
+        height: 95vw;
+        background-color: rgb(228, 238, 248);
+        border-radius: 18px;
+        border: 10px double black;
+    }
+
+    /* Sequence Arrow */
+    #sequence-div img {
+        width: 30vw;
+        height: auto;
+    }
+}
