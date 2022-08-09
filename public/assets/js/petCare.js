@@ -81,7 +81,7 @@ medicineBtn.addEventListener('click', async (event) => {
 cleanBtn.addEventListener('click', async (event) => {
     console.log("cleaning btn clicked", myPet);
     init();
-    if (myPet.poop > 0) {
+    if (myPet.poop <= 0) {
         alert(`${myPet.name}'s playpen is clean. Yay!`);
         return;
     }
