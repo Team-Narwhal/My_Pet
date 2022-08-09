@@ -75,6 +75,11 @@ function fastForward(updatedAt) {
     // const lastDateMillis = lastDate.getTime()
     const elapsedTime = nowDate - lastDate;
     console.log(elapsedTime);
+
+    if (elapsedTime ) {
+        
+    }
+
 }
 
 /* Add asychronous init function
