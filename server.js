@@ -85,7 +85,9 @@ io.on("connection", (socket) => {
   socket.on("no-defend", (roomId, enemyHp) => {
     socket.to(roomId).emit("no-defend", enemyHp);
   });
-
+  socket.on('you-win', (roomId) => {
+   socket.to(roomId).emit('you-win');
+  });
   socket.on('disconnecting', () => {
     for (const room of socket.rooms) {
       if (room !== socket.id) {
@@ -93,6 +95,7 @@ io.on("connection", (socket) => {
       };
     };
   });
+
 
   socket.on("disconnect", (data) => {
     // emit kill switch to roommate

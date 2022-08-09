@@ -4,7 +4,6 @@ let myPet;
 let enemyPet;
 let room;
 
-
 //Asha
 //Write a function to fetch login user's active pet
 //inside the function we need to use the data to create the new instance of appropriate subclasses
@@ -25,7 +24,7 @@ const getUserPet = async () => {
 // Establish Socket Connection
 const socket = io();
 
-// Nolan
+// Asha
 // Function for page initialization
 const startDiv = document.getElementById('start-div');
 const init = async () => {
@@ -44,7 +43,7 @@ const init = async () => {
   // myHp.setAttribute('progress',);
   startDiv.style.display = 'block';
 };
-//Calculation function/
+//Calculation function to update the health/progress bar/
 
 const updateHealthBar = async () => {
   let myHp = document.getElementById('my-hp')
@@ -59,6 +58,24 @@ const updateHealthBar = async () => {
   }
 
 };
+//Function to end the battle
+const endGame = (win) => {
+  const sequenceDiv = document.getElementById("sequence-div");
+  let messageEl = document.createElement('p');
+  if (win) {
+      // Set text content for win case
+      messageEl.textContent = 'Conqueror';
+  } else {
+      // Set text content for lose case
+      messageEl.textContent = 'Deadbeat';
+  }
+  sequenceDiv.appendChild(messageEl);
+  // Redirect to /playpen after 5 seconds.
+  setTimeout(() => window.location.href = '/playpen', 5000);
+  console.log('hello');
+}
+
+
 //After each turn compare the currenthealth to total health
 
 // Nolan
@@ -88,7 +105,9 @@ const conversation = (type, who) => {
 // If opponent disconnects, end game
 socket.on('user-left', () => {
   // Call end game function with win case
+  endGame(true);
   console.log('Opponent left');
+
 })
 
 socket.on('you-first', (roomId) => {
@@ -129,8 +148,6 @@ socket.on('transfer-pet', (pet) => {
 // needs to appropriately handle Pet's hp value for our enemyPet
 // needs to call startBattle()
 socket.on('defend', (enemyHp) => {
-  // if enemeyHp is less than 0
-  // Call endGame(true) aka win case
   enemyPet.hp = enemyHp;
   console.log(enemyHp);
   conversation('defend', 'enemy');
@@ -143,13 +160,16 @@ socket.on('defend', (enemyHp) => {
 // needs to appropriately handle Pet's hp value
 // needs to call startBattle()
 socket.on('no-defend', (enemyHp) => {
-  // if enemeyHp is less than 0
-  // Call endGame(true) aka win case
   enemyPet.hp = enemyHp;
   console.log(enemyHp);
   conversation('noDefend', 'enemy');
   startBattle();
   updateHealthBar();
+});
+
+socket.on('you-win',() => {
+  endGame(true);
+
 });
 
 // Nolan
@@ -220,9 +240,9 @@ const defend = (success) => {
     }
     if (myPet.hp <= 0) {
       //endBattle
-      //call endBattle ();
-      //endBattle emit;
-      console.log('endBattle');
+      endGame(false);
+      socket.emit('you-win', myBattle.room)
+      console.log('endGame');
     }
     else {
       socket.emit('defend', myBattle.room, myPet.hp)
@@ -231,7 +251,14 @@ const defend = (success) => {
 
   }
   else {
-    // Display conversation bubbles
+    if (myPet.hp <= 0) {
+      //endBattle
+      endGame(false);
+      socket.emit('you-win', myBattle.room)
+      console.log('endGame');
+    }
+    else {
+       // Display conversation bubbles
     conversation('noDefend', 'me');
     conversation('attack', 'enemy');
     // emit a 'no-defend' using socket
@@ -239,6 +266,7 @@ const defend = (success) => {
     socket.emit('no-defend', myBattle.room, myPet.hp)
     updateHealthBar();
     console.log('fail')
+    }
   }
 };
 
