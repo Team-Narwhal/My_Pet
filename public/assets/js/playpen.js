@@ -20,23 +20,9 @@ Maybe use just hunger for now and get the logic working */
 /*table for pet types*/
 
 // Add global variables here.
-let myPet;
+export var myPet;
 
-// let currentDateTime = new Date();
-// currentDateTime.getMilliseconds();
-// console.log(currentDateTime.getMilliseconds());
-
-
-
-// let currentDateTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-// console.log(currentDateTime);
-
-// let newDate = new Date().getTimezoneOffset();
-// console.log(newDate);
-
-// const petLastUpdatedAt = 
-
-const init = async () => {
+export const init = async () => {
     // Await query for user's activ pet.
     const userResponse = await fetch("/api/user/getUserId");
     const userId = await userResponse.json();
