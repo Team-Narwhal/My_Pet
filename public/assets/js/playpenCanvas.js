@@ -1,5 +1,8 @@
-let canvas = document.getElementById("playpen");
+let canvas = document.getElementById("petCanvas");
 let ctx = canvas.getContext("2d");
+
+let xNorm = canvas.width / 1600;
+let yNorm = canvas.height / 900;
 
 // ctx.globalCompositeOperation = 'source-over';
 
@@ -29,31 +32,84 @@ function drawBall() {
 
 // drawing the background
 window.onload = () => {
-    draw();
+    draw(8, 4);
 };
 
-const draw = async () => {
+const draw = async (health, poop) => {
 
-    await drawImg("./test_desert.png", 0, 0, 600, 400);
-    var fullheart = drawImg("fullHeart.png", 10, 10, 30, 30);
-    var halfheart = drawImg("halfHeart.png", 50, 10, 30, 30);
+    await drawImg("/assets/images/test_desert.png", 0, 0, canvas.width, canvas.height);
     drawBall();
+    await heartStatus(health);
+    await poopStatus(poop);
+};
+
+
+
+async function heartStatus(health) {
+    if (health === 1) {
+        await drawImg("/assets/images/halfHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+    } else if (health === 2) {
+        await drawImg("/assets/images/fullHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+    } else if (health === 3) {
+        console.log("hittt");
+        await drawImg("/assets/images/fullHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/halfHeart.svg", 140 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        console.log("finisheddd")
+    } else if (health === 4) {
+        await drawImg("/assets/images/fullHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/fullHeart.svg", 140 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+    } else if (health === 5) {
+        await drawImg("/assets/images/fullHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/fullHeart.svg", 140 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/halfHeart.svg", 250 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+    } else if (health === 6) {
+        await drawImg("/assets/images/fullHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/fullHeart.svg", 140 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/fullHeart.svg", 250 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+    } else if (health === 7) {
+        await drawImg("/assets/images/fullHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/fullHeart.svg", 140 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/fullHeart.svg", 250 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/halfHeart.svg", 360 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+    } else if (health === 8) {
+        await drawImg("/assets/images/fullHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/fullHeart.svg", 140 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/fullHeart.svg", 250 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/fullHeart.svg", 360 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
+    };
+};
+
+//add hunger words 
+// thought bubble burger
+// most urgent
+// hunger = 51-75
+
+async function thoughtStatus(thought) {
+    if (thought > 51 && thought < 75) {
+        await drawImg("/assets/images/food1.svg", 100 * xNorm, 740 * yNorm, 90 * xNorm, 80 * yNorm);
+    }
+}
+
+async function poopStatus(poop) {
+    if (poop === 1) {
+        console.log('poop hit')
+        await drawImg("/assets/images/poop.svg", 100 * xNorm, 740 * yNorm, 90 * xNorm, 80 * yNorm);
+    } else if (poop === 2) {
+        await drawImg("/assets/images/poop.svg", 100 * xNorm, 720 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/poop.svg", 300 * xNorm, 760 * yNorm, 90 * xNorm, 80 * yNorm);
+    } else if (poop === 3) {
+        await drawImg("/assets/images/poop.svg", 140 * xNorm, 720 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/poop.svg", 260 * xNorm, 760 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/poop.svg", 600 * xNorm, 760 * yNorm, 90 * xNorm, 80 * yNorm);
+    } else if (poop === 4) {
+        await drawImg("/assets/images/poop.svg", 140 * xNorm, 720 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/poop.svg", 260 * xNorm, 760 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/poop.svg", 500 * xNorm, 740 * yNorm, 90 * xNorm, 80 * yNorm);
+        await drawImg("/assets/images/poop.svg", 1000 * xNorm, 720 * yNorm, 90 * xNorm, 80 * yNorm);
+    }
 }
 
 
-// drawing ball
-// to be replace with character
-function drawBall() {
-    ctx.globalCompositeOperation = 'source-over';
-    let ballRadius = 10;
-    let x = canvas.width - 100;
-    let y = canvas.height - 10;
-    ctx.beginPath();
-    ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
-}
 
 
 
