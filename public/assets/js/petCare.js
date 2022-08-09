@@ -46,6 +46,7 @@ feedBtn.addEventListener('click', async () => {
 medicineBtn.addEventListener('click', async (event) => {
     console.log("medicine btn clicked");
     init();
+    
     if (myPet.health = 8) {
         alert(`${myPet.name} doesn't need medicine!`);
         return;
@@ -64,9 +65,9 @@ medicineBtn.addEventListener('click', async (event) => {
                             })
                         });
             await response.json();
-            console.log(response);
+            console.log(response, "line 67 health, PetCare");
       // !!! TODO: Input actual funct name from Ivy !! Sends healthlevel to canvass
-             canvassHealth(health);      
+             heartStatus(health);      
         } catch (error) {
             alert(error);
             }
