@@ -63,11 +63,11 @@ const endGame = (win) => {
   const sequenceDiv = document.getElementById("sequence-div");
   let messageEl = document.createElement('p');
   if (win) {
-      // Set text content for win case
-      messageEl.textContent = 'Conqueror';
+    // Set text content for win case
+    messageEl.textContent = 'Conqueror';
   } else {
-      // Set text content for lose case
-      messageEl.textContent = 'Deadbeat';
+    // Set text content for lose case
+    messageEl.textContent = 'Deadbeat';
   }
   sequenceDiv.appendChild(messageEl);
   // Redirect to /playpen after 5 seconds.
@@ -104,6 +104,8 @@ const conversation = (type, who) => {
 
 // If opponent disconnects, end game
 socket.on('user-left', () => {
+  // If game is already ended, return
+  if (myBattle.isEnded) return;
   // Call end game function with win case
   endGame(true);
   console.log('Opponent left');
@@ -167,7 +169,8 @@ socket.on('no-defend', (enemyHp) => {
   updateHealthBar();
 });
 
-socket.on('you-win',() => {
+socket.on('you-win', () => {
+  myBattle.isEnded = true;
   endGame(true);
 
 });
@@ -228,9 +231,6 @@ const defend = (success) => {
   const gammingBtnDiv = document.getElementById('gamingButtons');
   gammingBtnDiv.style.display = 'none';
   if (success) {
-    // Display conversation bubbles
-    conversation('defend', 'me');
-    conversation('attack', 'enemy');
     // emit a 'defend' using socket
     //emit an event
     //This is for the client being attack
@@ -241,31 +241,37 @@ const defend = (success) => {
     if (myPet.hp <= 0) {
       //endBattle
       endGame(false);
+      myBattle.isEnded = true;
       socket.emit('you-win', myBattle.room)
       console.log('endGame');
     }
     else {
+      // Display conversation bubbles
+      conversation('defend', 'me');
+      conversation('attack', 'enemy');
       socket.emit('defend', myBattle.room, myPet.hp)
       updateHealthBar();
     }
 
   }
   else {
+    // Subtract enemy attack from myPet hp
+    myPet.hp -= enemyPet.attack;
     if (myPet.hp <= 0) {
       //endBattle
       endGame(false);
+      myBattle.isEnded = true;
       socket.emit('you-win', myBattle.room)
       console.log('endGame');
     }
     else {
-       // Display conversation bubbles
-    conversation('noDefend', 'me');
-    conversation('attack', 'enemy');
-    // emit a 'no-defend' using socket
-    myPet.hp -= enemyPet.attack
-    socket.emit('no-defend', myBattle.room, myPet.hp)
-    updateHealthBar();
-    console.log('fail')
+      // Display conversation bubbles
+      conversation('noDefend', 'me');
+      conversation('attack', 'enemy');
+      // emit a 'no-defend' using socket
+      socket.emit('no-defend', myBattle.room, myPet.hp)
+      updateHealthBar();
+      console.log('fail')
     }
   }
 };
