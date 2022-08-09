@@ -49,15 +49,14 @@ class Pet {
             this.health - 1 //subtract every day;
         } else if (this.poop >= 5) {
             this.isSick = true;
-            alert('Your pet is sick!')
+            alert(`${this.name} is sick!`)
         }
     };
 
     // NIFER
     medicine() {
-        alert("You're pet is feeling bettter");
-        // edit an attribute if needed
         this.health += 1;
+        alert(`${this.name} is feeling bettter`);
     };
 
     happy() {

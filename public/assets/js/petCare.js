@@ -31,7 +31,7 @@ feedBtn.addEventListener('click', async () => {
                         });
             await response.json();
             console.log(response);
-            console.log("Pet update success!");
+            console.log("Pet hunger updated in db!");
              canvassHunger(hunger);      
         } catch (error) {
             alert(error);
@@ -40,18 +40,13 @@ feedBtn.addEventListener('click', async () => {
 
 // A button give medicine to improve health
 medicineBtn.addEventListener('click', async (event) => {
-    console.log("medicine btn clicked", myPet);
     init();
-    if (myPet.health = 8) {
+    if (myPet.health >= 8) {
         alert(`${myPet.name} doesn't need medicine!`);
         return;
     }
         try {
-            console.log("Before medicine", myPet);
-
             myPet.medicine();
-            console.log("after medicine", myPet);
-
             const health = myPet.health;
             const id = myPet.id;
             const response = await fetch(`/api/pet/${id}`, {
