@@ -13,12 +13,14 @@ const startBattleBtn = document.getElementById('startBattleBtn');
 feedBtn.addEventListener('click', async () => {
     console.log("feed btn clicked", myPet);
     init();
-    if (myPet.hunger >= 1000) {
+    if (myPet.hunger >= 100) {
         alert(`${myPet.name} is already full!`);
         return;
     }
         try {
             myPet.feed();
+            console.log("after feeding", petData);
+
             const hunger = petData.hunger;
             const id = petData.id;
             const response = await fetch(`/api/pet/${id}`, {
@@ -52,7 +54,9 @@ medicineBtn.addEventListener('click', async (event) => {
         return;
     }
         try {
-            myPet.health();
+            myPet.medicine();
+            console.log("after medicine", petData);
+
             const health = petData.health;
             const id = petData.id;
             const response = await fetch(`/api/pet/${id}`, {
@@ -65,9 +69,8 @@ medicineBtn.addEventListener('click', async (event) => {
                             })
                         });
             await response.json();
-            console.log(response, "line 67 health, PetCare");
-      // !!! TODO: Input actual funct name from Ivy !! Sends healthlevel to canvass
-             heartStatus(health);      
+            console.log(response, "line 68 health, PetCare");
+            heartStatus(health);      
         } catch (error) {
             alert(error);
             }
@@ -84,6 +87,8 @@ cleanBtn.addEventListener('click', async (event) => {
     }
         try {
             myPet.cleanPoop();
+            console.log("after feeding", petData);
+
             const poop = petData.poop;
             const id = petData.id;
             const response = await fetch(`/api/pet/${id}`, {
