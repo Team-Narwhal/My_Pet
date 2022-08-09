@@ -31,15 +31,15 @@ class Pet {
     // You can comment ideas for new features so you can easily add them later!
 
     cleanPoop() {
-        // This can maybe be edited as you write the environment
-        // code.  For testing maybe alert like this
+        // Nifer -- added so that it sets poop to 0 when called from petCare.js when cleanBtn is used
+        this.poop -= 1;
         alert('You cleaned a lot of poop.');
     };
 
     feed() {
         alert('Nom nom nom!');
         // edit an attribute if needed
-        this.hunger += 30;
+        this.hunger += 25;
     };
 
     health() {
@@ -50,6 +50,13 @@ class Pet {
             this.isSick = true;
             alert('Your pet is sick!')
         }
+    };
+
+    // NIFER
+    medicine() {
+        alert("You're pet is feeling bettter");
+        // edit an attribute if needed
+        this.health += 1;
     };
 
     happy() {

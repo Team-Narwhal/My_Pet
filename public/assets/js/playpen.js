@@ -20,9 +20,9 @@ Maybe use just hunger for now and get the logic working */
 /*table for pet types*/
 
 // Add global variables here.
-let myPet;
+export var myPet;
 
-const init = async () => {
+export const init = async () => {
     // Await query for user's activ pet.
     const userResponse = await fetch("/api/user/getUserId");
     const userId = await userResponse.json();
