@@ -22,6 +22,20 @@ Maybe use just hunger for now and get the logic working */
 // Add global variables here.
 let myPet;
 
+// let currentDateTime = new Date();
+// currentDateTime.getMilliseconds();
+// console.log(currentDateTime.getMilliseconds());
+
+
+
+// let currentDateTime = moment().format('MMMM Do YYYY, h:mm:ss a');
+// console.log(currentDateTime);
+
+// let newDate = new Date().getTimezoneOffset();
+// console.log(newDate);
+
+// const petLastUpdatedAt = 
+
 const init = async () => {
     // Await query for user's activ pet.
     const userResponse = await fetch("/api/user/getUserId");
@@ -56,6 +70,11 @@ function fastForward(updatedAt) {
     // Last updated at vs current time
 
     // const dateNow = new Date
+    const nowDate = Date.now();
+    const lastDate = new Date(updatedAt).getTime();
+    // const lastDateMillis = lastDate.getTime()
+    const elapsedTime = nowDate - lastDate;
+    console.log(elapsedTime);
 }
 
 /* Add asychronous init function
