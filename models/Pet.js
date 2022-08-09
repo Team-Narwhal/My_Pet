@@ -23,14 +23,14 @@ Pet.init(
     },
     hunger: {
       type: DataTypes.INTEGER,
-      defaultValue: 1000,
+      defaultValue: 100,
       validate: {
         isNumeric: true,
       }
     },
     energy: {
       type: DataTypes.INTEGER,
-      defaultValue: 1000,
+      defaultValue: 100,
       validate: {
         isNumeric: true,
       }
