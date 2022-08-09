@@ -66,21 +66,15 @@ medicineBtn.addEventListener('click', async (event) => {
             }
 });
 
-
 // A button to clean up poop
 cleanBtn.addEventListener('click', async (event) => {
-    console.log("cleaning btn clicked", myPet);
     init();
     if (myPet.poop <= 0) {
         alert(`${myPet.name}'s playpen is clean. Yay!`);
         return;
     }
         try {
-            console.log("before cleaning", myPet);
-
-            myPet.cleanPoop();
-            console.log("after cleaning", myPet);
-
+           myPet.cleanPoop();
             const poop = myPet.poop;
             const id = myPet.id;
             const response = await fetch(`/api/pet/${id}`, {
@@ -99,7 +93,6 @@ cleanBtn.addEventListener('click', async (event) => {
             alert(error);
             }
 });
-
 
 // Takes current iteration of pet to battle page
 startBattleBtn.addEventListener('click', async (event) => {
