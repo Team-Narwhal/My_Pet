@@ -12,7 +12,8 @@ const petsData = [
         defense: 50,
         hunger: 50,
         energy: 50,
-        health: 50
+        health: 50, 
+        poop: 2
     },
     {
         id: 'be58d5b7-9cf9-4b8c-b2df-b56f8ecaddcf',
