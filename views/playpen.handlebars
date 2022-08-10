@@ -1,5 +1,5 @@
-<canvas id="petCanvas" width="480" height="320" style="background-color: #7b00ff;"></canvas>
-<div id="sequence-div" style="width: 300px; height: 300px;"></div>
+<canvas id="petCanvas" width="585" height="329" style="background-color: #7b00ff;"></canvas>
+{{!-- <div id="sequence-div" style="width: 300px; height: 300px;"></div> --}}
 
 <div id="careButtons">
     {{!-- <button type="button" id="wakeBtn" data-description='wake' class="nes-btn is-secondary care-button">Wake
@@ -8,15 +8,18 @@
     <button type="button" id="medicineBtn" data-description='medicine'
         class="nes-btn is-primary care-button">Medicine</button>
     <button type="button" id="cleanBtn" data-description='clean' class="nes-btn is-warning care-button">Clean
-        poop</button>
+        Poop</button>
 </div>
 
-<button type="button" id="startBattleBtn" data-description='wake' class="nes-btn is-danger care-button">Battle another
+<button type="button" id="startBattleBtn" data-description='battleStart' class="nes-btn is-danger care-button">Battle
+    another
     pet</button>
 
 
 {{!-- JS file for feed pet, etc. --}}
 <script src="/assets/lib/Pet.js"></script>
 <script src="/assets/lib/Creatures.js"></script>
-<script type="module" src="/assets/js/playpen.js"></script>
-<script type="module" src="/assets/js/petCare.js"></script>
+<script src="/assets/js/playpen.js"></script>
+<script src="/assets/js/petCare.js"></script>
+<script src="/assets/js/playpenCanvas.js"></script>
+

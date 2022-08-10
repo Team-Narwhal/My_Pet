@@ -9,20 +9,23 @@
         </div> --}}
         <div class="row mb-3">
             <label for="signUpEmailInput">Email Address</label>
-            <input type="email" class="form-control" id="signUpEmailInput" aria-describedby="emailHelp"
-                placeholder="example@example.com">
+            <input type="email" class="form-control" id="signUpEmailInput" autocomplete="email"
+                aria-describedby="emailHelp" placeholder="example@example.com">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="row mb-3">
             <label for="signUpPasswordInput">Create Your Password</label>
-            <input type="password" class="form-control" id="signUpPasswordInput" placeholder="Password">
+            <input type="password" class="form-control" id="signUpPasswordInput" autocomplete="new-password"
+                placeholder="Password">
             <small id="passwordHelp" class="form-text text-muted">Please create a password that's more than 6
                 characters long.</small>
         </div>
         <div class="row mb-3">
             <label for="signUpPasswordConfirmInput">Confirm Your Password</label>
-            <input type="password" class="form-control" id="signUpPasswordConfirmInput" placeholder="Password Confirm">
-            <small id="passwordHelp" class="form-text text-muted">Please type your new password again to confirm it.</small>
+            <input type="password" class="form-control" id="signUpPasswordConfirmInput" autocomplete="new-password"
+                placeholder="Password Confirm">
+            <small id="passwordHelp" class="form-text text-muted">Please type your new password again to confirm
+                it.</small>
 
         </div>
         <div class="col text-center">
