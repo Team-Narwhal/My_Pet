@@ -1,3 +1,9 @@
+/* Instructions Modal */
+#modal-wrapper {
+  border-radius: 18px;
+  border: 10px double black;
+}
+
 /* Character Container */
 #character-container {
     width: 90vw;
@@ -23,8 +29,7 @@
 }
 
 .start-btn {
-    width: 50px;
-    height: 40px;
+    color: black;
 }
 
 /* Battle Buttons */
@@ -54,6 +59,7 @@
 /* Balloons */
 .nes-balloon {
     display: none;
+    user-select: none;
 }
 
 /* Character Images */
@@ -83,6 +89,7 @@
 
 /* Animation for winner/looser message */
 .jello-vertical {
+    user-select: none;
 	-webkit-animation: jello-vertical 2s infinite both;
 	        animation: jello-vertical 2s infinite both;
 }

@@ -51,11 +51,33 @@
     </div>
 
     <div id="start-div">
-        <div class="container d-flex justify-content-center mt-3">
-            <button type="button" class="nes-btn is-success start-btn">Start</button>
+        <div class="container d-flex flex-column align-items-center justify-content-center mt-3">
+            <button type="button" class="m-2 nes-btn is-success text-dark fw-bold start-btn">START</button>
+            <button type="button" class="m-2 nes-btn is-warning text-dark fw-bold"
+            data-bs-toggle="modal" data-bs-target="#instructions-modal">HELP</button>
         </div>
     </div>
 
+</div>
+
+{{!-- Boostrap Modal for instructions --}}
+<div id="instructions-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div id="modal-wrapper" class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h2 class="modal-title fs-1">How to Play</h2>
+      </div>
+      <div class="modal-body">
+        <p class="fs-5">Press start to battle an enemy.  Block enemy attacks by guessing the arrow sequence
+            correctly using the arrow buttons.  If you lose, you lose a heart, but if you win,
+            your little buddy will be happy!
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn nes-btn is-success" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 
