@@ -26,9 +26,12 @@ const init = async () => {
     // Await query for user's activ pet.
     const userResponse = await fetch("/api/user/getUserId");
     const userId = await userResponse.json();
+    console.log(userId);
     // Use userResponse to get active pet.
+    // getActivePetByUserId(userId);
     const petResponse = await fetch(`/api/pet/${userId}`);
     const petData = await petResponse.json();
+    console.log(petData);
     // Add logic to create instance of creature class
     if (petData.type === 'Jackalope') {
         myPet = new Jackalope(petData);
@@ -58,17 +61,15 @@ function fastForward(updatedAt) {
     // console.log(oneDay);
 }
 
-
-// Run decay every 10 seconds.
-setInterval(decay(), 1000 * 10);
-
+// Set poopIndex to zero.
 let poopIndex = 0;
 
-function decay(multiplier = 1) {
+const decay = (multiplier = 1) => {
     // subtract attribute points at intervals (e.g., hunger, energy, etc.)
     // HEALTH
     /*Get the most recent health reading and store it here. Integrate happiness?*/
-    myPet.health();
+    console.log(myPet, typeof myPet);
+    // myPet.health();
 
     // Every 10 seconds, remove 1 point from hunger meter.
     // Add if statement so that it doesn't go negative.
@@ -80,6 +81,7 @@ function decay(multiplier = 1) {
     // Every 10 seconds, increase the poop index.
     poopIndex += 1 * multiplier;
 
+    // When poopIndex is greater than or equal to 20, and myPet.poop is less than 4, increase pet's poop by 1.
     if (poopIndex >= 20 && myPet.poop < 4) {
         myPet.poop++;
         poopIndex = 0;
@@ -88,9 +90,13 @@ function decay(multiplier = 1) {
     savePet();
 }
 
+// Run decay every 10 seconds.
+setInterval(decay, 1000 * 10);
+
+// Save a new instance of the pet.
 const savePet = async () => {
     try {
-        const newPetInstance = await fetch('/', {
+        const newPetInstance = await fetch(`/api/pet/${myPet.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -98,8 +104,7 @@ const savePet = async () => {
             body: JSON.stringify(myPet),
         });
 
-        response.json(newPetInstance);
-        window.location.reload();
+        newPetInstance.json();
     } catch (error) {
         console.log(error);
     }

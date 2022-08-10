@@ -9,7 +9,7 @@ const getActivePetByUserId = async (req, res) => {
         const userPet = await Pet.findOne({
             where: {
                 userId: req.params.userId,
-                isActive: true
+                isActive: true,
             }
         });
         res.status(200).json(userPet);
@@ -19,13 +19,14 @@ const getActivePetByUserId = async (req, res) => {
         res.status(500).json({ error });
     }
 };
-//Get alive pet with specific Userid
+
+//Get alive pet with specific userId.
 const getAlivePetByUserId = async (req, res) => {
     try {
         const alivePet = await Pet.findOne({
             where: {
                 userId: req.params.userId,
-                isAlive: true
+                isAlive: true,
             }
         });
         res.status(200).json(alivePet);
@@ -61,6 +62,7 @@ const updatePetAttributes = async (req, res) => {
       res.status(200).json(petAttributes);
     } catch (err) {
       res.status(500).json(err);
+      console.log(err);
     }
   };
 
