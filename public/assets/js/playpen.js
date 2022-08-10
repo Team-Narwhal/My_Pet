@@ -26,12 +26,9 @@ const init = async () => {
     // Await query for user's activ pet.
     const userResponse = await fetch("/api/user/getUserId");
     const userId = await userResponse.json();
-    // console.log(userId);
     // Use userResponse to get active pet.
     const petResponse = await fetch(`/api/pet/${userId}`);
-    console.log(petResponse);
     const petData = await petResponse.json();
-
     // Add logic to create instance of creature class
     if (petData.type === 'Jackalope') {
         myPet = new Jackalope(petData);
@@ -40,11 +37,10 @@ const init = async () => {
     } else if (petData.type === 'Yeti') {
         myPet = new Yeti(petData);
     }
-
-    console.log(myPet);
     decay(petData.updatedAt);
     fastForward(petData.updatedAt);
-    draw(myPet.health, myPet.poop, myPet.hunger)
+    draw(myPet.health, petData.poop, myPet.hunger)
+    return myPet;
 }
 
 function decay(updatedAt) {

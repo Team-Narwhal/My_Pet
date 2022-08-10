@@ -11,91 +11,80 @@ const startBattleBtn = document.getElementById('startBattleBtn');
 
 // A button to feed your hungry pet
 feedBtn.addEventListener('click', async () => {
-    init();
     if (myPet.hunger >= 100) {
         alert(`${myPet.name} is already full!`);
         return;
     }
-        try {
-            myPet.feed();
-            const hunger = myPet.hunger;
-            const id = myPet.id;
-            const response = await fetch(`/api/pet/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                        },
-                body: JSON.stringify({
-                    hunger: hunger,
-                            })
-                        });
-            await response.json();
-            console.log(response);
-            console.log("Pet hunger updated in db!");
-            hungerStatus(hunger);      
-        } catch (error) {
-            alert(error);
-            }
+    try {
+        myPet.feed();
+        const { id, health, hunger, poop } = myPet;
+        const response = await fetch(`/api/pet/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                hunger: hunger,
+            })
+        });
+        await response.json();
+        draw(health, poop, hunger); 
+    } catch (error) {
+        alert(error);
+    }
 });
 
 // A button give medicine to improve health
 medicineBtn.addEventListener('click', async (event) => {
-    init();
     if (myPet.health >= 8) {
         alert(`${myPet.name} doesn't need medicine!`);
         return;
     }
-        try {
-            myPet.medicine();
-            const health = myPet.health;
-            const id = myPet.id;
-            const response = await fetch(`/api/pet/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                        },
-                body: JSON.stringify({
-                    health: health,
-                            })
-                        });
-            await response.json();
-            console.log(response, "Updated health in db");
-            heartStatus(health);      
-        } catch (error) {
-            alert(error);
-            }
+    try {
+        myPet.medicine();
+        const { id, health, hunger, poop } = myPet;
+        const response = await fetch(`/api/pet/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                health: health,
+            })
+        });
+        await response.json();
+        draw(health, poop, hunger); 
+    } catch (error) {
+        alert(error);
+    }
 });
 
 // A button to clean up poop
 cleanBtn.addEventListener('click', async (event) => {
-    init();
-    if (myPet.poop <= 0) {
+  if (myPet.poop < 1) {
         alert(`${myPet.name}'s playpen is clean. Yay!`);
         return;
     }
-        try {
-           myPet.cleanPoop();
-            const poop = myPet.poop;
-            const id = myPet.id;
-            const response = await fetch(`/api/pet/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                        },
-                body: JSON.stringify({
-                    poop: poop,
-                            })
-                        });
-            await response.json();
-            console.log(response);
-            poopStatus(poop);      
-        } catch (error) {
-            alert(error);
-            }
+    try {
+        myPet.cleanPoop();
+        const { id, health, hunger, poop } = myPet;
+        const response = await fetch(`/api/pet/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                poop: poop,
+            })
+        });
+        await response.json();
+        draw(health, poop, hunger); 
+    } catch (error) {
+        alert(error);
+    }
 });
 
 // Takes current iteration of pet to battle page
 startBattleBtn.addEventListener('click', async (event) => {
-    console.log("battle btn clicked!");
-        window.location.href = '/battle';
+    window.location.href = '/battle';
 });
