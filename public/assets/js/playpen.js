@@ -105,6 +105,8 @@ const savePet = async () => {
     }
 };
 
+init();
+
 /* Add asychronous init function
 myPet.init('addStuffHere', async (req, res) => {
     await loading logged in user's pet
@@ -138,6 +140,4 @@ myPet.init('addStuffHere', async (req, res) => {
 //     } catch (error) {
 //         alert(error);
 //     }
-// });
-
-init();*/
+// });*/

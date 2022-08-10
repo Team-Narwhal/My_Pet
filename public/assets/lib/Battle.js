@@ -18,7 +18,7 @@ class Battle {
       ],
       defend: [
         "Can't touch this!",
-        "Well that didn't hurt...",
+        "Well, that didn't hurt...",
         "Just give up!",
       ],
       attack: [

@@ -21,9 +21,6 @@ class Pet {
         this.isHappy = isHappy;
     };
 
-
-
-
     // Define methods that are the same for every Pet
     // Here are some very basic examples to get your creative
     // juices flowing.  If you run into a block, ask the group
@@ -44,25 +41,29 @@ class Pet {
 
     };
 
+    // Angie
     health() {
-        this.isSick = false;
-        if (this.poop >= 3) {
-            this.health - 1 //subtract every day;
-        } else if (this.poop >= 5) {
+        if (this.poop = 1) {
+            this.health = 6;
+        } else if (this.poop = 2) {
+            this.health = 4;
+        } else if (this.poop = 3) {
+            this.health = 2;
+        } else if (this.poop = 4 && this.hunger <= 25 && this.energy <= 50) {
             this.isSick = true;
-            alert(`${this.name} is sick!`)
+            alert(`${this.name} is sick! 🤒`)
         }
     };
 
     // NIFER
     medicine() {
         this.health += 1;
-        // alert(`${this.name} is feeling bettter`);
+        alert(`${this.name} is feeling better!`);
     };
 
     happy() {
-        if (this.poop <= 3 && this.hunger <= 500 && this.health >= 500) {
-            alert(':)')
+        if (this.poop <= 3 && this.hunger <= 50 && this.health >= 50) {
+            alert('😃')
             // tamagotchi happy graphics 
         }
     };
@@ -70,7 +71,7 @@ class Pet {
     sleep() {
         // if light is off
         if (light === false) {
-            alert('Zzzz');
+            alert('Zzzz... 😪');
             // for each night/sleep add health
             this.health
         }
