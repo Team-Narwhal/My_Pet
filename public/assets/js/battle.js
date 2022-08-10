@@ -73,10 +73,12 @@ const updateHealthBar = async () => {
 
 };
 //Function to end the battle
-const endGame = (win) => {
+const endGame = async (win) => {
   const sequenceDiv = document.getElementById("sequence-div");
   let messageEl = document.createElement('p');
   if (win) {
+    // Change myPet to isHappy: true
+    myPet.isHappy = true;
     // Set text content for win case
     myConfetti({
       particleCount: 100,
@@ -86,14 +88,33 @@ const endGame = (win) => {
     });
     messageEl.textContent = 'Conqueror';
   } else {
+    // Subtract a heart from myPet.health
+    myPet.health -= 2;
     // Set text content for lose case
     messageEl.textContent = 'Deadbeat';
   }
+
   messageEl.classList.add('jello-vertical');
   messageEl.style.fontFamily = "'Press Start 2P', cursive";
   messageEl.style.fontSize = '25px';
 
   sequenceDiv.appendChild(messageEl);
+  // Update Pet stats in the Database
+  try {
+    const response = await fetch(`/api/pet/${myPet.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        isHappy: myPet.isHappy,
+        health: myPet.health,
+      })
+    });
+    console.log(await response.json());
+  } catch (error) {
+    console.log({ error });
+  }
 
   // Redirect to /playpen after 5 seconds.
   setTimeout(() => window.location.href = '/playpen', 5000);
