@@ -89,7 +89,7 @@ const endGame = (win) => {
     // Set text content for lose case
     messageEl.textContent = 'Deadbeat';
   }
-  messageEl.classList.add('endGameMessage');
+  messageEl.classList.add('jello-vertical');
   messageEl.style.fontFamily = "'Press Start 2P', cursive";
   messageEl.style.fontSize = '25px';
 
