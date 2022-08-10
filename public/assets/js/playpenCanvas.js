@@ -32,27 +32,38 @@ const drawImgAnimate = async (filePath, x1, x2, y1, y2) => {
     });
 };
 
-let x1 = canvas.width / 2;
-let y1 = canvas.height - 100;
+let characterImg = new Image();
+characterImg.src = "/assets/images/big_yeti.png"
 
-let x2 = (canvas.width / 2) + 100 * xNorm; // how wide want to be
-let y2 = (canvas.height - 100) + 100 * yNorm;
+let x1 = 100*xNorm;
+let y1 = 100*yNorm;
+
+let x2 = 100*xNorm + 100*xNorm; // how wide want to be
+let y2 = 100*yNorm + 100*yNorm;
+
+console.log(x1, y1, x2, y2);
 
 let dx = 2 * xNorm;
 
-async function drawAnimate(filepath) {
+const drawAnimate = async () => {
     ctxAnimate.clearRect(0, 0, canvas.width, canvas.height);
-    await drawImgAnimate("/assets/images/big_yeti.png", x1, y1, x2, y2);
+    console.log('before drawImgAnimate');
+    ctxAnimate.drawImage(characterImg, x1, y1, x2, y2);
     drawBall();
     console.log("im hit");
     changeDirection();
     x1 = x1 + dx;
     // y1 = y1 + dy1;
-    x2 = x2 + dx;
+    x2 = x1 + 100*xNorm;
     // y2 = y2 + dy2;
     requestAnimationFrame(drawAnimate);
     
 }
+
+// setInterval(drawAnimate(), 10);
+
+
+
 
 function changeDirection() {
     if (x1 > 1400 * xNorm || x1 < 10 * xNorm) {
@@ -85,12 +96,13 @@ function drawBall() {
 window.onload = () => {
     draw();
     drawAnimate();
+    console.log('calling drawAnimate');
 };
 
 const draw = async (health, poop, hunger) => {
     await drawImg("/assets/images/bg-playpen.png", 0, 0, canvas.width, canvas.height);
     // drawBall();
-    drawPet();
+    // drawPet();
     await heartStatus(health);
     await poopStatus(poop);
     await hungerStatus(hunger);
