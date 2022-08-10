@@ -30,9 +30,9 @@ router.get('/create_pet', (req, res) => {
 // Renders the environment.handlebars
 router.get('/playpen', (req, res) => {
     // redirect to landing_page if not logged in
-    if (!req.session.isLoggedIn) {
-        return res.redirect('/');
-    };
+    // if (!req.session.isLoggedIn) {
+    //     return res.redirect('/');
+    // };
     res.render('playpen', {
         isLoggedIn: req.session.isLoggedIn || false,
     })

@@ -2,27 +2,24 @@
 {{!-- <div id="sequence-div" style="width: 300px; height: 300px;"></div> --}}
 
 <div id="careButtons">
-    <button type="button" id="wakeBtn" data-description='wake' class="nes-btn is-secondary care-button">Wake up</button>
+    {{!-- <button type="button" id="wakeBtn" data-description='wake' class="nes-btn is-secondary care-button">Wake
+        up</button> --}}
     <button type="button" id="feedBtn" data-description='feed' class="nes-btn is-success care-button">Feed</button>
     <button type="button" id="medicineBtn" data-description='medicine'
         class="nes-btn is-primary care-button">Medicine</button>
     <button type="button" id="cleanBtn" data-description='clean' class="nes-btn is-warning care-button">Clean
-        poop</button>
+        Poop</button>
 </div>
 
-<button type="button" id="startBattleBtn" data-description='wake' class="nes-btn is-danger care-button">Battle another
+<button type="button" id="startBattleBtn" data-description='battleStart' class="nes-btn is-danger care-button">Battle
+    another
     pet</button>
 
 
 {{!-- JS file for feed pet, etc. --}}
 <script src="/assets/lib/Pet.js"></script>
 <script src="/assets/lib/Creatures.js"></script>
-<script src="/assets/js/playpenCanvas.js"></script>
+<script src="/assets/js/playpen.js"></script>
 <script src="/assets/js/petCare.js"></script>
+<script src="/assets/js/playpenCanvas.js"></script>
 
-
-{{!-- served for the environment --}}
-{{!-- canvas for UI geraphic feed, clean-up buttons
-{{!-- Needs a canvas element with id=”canvas-env”--}}
-{{!--Needs control buttons to feed, clean poop, give medicine, sleep/wakeup, and go to battle page--}}
-{{!--Give id names like “feed-btn” and “medicine-btn”--}}

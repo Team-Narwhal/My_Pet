@@ -5,13 +5,13 @@
     <form id="signInForm">
         <div class="row mb-3">
             <label for="signInEmailInput" class="form-label">Email</label>
-            <input type="text" class="form-control" id="signInEmailInput" placeholder="example@example.com"
-                aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="signInEmailInput" autocomplete="email"
+                placeholder="example@example.com" aria-describedby="emailHelp">
             {{!-- <div id="emailHelp" class="form-text">Please enter your email address.</div> --}}
         </div>
         <div class="row mb-3">
             <label for="signInPasswordInput" class="form-label">Password</label>
-            <input type="password" class="form-control" id="signInPasswordInput"
+            <input type="password" class="form-control" id="signInPasswordInput" autocomplete="current-password"
                 placeholder="Super Secret Password Here">
             {{!-- <div id="passwordHelp" class="form-text">Please enter your password.</div> --}}
 
@@ -27,4 +27,6 @@
     </form>
 </section>
 
-<script src="/assets/js/logInOut.js"></script>
+{{!-- NIFER - removed duplicate call on logInOut.js --}}
+{{!--
+<script src="/assets/js/logInOut.js"></script> --}}

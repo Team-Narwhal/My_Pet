@@ -8,8 +8,9 @@
 // let level = 0;
 
 class Pet {
-    constructor(name, hunger, energy, health, isAlive, poop, level, isHappy) {
+    constructor(id, name, hunger, energy, health, isAlive, poop, level, isHappy) {
         // use the 'this' syntax
+        this.id = id;
         this.name = name;
         this.hunger = hunger;
         this.energy = energy;
@@ -31,15 +32,15 @@ class Pet {
     // You can comment ideas for new features so you can easily add them later!
 
     cleanPoop() {
-        // This can maybe be edited as you write the environment
-        // code.  For testing maybe alert like this
+        // Nifer -- added so that it sets poop to 0 when called from petCare.js when cleanBtn is used
+        this.poop -= 1;
         alert('You cleaned a lot of poop.');
     };
 
     feed() {
         alert('Nom nom nom!');
-        // edit an attribute if needed
-        this.hunger += 30;
+        this.hunger += 25;
+
     };
 
     health() {
@@ -48,8 +49,14 @@ class Pet {
             this.health - 1 //subtract every day;
         } else if (this.poop >= 5) {
             this.isSick = true;
-            alert('Your pet is sick!')
+            alert(`${this.name} is sick!`)
         }
+    };
+
+    // NIFER
+    medicine() {
+        this.health += 1;
+        alert(`${this.name} is feeling bettter`);
     };
 
     happy() {
