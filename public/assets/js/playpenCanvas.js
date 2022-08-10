@@ -32,15 +32,16 @@ function drawBall() {
 
 // drawing the background
 window.onload = () => {
-    draw(8, 4);
+    draw(8, 4, 800);
 };
 
-const draw = async (health, poop) => {
+const draw = async (health, poop, hunger) => {
 
     await drawImg("/assets/images/test_desert.png", 0, 0, canvas.width, canvas.height);
     drawBall();
     await heartStatus(health);
     await poopStatus(poop);
+    await hungerStatus (hunger);
 };
 
 
@@ -79,14 +80,16 @@ async function heartStatus(health) {
     };
 };
 
-//add hunger words 
-// thought bubble burger
-// most urgent
-// hunger = 51-75
 
-async function thoughtStatus(thought) {
-    if (thought > 51 && thought < 75) {
-        await drawImg("/assets/images/food1.svg", 100 * xNorm, 740 * yNorm, 90 * xNorm, 80 * yNorm);
+async function hungerStatus(hunger) {
+    if (hunger > 750 && hunger < 1000) {
+        await drawImg("/assets/images/food1.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
+    } else if (hunger > 510 && hunger < 750) {
+        await drawImg("/assets/images/food2.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
+    } else if (hunger > 250 && hunger < 510) {
+        await drawImg("/assets/images/food3.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
+    } else if (hunger > 0 && hunger < 250) {
+        await drawImg("/assets/images/food4.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
     }
 }
 
