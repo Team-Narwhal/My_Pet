@@ -8,8 +8,9 @@
 // let level = 0;
 
 class Pet {
-    constructor(name, hunger, energy, health, isAlive, poop, level, isHappy) {
+    constructor(id, name, hunger, energy, health, isAlive, poop, level, isHappy) {
         // use the 'this' syntax
+        this.id = id;
         this.name = name;
         this.hunger = hunger;
         this.energy = energy;
@@ -38,8 +39,8 @@ class Pet {
 
     feed() {
         alert('Nom nom nom!');
-        // edit an attribute if needed
         this.hunger += 25;
+
     };
 
     health() {
@@ -48,15 +49,14 @@ class Pet {
             this.health - 1 //subtract every day;
         } else if (this.poop >= 5) {
             this.isSick = true;
-            alert('Your pet is sick!')
+            alert(`${this.name} is sick!`)
         }
     };
 
     // NIFER
     medicine() {
-        alert("You're pet is feeling bettter");
-        // edit an attribute if needed
         this.health += 1;
+        alert(`${this.name} is feeling bettter`);
     };
 
     happy() {
