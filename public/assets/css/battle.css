@@ -1,3 +1,9 @@
+/* Instructions Modal */
+#modal-wrapper {
+  border-radius: 18px;
+  border: 10px double black;
+}
+
 /* Character Container */
 #character-container {
     width: 90vw;
