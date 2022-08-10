@@ -1,5 +1,7 @@
 let canvas = document.getElementById("petCanvas");
+let canvasAnimate = document.getElementById("petMoveCanvas");
 let ctx = canvas.getContext("2d");
+let ctxAnimate = canvasAnimate.getContext("2d");
 
 let xNorm = canvas.width / 1600;
 let yNorm = canvas.height / 900;
@@ -17,6 +19,9 @@ const drawImg = async (filePath, x1, x2, y1, y2) => {
     });
 };
 
+// request animate frame
+
+
 // drawing ball
 // to be replace with character
 // function drawBall() {
@@ -30,14 +35,19 @@ const drawImg = async (filePath, x1, x2, y1, y2) => {
 //     ctx.closePath();
 // };
 
+function drawPet() {
+    drawImg("/assets/images/big_yeti.png", 800 * xNorm, 200 * yNorm, 400 * xNorm, 650 * yNorm);
+}
+
 // drawing the heart, poop, food bubble
 window.onload = () => {
-    draw(8, 4, 800);
+    draw();
 };
 
 const draw = async (health, poop, hunger) => {
     await drawImg("/assets/images/bg-playpen.png", 0, 0, canvas.width, canvas.height);
     // drawBall();
+    drawPet();
     await heartStatus(health);
     await poopStatus(poop);
     await hungerStatus (hunger);
@@ -81,13 +91,13 @@ async function heartStatus(health) {
 
 // drawing the hunger status conditions
 async function hungerStatus(hunger) {
-    if (hunger > 750 && hunger < 1000) {
+    if (hunger > 75 && hunger < 100) {
         await drawImg("/assets/images/food1.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
-    } else if (hunger > 510 && hunger < 750) {
+    } else if (hunger > 51 && hunger < 75) {
         await drawImg("/assets/images/food2.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
-    } else if (hunger > 250 && hunger < 510) {
+    } else if (hunger > 25 && hunger < 51) {
         await drawImg("/assets/images/food3.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
-    } else if (hunger > 0 && hunger < 250) {
+    } else if (hunger > 0 && hunger < 25) {
         await drawImg("/assets/images/food4.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
     }
 }
