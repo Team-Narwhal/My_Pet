@@ -33,12 +33,13 @@ class Pet {
 
     cleanPoop() {
         // Nifer -- added so that it sets poop to 0 when called from petCare.js when cleanBtn is used
-        this.poop -= 1;
-        alert('You cleaned a lot of poop.');
+        if (this.poop > 0)
+            this.poop -= 1;
+        // alert('You cleaned a lot of poop.');
     };
 
     feed() {
-        alert('Nom nom nom!');
+        // alert('Nom nom nom!');
         this.hunger += 25;
 
     };
@@ -56,7 +57,7 @@ class Pet {
     // NIFER
     medicine() {
         this.health += 1;
-        alert(`${this.name} is feeling bettter`);
+        // alert(`${this.name} is feeling bettter`);
     };
 
     happy() {

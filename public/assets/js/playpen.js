@@ -20,18 +20,15 @@ Maybe use just hunger for now and get the logic working */
 /*table for pet types*/
 
 // Add global variables here.
-export let myPet;
+var myPet;
 
-export const init = async () => {
+const init = async () => {
     // Await query for user's activ pet.
     const userResponse = await fetch("/api/user/getUserId");
     const userId = await userResponse.json();
-    // console.log(userId);
     // Use userResponse to get active pet.
     const petResponse = await fetch(`/api/pet/${userId}`);
-    console.log(petResponse);
     const petData = await petResponse.json();
-
     // Add logic to create instance of creature class
     if (petData.type === 'Jackalope') {
         myPet = new Jackalope(petData);
@@ -40,10 +37,8 @@ export const init = async () => {
     } else if (petData.type === 'Yeti') {
         myPet = new Yeti(petData);
     }
-
-    console.log(myPet);
-    fastForward(petData.updatedAt);
     decay(petData.updatedAt);
+    fastForward(petData.updatedAt);
 }
 
 function fastForward(updatedAt) {

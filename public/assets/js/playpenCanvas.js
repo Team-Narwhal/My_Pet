@@ -31,9 +31,9 @@ const drawImg = async (filePath, x1, x2, y1, y2) => {
 // };
 
 // drawing the heart, poop, food bubble
-window.onload = () => {
-    draw(8, 4, 800);
-};
+// window.onload = () => {
+//     draw(8, 4, 800);
+// };
 
 const draw = async (health, poop, hunger) => {
     await drawImg("/assets/images/bg-playpen.png", 0, 0, canvas.width, canvas.height);
@@ -81,13 +81,13 @@ async function heartStatus(health) {
 
 // drawing the hunger status conditions
 async function hungerStatus(hunger) {
-    if (hunger > 750 && hunger < 1000) {
+    if (hunger > 75 && hunger < 100) {
         await drawImg("/assets/images/food1.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
-    } else if (hunger > 510 && hunger < 750) {
+    } else if (hunger > 51 && hunger < 75) {
         await drawImg("/assets/images/food2.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
-    } else if (hunger > 250 && hunger < 510) {
+    } else if (hunger > 25 && hunger < 51) {
         await drawImg("/assets/images/food3.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
-    } else if (hunger > 0 && hunger < 250) {
+    } else if (hunger > 0 && hunger < 25) {
         await drawImg("/assets/images/food4.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
     }
 }
