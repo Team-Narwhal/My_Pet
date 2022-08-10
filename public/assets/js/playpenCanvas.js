@@ -19,33 +19,32 @@ const drawImg = async (filePath, x1, x2, y1, y2) => {
 
 // drawing ball
 // to be replace with character
-function drawBall() {
-    let ballRadius = 10;
-    let x = canvas.width - 100;
-    let y = canvas.height - 10;
-    ctx.beginPath();
-    ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
-};
+// function drawBall() {
+//     let ballRadius = 10;
+//     let x = canvas.width - 100;
+//     let y = canvas.height - 10;
+//     ctx.beginPath();
+//     ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+//     ctx.fillStyle = "#0095DD";
+//     ctx.fill();
+//     ctx.closePath();
+// };
 
-// drawing the background
+// drawing the heart, poop, food bubble
 window.onload = () => {
     draw(8, 4, 800);
 };
 
 const draw = async (health, poop, hunger) => {
-
-    await drawImg("/assets/images/test_desert.png", 0, 0, canvas.width, canvas.height);
-    drawBall();
+    await drawImg("/assets/images/bg-playpen.png", 0, 0, canvas.width, canvas.height);
+    // drawBall();
     await heartStatus(health);
     await poopStatus(poop);
     await hungerStatus (hunger);
 };
 
 
-
+// drawing the heart status conditions
 async function heartStatus(health) {
     if (health === 1) {
         await drawImg("/assets/images/halfHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
@@ -80,7 +79,7 @@ async function heartStatus(health) {
     };
 };
 
-
+// drawing the hunger status conditions
 async function hungerStatus(hunger) {
     if (hunger > 750 && hunger < 1000) {
         await drawImg("/assets/images/food1.svg", 800 * xNorm, 100 * yNorm, 306 * xNorm, 240 * yNorm);
@@ -93,6 +92,7 @@ async function hungerStatus(hunger) {
     }
 }
 
+// drawing the poop status conditions
 async function poopStatus(poop) {
     if (poop === 1) {
         console.log('poop hit')
@@ -111,30 +111,3 @@ async function poopStatus(poop) {
         await drawImg("/assets/images/poop.svg", 1000 * xNorm, 720 * yNorm, 90 * xNorm, 80 * yNorm);
     }
 }
-
-
-
-
-
-
-
-
-
-// draw character on screen
-// character move a bit using translate() Remaps the (0,0) position on the canvas
-// button addEventListener when pressed on, will invoke function fillText() to draw messages on top
-
-
-// window.onload = function () {
-//   let img = document.createElement("img");
-//   img.src = "./test_desert.png";
-//   // img, sx (clip), sy, swidth, sheight, x, y, width, height
-//   ctx.drawImage(img, 0, 0, 500, 400);
-//   console.log('hittt');
-//   drawBall();
-// };
-
-// pressing on the feed button
-// adding points to heart bar (behind the scene)
-// points will indicate how many hearts to show on front end
-// hearts will be drawn on canvas
