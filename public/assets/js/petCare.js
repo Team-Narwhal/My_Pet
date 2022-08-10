@@ -1,5 +1,5 @@
 // Retreive user pet from DB
-import { init, myPet } from './playpen.js';
+// import { init, myPet } from './playpen.js';
 // Event listeners
 // const wakeBtn = document.getElementById('wakeBtn');
 const feedBtn = document.getElementById('feedBtn');
@@ -32,7 +32,7 @@ feedBtn.addEventListener('click', async () => {
             await response.json();
             console.log(response);
             console.log("Pet hunger updated in db!");
-             canvassHunger(hunger);      
+            hungerStatus(hunger);      
         } catch (error) {
             alert(error);
             }
@@ -88,7 +88,7 @@ cleanBtn.addEventListener('click', async (event) => {
                         });
             await response.json();
             console.log(response);
-             canvassPoop(poop);      
+            poopStatus(poop);      
         } catch (error) {
             alert(error);
             }

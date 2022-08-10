@@ -20,9 +20,9 @@ Maybe use just hunger for now and get the logic working */
 /*table for pet types*/
 
 // Add global variables here.
-export var myPet;
+var myPet;
 
-export const init = async () => {
+const init = async () => {
     // Await query for user's activ pet.
     const userResponse = await fetch("/api/user/getUserId");
     const userId = await userResponse.json();
@@ -44,6 +44,7 @@ export const init = async () => {
     console.log(myPet);
     decay(petData.updatedAt);
     fastForward(petData.updatedAt);
+    draw(myPet.health, myPet.poop, myPet.hunger)
 }
 
 function decay(updatedAt) {
