@@ -95,7 +95,7 @@ function decay(multiplier = 1) {
 
 const savePet = async () => {
     try {
-        const updateSomething = await fetch('/', {
+        const newPetInstance = await fetch('/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const savePet = async () => {
             body: JSON.stringify(myPet),
         });
 
-        response.json();
+        response.json(newPetInstance);
         window.location.reload();
     } catch (error) {
         console.log(error);
