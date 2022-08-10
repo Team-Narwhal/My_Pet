@@ -6,6 +6,8 @@ let ctxAnimate = canvasAnimate.getContext("2d");
 let xNorm = canvas.width / 1600;
 let yNorm = canvas.height / 900;
 
+
+
 // ctx.globalCompositeOperation = 'source-over';
 
 const drawImg = async (filePath, x1, x2, y1, y2) => {
@@ -19,29 +21,70 @@ const drawImg = async (filePath, x1, x2, y1, y2) => {
     });
 };
 
-// request animate frame
+const drawImgAnimate = async (filePath, x1, x2, y1, y2) => {
+    let img = new Image();
+    await new Promise((resolve) => {
+        img.onload = function () {
+            ctxAnimate.drawImage(img, x1, x2, y1, y2);
+            resolve();
+        };
+        img.src = filePath;
+    });
+};
+
+let x1 = canvas.width / 2;
+let y1 = canvas.height - 100;
+
+let x2 = (canvas.width / 2) + 100 * xNorm; // how wide want to be
+let y2 = (canvas.height - 100) + 100 * yNorm;
+
+let dx = 2 * xNorm;
+
+async function drawAnimate(filepath) {
+    ctxAnimate.clearRect(0, 0, canvas.width, canvas.height);
+    await drawImgAnimate("/assets/images/big_yeti.png", x1, y1, x2, y2);
+    drawBall();
+    console.log("im hit");
+    changeDirection();
+    x1 = x1 + dx;
+    // y1 = y1 + dy1;
+    x2 = x2 + dx;
+    // y2 = y2 + dy2;
+    requestAnimationFrame(drawAnimate);
+    
+}
+
+function changeDirection() {
+    if (x1 > 1400 * xNorm || x1 < 10 * xNorm) {
+        dx = -dx;
+    };
+    // if (x2 > 100 || x2 < 0) {
+    //     dx2 = -dx2;
+    // }
+}
 
 
 // drawing ball
 // to be replace with character
-// function drawBall() {
-//     let ballRadius = 10;
-//     let x = canvas.width - 100;
-//     let y = canvas.height - 10;
-//     ctx.beginPath();
-//     ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-//     ctx.fillStyle = "#0095DD";
-//     ctx.fill();
-//     ctx.closePath();
-// };
+function drawBall() {
+    let ballRadius = 10;
+    let x = canvas.width - 100;
+    let y = canvas.height - 10;
+    ctxAnimate.beginPath();
+    ctxAnimate.arc(x, y, ballRadius, 0, Math.PI * 2);
+    ctxAnimate.fillStyle = "#0095DD";
+    ctxAnimate.fill();
+    ctxAnimate.closePath();
+};
 
-function drawPet() {
-    drawImg("/assets/images/big_yeti.png", 800 * xNorm, 200 * yNorm, 400 * xNorm, 650 * yNorm);
-}
+// function drawPet() {
+//     drawImg("/assets/images/big_yeti.png", 800 * xNorm, 200 * yNorm, 400 * xNorm, 650 * yNorm);
+// }
 
 // drawing the heart, poop, food bubble
 window.onload = () => {
     draw();
+    drawAnimate();
 };
 
 const draw = async (health, poop, hunger) => {
@@ -50,7 +93,7 @@ const draw = async (health, poop, hunger) => {
     drawPet();
     await heartStatus(health);
     await poopStatus(poop);
-    await hungerStatus (hunger);
+    await hungerStatus(hunger);
 };
 
 
