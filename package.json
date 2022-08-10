@@ -29,6 +29,7 @@
     "nes.css": "^2.3.0",
     "sequelize": "^6.21.3",
     "socket.io": "^4.5.1",
+    "typeface-press-start-2p": "^1.1.13",
     "uuid": "^8.3.2"
   }
 }
