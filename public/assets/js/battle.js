@@ -4,6 +4,20 @@ let myPet;
 let enemyPet;
 let room;
 
+
+// Nolan
+// Implementation of the Confetti API via CDN script
+let myCanvas = document.createElement('canvas');
+let characterContainer = document.getElementById('character-container');
+myCanvas.style = "width: 100%; height: 100%; position: absolute; top: 0; z-index: 1;";
+characterContainer.appendChild(myCanvas);
+
+let myConfetti = confetti.create(myCanvas, {
+  resize: true,
+  useWorker: true
+});
+
+
 //Asha
 //Write a function to fetch login user's active pet
 //inside the function we need to use the data to create the new instance of appropriate subclasses
@@ -63,8 +77,14 @@ const endGame = (win) => {
   const sequenceDiv = document.getElementById("sequence-div");
   let messageEl = document.createElement('p');
   if (win) {
-      // Set text content for win case
-      messageEl.textContent = 'Conqueror';
+    // Set text content for win case
+    myConfetti({
+      particleCount: 100,
+      spread: 160
+      // any other options from the global
+      // confetti function
+    });
+    messageEl.textContent = 'Conqueror';
   } else {
     // Set text content for lose case
     messageEl.textContent = 'Deadbeat';

@@ -6,6 +6,7 @@
     background-color: rgb(228, 238, 248);
     border-radius: 18px;
     border: 10px double black;
+    position: relative;
 }
 
 /* Sequence Arrow */
@@ -67,6 +68,7 @@
         background-color: rgb(228, 238, 248);
         border-radius: 18px;
         border: 10px double black;
+        position: relative;
     }
 
     /* Sequence Arrow */
