@@ -39,21 +39,71 @@ const init = async () => {
     }
     decay(petData.updatedAt);
     fastForward(petData.updatedAt);
-    draw(myPet.health, petData.poop, myPet.hunger)
-    return myPet;
-}
-
-function decay(updatedAt) {
-    // subtract attribute points at intervals (e.g., hunger, energy, etc.)
-    console.log(updatedAt);
 }
 
 function fastForward(updatedAt) {
     console.log(updatedAt);
-    // Last updated at vs current time
+    // updatedAt time compared to current date and time
+    const nowDate = Date.now();
+    const lastDate = new Date(updatedAt).getTime();
+    const elapsedTime = nowDate - lastDate;
+    console.log(elapsedTime);
 
-    // const dateNow = new Date
+    const multiplier = elapsedTime / 10000;
+    decay(multiplier);
+    // Fast-forward hunger
+    myPet.hunger -= Math.floor(elapsedTime / 43200);
+
+    // const oneDay = elapsedTime % 86400000;
+    // console.log(oneDay);
 }
+
+
+// Run decay every 10 seconds.
+setInterval(decay(), 1000 * 10);
+
+let poopIndex = 0;
+
+function decay(multiplier = 1) {
+    // subtract attribute points at intervals (e.g., hunger, energy, etc.)
+    // HEALTH
+    /*Get the most recent health reading and store it here. Integrate happiness?*/
+    myPet.health();
+
+    // Every 10 seconds, remove 1 point from hunger meter.
+    // Add if statement so that it doesn't go negative.
+    myPet.hunger -= 1 * multiplier;
+
+    // Every 10 seconds, remove 1 energy.
+    myPet.energy -= 1 * multiplier;
+
+    // Every 10 seconds, increase the poop index.
+    poopIndex += 1 * multiplier;
+
+    if (poopIndex >= 20 && myPet.poop < 4) {
+        myPet.poop++;
+        poopIndex = 0;
+    }
+
+    savePet();
+}
+
+const savePet = async () => {
+    try {
+        const newPetInstance = await fetch('/', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(myPet),
+        });
+
+        response.json(newPetInstance);
+        window.location.reload();
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 /* Add asychronous init function
 myPet.init('addStuffHere', async (req, res) => {
@@ -73,33 +123,6 @@ myPet.init('addStuffHere', async (req, res) => {
     }
 });
 
-updateDatabase(async (req, res) => {
-        try {
-            const updateSomething = await fetch('/', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    update: somethings.value,
-                })
-            });
-
-            await response.json();
-            window.location.reload();
-        } catch (error) {
-            alert(error);
-        }
-    });
-
-
-
-
-decay() {
-    subtract attribute points at intervals (e.g., hunger, energy, etc.)
-}
-
-*/
 
 // updateDatabase(async (req, res) => {
 //     try {
@@ -117,4 +140,4 @@ decay() {
 //     }
 // });
 
-init();
+init();*/
