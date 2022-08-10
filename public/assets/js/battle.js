@@ -89,14 +89,16 @@ const endGame = (win) => {
     // Set text content for lose case
     messageEl.textContent = 'Deadbeat';
   }
+  messageEl.classList.add('endGameMessage');
+  messageEl.style.fontFamily = "'Press Start 2P', cursive";
+  messageEl.style.fontSize = '25px';
+
   sequenceDiv.appendChild(messageEl);
+
   // Redirect to /playpen after 5 seconds.
   setTimeout(() => window.location.href = '/playpen', 5000);
   console.log('hello');
 }
-
-
-//After each turn compare the currenthealth to total health
 
 // Nolan
 // conversation Function to show cute messages
