@@ -55,7 +55,7 @@ const updatePetAttributes = async (req, res) => {
         },
       });
       if (!petAttributes[0]) {
-        res.status(404).json({ message: 'This petid doesnot exist!' });
+        res.status(404).json({ message: 'This pet ID does not exist!' });
         return;
       }
       res.status(200).json(petAttributes);
@@ -69,5 +69,5 @@ module.exports = {
     getActivePetByUserId,
     getAlivePetByUserId,
     createNewPet,
-    updatePetAttributes
+    updatePetAttributes,
 }

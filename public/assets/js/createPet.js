@@ -10,7 +10,7 @@ createPetBtn.addEventListener('click', async (event) => {
 
     // checks to make sure petName is not empty
     if (name.trim().length === 0) {
-        alert('Please give a name to your pet.');
+        alert('Please give your pet a name.');
         return;
     }
     // posts the user input to the  endpoint
