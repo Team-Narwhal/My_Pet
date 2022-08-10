@@ -27,12 +27,11 @@ const init = async () => {
     const userResponse = await fetch("/api/user/getUserId");
     const userId = await userResponse.json();
     console.log(userId);
-    // Use userResponse to get active pet.
-    // getActivePetByUserId(userId);
+    // Use petResponse to get active pet from the user's ID.
     const petResponse = await fetch(`/api/pet/${userId}`);
     const petData = await petResponse.json();
     console.log(petData);
-    // Add logic to create instance of creature class
+    // Add logic to create an instance of a creature class.
     if (petData.type === 'Jackalope') {
         myPet = new Jackalope(petData);
     } else if (petData.type === 'Unicorn') {
@@ -40,7 +39,10 @@ const init = async () => {
     } else if (petData.type === 'Yeti') {
         myPet = new Yeti(petData);
     }
-    decay(petData.updatedAt);
+    // Call canvas to render the canvas screen.
+    draw(myPet.health, myPet.poop, myPet.hunger);
+
+    // Call fastForward to update the pet's stats.
     fastForward(petData.updatedAt);
 }
 
@@ -52,37 +54,38 @@ function fastForward(updatedAt) {
     const elapsedTime = nowDate - lastDate;
     console.log(elapsedTime);
 
-    const multiplier = elapsedTime / 10000;
+    const multiplier = Math.round(elapsedTime / 10000);
     decay(multiplier);
-    // Fast-forward hunger
-    myPet.hunger -= Math.floor(elapsedTime / 43200);
-
-    // const oneDay = elapsedTime % 86400000;
-    // console.log(oneDay);
 }
 
 // Set poopIndex to zero.
 let poopIndex = 0;
 
+// Subtract attribute points at 10-second intervals.
 const decay = (multiplier = 1) => {
-    // subtract attribute points at intervals (e.g., hunger, energy, etc.)
-    // HEALTH
-    /*Get the most recent health reading and store it here. Integrate happiness?*/
-    console.log(myPet, typeof myPet);
-    // myPet.health();
-
     // Every 10 seconds, remove 1 point from hunger meter.
-    // Add if statement so that it doesn't go negative.
-    myPet.hunger -= 1 * multiplier;
+    if ((myPet.hunger - 1 * multiplier) < 0) {
+        myPet.hunger = 0;
+    } else {
+        myPet.hunger -= 1 * multiplier;
+    }
 
     // Every 10 seconds, remove 1 energy.
-    myPet.energy -= 1 * multiplier;
+    if ((myPet.energy - 1 * multiplier) < 0) {
+        myPet.energy = 0;
+    } else {
+        myPet.energy -= 1 * multiplier;
+    }
 
     // Every 10 seconds, increase the poop index.
     poopIndex += 1 * multiplier;
 
     // When poopIndex is greater than or equal to 20, and myPet.poop is less than 4, increase pet's poop by 1.
-    if (poopIndex >= 20 && myPet.poop < 4) {
+    // If the poopIndex is greater than or equal to 40 and the pet's poop is less than four, set the pet's poop to 4 and the poopIndex to 0.
+    if (poopIndex >= 40 && myPet.poop < 4) {
+        myPet.poop = 4;
+        poopIndex = 0;
+    } else if (poopIndex >= 20 && myPet.poop < 4) {
         myPet.poop++;
         poopIndex = 0;
     }
@@ -95,54 +98,26 @@ setInterval(decay, 1000 * 10);
 
 // Save a new instance of the pet.
 const savePet = async () => {
+    console.log(myPet.id);
     try {
         const newPetInstance = await fetch(`/api/pet/${myPet.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(myPet),
+            body: JSON.stringify({
+                energy: myPet.energy,
+                health: myPet.health,
+                hunger: myPet.hunger,
+                isHappy: myPet.isHappy,
+                poop: myPet.poop,
+            }),
         });
 
-        newPetInstance.json();
+        console.log(await newPetInstance.json());
     } catch (error) {
         console.log(error);
     }
 };
 
 init();
-
-/* Add asychronous init function
-myPet.init('addStuffHere', async (req, res) => {
-    await loading logged in user's pet
-    create new instance of specific type of Pet class
-    trueStatus('last updated at' from database) {
-        check when pet was last updated
-        compare current time w/last updated time
-        subtract necessary amount from hunger
-        add poop
-        etc.
-        from current new Pet instance
-        }
-
-        decay();
-        canvasDrawing();
-    }
-});
-
-
-// updateDatabase(async (req, res) => {
-//     try {
-//         const updateSomething = await fetch('/', {
-//             method: 'PUT',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({
-//                 update: somethings.value,
-//             })
-//         });
-//     } catch (error) {
-//         alert(error);
-//     }
-// });*/
