@@ -15,10 +15,10 @@ body {
 
 .navbar {
     border-bottom: 5px solid var(--dark-gray);
-    background-image: linear-gradient(to right, 
-    #fff 40%, 
-    var(--light-green), 
-    var(--pink));
+    background-image: linear-gradient(to right,
+            #fff 40%,
+            var(--light-green),
+            var(--pink));
 }
 
 .navbar-brand {
@@ -28,7 +28,15 @@ body {
     font-size: 50px;
 }
 
-#signInForm button, #signupForm button {
+#navbar-brand a:link,
+a:visited,
+a:hover {
+    text-decoration: none;
+}
+
+#signInForm button,
+#signupForm button,
+#createPetForm button {
     margin: 10px;
     text-transform: uppercase;
     font-weight: bold;
@@ -48,10 +56,11 @@ body {
 #main {
     padding-top: 5vh;
     padding-bottom: 5vh;
-    
+
 }
 
-#careButtons button, #battleButtons button {
+#careButtons button,
+#battleButtons button {
     margin: 10px;
     text-transform: uppercase;
     font-weight: bold;
@@ -65,4 +74,8 @@ body {
 .btn:hover {
     color: #fff;
     background-color: var(--dark-green);
+}
+
+.nes-pointer {
+    cursor: pointer;
 }
