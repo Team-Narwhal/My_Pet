@@ -25,14 +25,14 @@ Pet.init(
       type: DataTypes.INTEGER,
       defaultValue: 100,
       validate: {
-        isNumeric: true,
+        isInt: true,
       }
     },
     energy: {
       type: DataTypes.INTEGER,
       defaultValue: 100,
       validate: {
-        isNumeric: true,
+        isInt: true,
       }
     },
     health: {
@@ -41,7 +41,7 @@ Pet.init(
       validate: {
         max: 8,
         min: 1,
-        isNumeric: true,
+        isInt: true,
       }
     },
     isAlive: {
@@ -58,14 +58,15 @@ Pet.init(
       validate: {
         max: 4,
         min: 0,
-        isNumeric: true,
+        isInt: true,
       }
     },
     level: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
       validate: {
-        isNumeric: true,
+        // isNumeric: true,
+        isInt: true,
       }
     },
     isHappy: {
@@ -100,7 +101,8 @@ Pet.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        isNumeric: true,
+        isInt: true,
+        // isNumeric: true,
         isNull: false,
       }
     },
