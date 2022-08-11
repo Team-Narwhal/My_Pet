@@ -28,13 +28,13 @@
         {{/unless}}
 
         {{#if isLoggedIn}}
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+        <div class="card container text-center" id="loggedInCard" style="width: 20rem;">
+            <img src="/assets/images/already_logged_in.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Oops, You're Already Logged In!</h5>
                 <p class="card-text">Looks like you're already logged in.  Click the buttons below to either visit your pet, or head into battle!</p>
-                <a href="/playpen" class="nes-btn is-warning">Visit Your Pet</a>
-                <a href="/battle" class="nes-btn is-error">Battle Another Pet</a>
+                <a href="/playpen" class="nes-btn is-warning is-centered">Visit Your Pet</a>
+                <a href="/battle" class="nes-btn is-error is-centered">Battle Another Pet</a>
             </div>
         </div>
         {{/if}}
