@@ -177,6 +177,10 @@ socket.on("you-first", (roomId) => {
 
 // If you-second, this gets enemyPet
 socket.on("you-second", (roomId, pet) => {
+  const hpDivs = document.querySelectorAll('.hp-div');
+  for (const hpDiv of hpDivs) {
+    hpDiv.style.display = 'block';
+  }
   room = roomId;
   enemyPet = pet;
   enemyPet.maxHp = enemyPet.hp;
@@ -194,6 +198,10 @@ socket.on("you-second", (roomId, pet) => {
 
 // If you-first, this gets enemyPet
 socket.on("transfer-pet", (pet) => {
+  const hpDivs = document.querySelectorAll('.hp-div');
+  for (const hpDiv of hpDivs) {
+    hpDiv.style.display = 'block';
+  }
   enemyPet = pet;
   enemyPet.maxHp = enemyPet.hp;
   enemyImage.src = `/assets/images/battle/pets/${enemyPet.type}/normal_face/left.png`;
