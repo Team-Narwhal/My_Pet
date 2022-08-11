@@ -1,3 +1,7 @@
+// Hide modals
+// const petIsFull = document.getElementById('petIsFull');
+// petIsFull.style.display === 'none';
+
 // Add global variables here.
 var myPet;
 
@@ -11,6 +15,12 @@ const init = async () => {
     const petResponse = await fetch(`/api/pet/${userId}`);
     const petData = await petResponse.json();
     console.log(petData);
+
+    // const characterImg = new Image();
+    // characterImg.src = `/assets/images/${petData.type}.png`;
+
+    // drawAnimate(characterImg);
+    // console.log(characterImg);
     // Add logic to create an instance of a creature class.
     if (petData.type === 'Jackalope') {
         myPet = new Jackalope(petData);

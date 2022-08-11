@@ -22,10 +22,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
-
     {{!-- Adobe Fonts DeLittle Chromatic --}}
     <link rel="stylesheet" href="https://use.typekit.net/pyf3ywf.css" />
-
     {{!-- Our Own CSS --}}
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
     {{!-- Battle Pagee CSS --}}
@@ -45,12 +43,17 @@
             </button> --}}
             <div class="text-right" id="navbarNavAltMarkup">
                 {{#if isBattlePage}}
-                <a href="/playpen" title="Back to safety!"><button class="nes-btn is-warning" id="retreatBtn">Ack! Retreat!</button></a>
+                <a href="/playpen" title="Back to safety!"><button class="nes-btn is-warning" id="retreatBtn">Ack!
+                        Retreat!</button></a>
                 {{/if}}
                 {{#if isLoggedIn}}
+                {{#unless isBattlePage}}
+                <a href="/playpen" title="Back to safety!"><button class="nes-btn is-warning"
+                        id="retreatBtn">Playpen</button></a>
+                {{/unless}}
                 <button class="nes-btn is-success" id="signOutBtn" href="api/signout">Sign Out</button>
                 {{/if}}
-                
+
             </div>
         </div>
     </nav>

@@ -69,6 +69,7 @@ const signIn = async (req, res) => {
     res.status(500).json({ error });
   }
 };
+
 const signOut = async (req, res) => {
   if (req.session.isLoggedIn) {
     req.session.destroy(() => {

@@ -58,7 +58,6 @@ a:hover {
 #main {
     padding-top: 5vh;
     padding-bottom: 5vh;
-
 }
 
 #careButtons button,
@@ -66,6 +65,17 @@ a:hover {
     margin: 10px;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+#canvasContainer {
+    display: flex;
+    justify-content: center;
+    width: 60vw;
+    height: 34vw;
+}
+
+#petMoveCanvas {
+    position: absolute;
 }
 
 .btn {
