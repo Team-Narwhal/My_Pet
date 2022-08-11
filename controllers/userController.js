@@ -23,7 +23,7 @@ const getUserId = async (req, res) => {
   if (req.session.isLoggedIn) {
     res.json(req.session.user.id);
   } else {
-    res.json({ error: "not logged in" });
+    res.json({ error: "Not logged in." });
   }
 };
 
@@ -57,7 +57,7 @@ const signIn = async (req, res) => {
       existingUser.password
     );
     if (!passwordMatch) {
-      return res.status(401).json({ error: "Your password does not match." });
+      return res.status(401).json({ error: "Your passwords do not match." });
     }
     req.session.save(() => {
       req.session.user = existingUser;
@@ -75,6 +75,7 @@ const signOut = async (req, res) => {
       res.json({ success: true });
     });
   }
+  res.json({message: `User is not logged in`});
 };
 
 module.exports = {
@@ -82,5 +83,5 @@ module.exports = {
   signIn,
   signUp,
   signOut,
-  getUserId
+  getUserId,
 };

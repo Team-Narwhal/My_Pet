@@ -5,6 +5,7 @@ class Battle {
     this.sequenceGuess = [];
     this.round = 0;
     this.roomId = '';
+    this.isEnded = false;
     this.phrases = {
       greeting: [
         'Welcome to your demise!',
@@ -18,7 +19,7 @@ class Battle {
       ],
       defend: [
         "Can't touch this!",
-        "Well that didn't hurt...",
+        "Well, that didn't hurt...",
         "Just give up!",
       ],
       attack: [

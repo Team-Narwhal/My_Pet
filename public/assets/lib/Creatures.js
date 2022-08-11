@@ -30,6 +30,8 @@ class Yeti extends Pet {
     }
 };
 
-// export {
+// module.export = {
 //     Jackalope,
+//     Unicorn,
+//     Yeti,
 // };

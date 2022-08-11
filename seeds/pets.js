@@ -12,7 +12,7 @@ const petsData = [
         defense: 50,
         hunger: 50,
         energy: 50,
-        health: 4, 
+        health: 4,
         poop: 3
     },
     {

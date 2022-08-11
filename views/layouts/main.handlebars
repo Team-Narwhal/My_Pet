@@ -5,37 +5,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freakimono</title>
+    <title>Freakimono | Magical creatures that kick ass!</title>
+    {{!-- Favicon --}}
+    <link rel="icon" type="image/x-icon" href="/assets/images/pet.ico" />
+
     {{!-- Bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+
     {{!-- NES.css --}}
-    <link rel="stylesheet" href="./node_modules/nes.css/css/nes.min.css" />
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+
+    {{!--Link for gaming fonts--}}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 
     {{!-- Adobe Fonts DeLittle Chromatic --}}
-    <link rel="stylesheet" href="https://use.typekit.net/pyf3ywf.css">
+    <link rel="stylesheet" href="https://use.typekit.net/pyf3ywf.css" />
 
     {{!-- Our Own CSS --}}
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    {{!-- Battle Pagee CSS --}}
+    <link rel="stylesheet" href="/assets/css/battle.css">
 
 </head>
+
 <body>
 
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Freakimono</a>
+            <a class="navbar-brand" href="/">Freakimono</a>
             {{!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button> --}}
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    {{#if isLoggedIn}}
-                    <button id="signOutBtn" href="api/signout">Sign Out</button>
-                    {{/if}}
-                </div>
+            <div class="text-right" id="navbarNavAltMarkup">
+                {{#if isBattlePage}}
+                <a href="/playpen" title="Back to safety!"><button class="nes-btn is-warning" id="retreatBtn">Ack! Retreat!</button></a>
+                {{/if}}
+                {{#if isLoggedIn}}
+                <button class="nes-btn is-success" id="signOutBtn" href="api/signout">Sign Out</button>
+                {{/if}}
+                
             </div>
         </div>
     </nav>

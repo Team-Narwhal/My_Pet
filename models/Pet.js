@@ -18,21 +18,21 @@ Pet.init(
       defaultValue: 'Bubbles',
       validate: {
         len: [1, 14],
-        isAlphanumeric: true,
+        // isAlphanumeric: true,
       },
     },
     hunger: {
       type: DataTypes.INTEGER,
       defaultValue: 100,
       validate: {
-        isNumeric: true,
+        isInt: true,
       }
     },
     energy: {
       type: DataTypes.INTEGER,
       defaultValue: 100,
       validate: {
-        isNumeric: true,
+        isInt: true,
       }
     },
     health: {
@@ -41,7 +41,7 @@ Pet.init(
       validate: {
         max: 8,
         min: 1,
-        isNumeric: true,
+        isInt: true,
       }
     },
     isAlive: {
@@ -58,14 +58,14 @@ Pet.init(
       validate: {
         max: 4,
         min: 0,
-        isNumeric: true,
+        isInt: true,
       }
     },
     level: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
       validate: {
-        isNumeric: true,
+        isInt: true,
       }
     },
     isHappy: {
@@ -75,6 +75,7 @@ Pet.init(
     attack: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 70,
       validate: {
         isNumeric: true,
         isNull: false,
@@ -83,6 +84,7 @@ Pet.init(
     hp: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 400,
       validate: {
         isNumeric: true,
         isNull: false,
@@ -99,8 +101,9 @@ Pet.init(
     defense: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 40,
       validate: {
-        isNumeric: true,
+        isInt: true,
         isNull: false,
       }
     },

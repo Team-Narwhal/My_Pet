@@ -2,16 +2,16 @@
 
     <h2 class="text-center">Now the exciting part:<br />let's create your pet!</h2>
 
-    <form class="mb-3">
+    <form class="mb-3" id="createPetForm">
         <div class="dropdown col-md-12 mb-3">
             <div class='form-field mb-3'>
                 <label for='choosePet'>What kind of pet would you like?</label>
 
                 <select id='choosePetType' class='form-control'>
                     <option value="" selected disabled>Choose a critter!</option>
-                    <option value="jackalope">Jackalope</option>
-                    <option value="demon">Yeti</option>
-                    <option value="gnome">Unicorn</option>
+                    <option value="Jackalope">Jackalope</option>
+                    <option value="Yeti">Yeti</option>
+                    <option value="Unicorn">Unicorn</option>
                     {{#each petType}}
                     <option value="{{this}}">{{this.petType}}</option>
                     {{/each}}
@@ -38,10 +38,10 @@
             <div class="mb-3">
                 <label for="petNameInput" class="form-label">What would you like to name your pet?</label>
                 <input type="text" class="form-control" id="petNameInput" aria-describedby="namePetHelp">
-                <div id="namePetHelp" class="form-text">You cannot change the name of your pet once it is created.</div>
+                <div id="namePetHelp" class="form-text">Name must be 1-14 characters long. It can't be change once your pet it is created.</div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn" id="createPetBtn">Create your pet now!</button>
+                <button type="submit" class="nes-btn is-success" id="createPetBtn">Create your pet now!</button>
             </div>
     </form>
 </section>

@@ -47,6 +47,7 @@ router.get('/battle', (req, res) => {
      };
     res.render('battle', {
         isLoggedIn: req.session.isLoggedIn || false,
+        isBattlePage: true,
     });
 });
 

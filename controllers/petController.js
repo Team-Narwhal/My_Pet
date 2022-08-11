@@ -9,7 +9,7 @@ const getActivePetByUserId = async (req, res) => {
         const userPet = await Pet.findOne({
             where: {
                 userId: req.params.userId,
-                isActive: true
+                isActive: true,
             }
         });
         res.status(200).json(userPet);
@@ -19,13 +19,14 @@ const getActivePetByUserId = async (req, res) => {
         res.status(500).json({ error });
     }
 };
-//Get alive pet with specific Userid
+
+//Get alive pet with specific userId.
 const getAlivePetByUserId = async (req, res) => {
     try {
         const alivePet = await Pet.findOne({
             where: {
                 userId: req.params.userId,
-                isAlive: true
+                isAlive: true,
             }
         });
         res.status(200).json(alivePet);
@@ -35,13 +36,15 @@ const getAlivePetByUserId = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+
 //POST request will create a new pet
 const createNewPet = async (req, res) => {
     try {
         const createPet = await Pet.create(req.body);
-
+        console.log(createPet);
         res.status(200).json(createPet);
     } catch (err){
+        console.log(err);
         res.status(400).json(err);
     }
 };
@@ -55,12 +58,13 @@ const updatePetAttributes = async (req, res) => {
         },
       });
       if (!petAttributes[0]) {
-        res.status(404).json({ message: 'This petid doesnot exist!' });
+        res.status(404).json({ message: 'This pet ID does not exist!' });
         return;
       }
       res.status(200).json(petAttributes);
     } catch (err) {
       res.status(500).json(err);
+      console.log(err);
     }
   };
 
@@ -69,5 +73,5 @@ module.exports = {
     getActivePetByUserId,
     getAlivePetByUserId,
     createNewPet,
-    updatePetAttributes
+    updatePetAttributes,
 }
