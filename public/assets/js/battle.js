@@ -311,6 +311,7 @@ const defend = (success) => {
     console.log(myPet.hp);
     if (enemyPet.attack > myPet.defense) {
       myPet.hp -= enemyPet.attack - myPet.defense;
+      if (myPet.hp < 0) myPet.hp = 0;
     }
     if (myPet.hp <= 0) {
       //endBattle
@@ -329,6 +330,7 @@ const defend = (success) => {
   } else {
     // Subtract enemy attack from myPet hp
     myPet.hp -= enemyPet.attack;
+    if (myPet.hp < 0) myPet.hp = 0;
     if (myPet.hp <= 0) {
       updateHealthBar();
       endGame(false);
