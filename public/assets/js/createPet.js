@@ -2,8 +2,6 @@
 const petNameInput = document.getElementById('petNameInput');
 const createPetBtn = document.getElementById('createPetBtn');
 const typeSelect = document.getElementById('choosePetType');
-// let value = select.options[select.selectedIndex].value;
-// console.log(value, 'Roar!');
 
 createPetBtn.addEventListener('click', async (event) => {
     event.preventDefault();
@@ -26,7 +24,6 @@ createPetBtn.addEventListener('click', async (event) => {
     try {
         const userResponse = await fetch('/api/user/getUserId');
         const userId = await userResponse.json();
-        console.log(userId, 'GERONIMOOOOOO!');
         const response = await fetch('/api/pet', {
             method: 'POST',
             headers: {
@@ -38,9 +35,7 @@ createPetBtn.addEventListener('click', async (event) => {
                 name: name,
             }),
         });
-        console.log(response);
         await response.json();
-        console.log(response);
         // Change user window to the /playpen (environment) endpoint.
         window.location.href = '/playpen';
     } catch (error) {

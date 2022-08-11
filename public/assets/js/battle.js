@@ -26,11 +26,8 @@ const getUserPet = async () => {
   //Check to see if the pet is Active through userId
   const response = await fetch("/api/user/getUserId");
   const userId = await response.json();
-  // console.log(userId);
   const petResponse = await fetch(`/api/pet/${userId}`);
-  console.log(petResponse);
   myPet = await petResponse.json();
-  // console.log(myPet);
   return myPet;
 };
 
@@ -52,7 +49,6 @@ const init = async () => {
   let maxHp = document.getElementById("my-hp");
   maxHp.setAttribute("max", myPet.hp);
   updateHealthBar();
-  console.log(enemyPet);
   startDiv.style.display = "block";
 };
 //Calculation function to update the health/progress bar/
@@ -63,8 +59,7 @@ const updateHealthBar = async () => {
   let myenemytext = document.getElementById('myenemytext')
   myHp.setAttribute("value", myPet.hp);
   mypettext.textContent = `${myPet.name} ${Math.round((myPet.hp / myPet.maxHp) * 100)}%`;
-  console.log(myPet.hp);
-  console.log(enemyPet);
+
   if (enemyPet) {
     let enemyhp = document.getElementById("enemy-hp");
     enemyhp.setAttribute("value", enemyPet.hp);
@@ -118,7 +113,6 @@ const endGame = async (win) => {
 
   // Redirect to /playpen after 5 seconds.
   setTimeout(() => (window.location.href = "/playpen"), 5000);
-  console.log("hello");
 };
 
 // Nolan
@@ -143,6 +137,7 @@ const conversation = (type, who) => {
     }, 5000);
   }
 };
+
 //function for enemy-hit
 const hitFace = (who) => {
   if (who === "me") {
@@ -152,7 +147,6 @@ const hitFace = (who) => {
     }, 5000);
   } else {
     enemyImage.src = `/assets/images/battle/pets/${enemyPet.type}/hit_face/left.png`;
-
     setTimeout(() => {
       enemyImage.src = `/assets/images/battle/pets/${enemyPet.type}/normal_face/left.png`;
     }, 5000);
@@ -165,7 +159,6 @@ socket.on("user-left", () => {
   if (myBattle.isEnded) return;
   // Call end game function with win case
   endGame(true);
-  console.log("Opponent left");
 });
 
 socket.on("you-first", (roomId) => {
@@ -229,7 +222,6 @@ socket.on("transfer-pet", (pet) => {
 // needs to call startBattle()
 socket.on("defend", (enemyHp) => {
   enemyPet.hp = enemyHp;
-  console.log(enemyHp);
   conversation("defend", "enemy");
   startBattle();
   updateHealthBar();
@@ -241,7 +233,6 @@ socket.on("defend", (enemyHp) => {
 // needs to call startBattle()
 socket.on("no-defend", (enemyHp) => {
   enemyPet.hp = enemyHp;
-  console.log(enemyHp);
   conversation("noDefend", "enemy");
   startBattle();
   updateHealthBar();
@@ -279,7 +270,6 @@ const displaySequence = async () => {
   // Timeout function to clear the sequenceDiv
   // Shorter timeout each round
   const clearDiv = async () => {
-    console.log("HEELLOOOO", myBattle.round);
     const hideTime = 4000 / (myBattle.round + 3);
     const pauseTime = 3200 / (myBattle.round + 3);
     await new Promise((resolve) => {
@@ -312,7 +302,6 @@ const defend = (success) => {
   gammingBtnDiv.style.display = "none";
   if (success) {
 
-    console.log(myPet.hp);
     if (enemyPet.attack > myPet.defense) {
       myPet.hp -= enemyPet.attack - myPet.defense;
       if (myPet.hp < 0) myPet.hp = 0;
@@ -323,7 +312,6 @@ const defend = (success) => {
       endGame(false);
       myBattle.isEnded = true;
       socket.emit("you-win", myBattle.room);
-      console.log("endGame");
     } else {
       // Display conversation bubbles
       conversation("defend", "me");
@@ -340,7 +328,6 @@ const defend = (success) => {
       endGame(false);
       myBattle.isEnded = true;
       socket.emit("you-win", myBattle.room);
-      console.log("endGame");
     } else {
       // Display conversation bubbles
       conversation("noDefend", "me");
@@ -356,16 +343,13 @@ const defend = (success) => {
 //Asha
 //Load the User's pet from database
 // Create a JS class instance
-//
 const petCanvas = document.getElementById("petCanvas");
 const battleButtons = document.querySelectorAll(".battle-button");
 //Initialize the function which will start the same
 //Add Event listeners to the buttons and grabbing the value of the buttons
-console.log(battleButtons);
 battleButtons.forEach((btn) => {
   btn.addEventListener("click", (event) => {
     const direction = event.target.dataset.description;
-    console.log(direction);
     myBattle.sequenceGuess.push(direction);
     const check = myBattle.sequenceCheck();
     if (check === "continue") {
@@ -386,7 +370,6 @@ startBtn.addEventListener("click", () => {
   // Show waiting-div
   const waitingText = document.getElementById('waiting-div');
   waitingText.style.display = 'block';
-  console.log(waitingText);
 
   socket.emit("joined");
   // Hide the start button

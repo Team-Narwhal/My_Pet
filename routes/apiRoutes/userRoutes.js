@@ -2,9 +2,7 @@ const router = require('express').Router();
 const { getAllUsers, signUp, signIn, signOut, getUserId } = require('../../controllers/userController');
 const { Pet } = require('../../models');
 
-
 // Routes for /api/user
-//renders signup/landing page
 
 //Asha
 //POST route for signin
