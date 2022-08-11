@@ -32,7 +32,7 @@ signinBtn?.addEventListener('click', async (event) => {
         await response.json();
 
          // change user window to the /playpen endpoint
-        window.location.href = '/playpen'; 
+       if (response.ok) window.location.href = '/playpen'; 
     } catch (error) {
         console.log(error);
         alert(error);
