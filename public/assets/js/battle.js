@@ -4,6 +4,19 @@ let myPet;
 let enemyPet;
 let room;
 
+// Nolan
+// Implementation of the Confetti API via CDN script
+let myCanvas = document.createElement("canvas");
+let characterContainer = document.getElementById("character-container");
+myCanvas.style =
+  "width: 100%; height: 100%; position: absolute; top: 0; z-index: 1;";
+characterContainer.appendChild(myCanvas);
+
+let myConfetti = confetti.create(myCanvas, {
+  resize: true,
+  useWorker: true,
+});
+
 //Asha
 //Write a function to fetch login user's active pet
 //inside the function we need to use the data to create the new instance of appropriate subclasses
@@ -26,120 +39,179 @@ const socket = io();
 
 // Asha
 // Function for page initialization
-const startDiv = document.getElementById('start-div');
+const startDiv = document.getElementById("start-div");
+const petImage = document.getElementById("me-img");
+const enemyImage = document.getElementById("enemy-img");
 const init = async () => {
-  // Call the function to get current user's pet
-
   // Creates a new Battle class instance
-  myBattle = new Battle;
+  myBattle = new Battle();
   // show start button once everything is loaded
   await getUserPet();
-  myPet.maxHp = myPet.hp
-  let maxHp = document.getElementById('my-hp')
-  maxHp.setAttribute('max', myPet.hp);
+  petImage.src = `/assets/images/battle/pets/${myPet.type}/normal_face/right.png`;
+  myPet.maxHp = myPet.hp;
+  let maxHp = document.getElementById("my-hp");
+  maxHp.setAttribute("max", myPet.hp);
   updateHealthBar();
   console.log(enemyPet);
-  //need to get the pet
-  // myHp.setAttribute('progress',);
-  startDiv.style.display = 'block';
+  startDiv.style.display = "block";
 };
 //Calculation function to update the health/progress bar/
 
 const updateHealthBar = async () => {
-  let myHp = document.getElementById('my-hp')
-  myHp.setAttribute('value', myPet.hp);
-  myHp.textContent = `${myPet.hp / myPet.maxHp}%`;
+  let myHp = document.getElementById("my-hp");
+  let mypettext = document.getElementById('mypettext')
+  let myenemytext = document.getElementById('myenemytext')
+  myHp.setAttribute("value", myPet.hp);
+  mypettext.textContent = `${myPet.name} ${Math.round((myPet.hp / myPet.maxHp)* 100)}%`;
   console.log(myPet.hp);
-  console.log(enemyPet)
+  console.log(enemyPet);
   if (enemyPet) {
-    let enemyhp = document.getElementById('enemy-hp')
-    enemyhp.setAttribute('value', enemyPet.hp);
-    enemyhp.textContent = `${enemyPet.hp / enemyPet.maxHp}%`;
+    let enemyhp = document.getElementById("enemy-hp");
+    enemyhp.setAttribute("value", enemyPet.hp);
+    myenemytext.textContent = `${enemyPet.name} ${Math.round((enemyPet.hp / enemyPet.maxHp)* 100)}%`;
   }
-
 };
+
 //Function to end the battle
-const endGame = (win) => {
+const endGame = async (win) => {
   const sequenceDiv = document.getElementById("sequence-div");
-  let messageEl = document.createElement('p');
+  let messageEl = document.createElement("p");
   if (win) {
-      // Set text content for win case
-      messageEl.textContent = 'Conqueror';
+    // Change myPet to isHappy: true
+    myPet.isHappy = true;
+    // Set text content for win case
+    myConfetti({
+      particleCount: 100,
+      spread: 160,
+      // any other options from the global
+      // confetti function
+    });
+    messageEl.textContent = "Conqueror";
   } else {
-      // Set text content for lose case
-      messageEl.textContent = 'Deadbeat';
+    // Subtract a heart from myPet.health
+    myPet.health -= 2;
+    // Set text content for lose case
+    messageEl.textContent = "Deadbeat";
   }
+
+  messageEl.classList.add("jello-vertical");
+  messageEl.style.fontFamily = "'Press Start 2P', cursive";
+  messageEl.style.fontSize = "25px";
+
   sequenceDiv.appendChild(messageEl);
+  // Update Pet stats in the Database
+  try {
+    const response = await fetch(`/api/pet/${myPet.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        isHappy: myPet.isHappy,
+        health: myPet.health,
+      }),
+    });
+    console.log(await response.json());
+  } catch (error) {
+    console.log({ error });
+  }
+
   // Redirect to /playpen after 5 seconds.
-  setTimeout(() => window.location.href = '/playpen', 5000);
-  console.log('hello');
-}
-
-
-//After each turn compare the currenthealth to total health
+  setTimeout(() => (window.location.href = "/playpen"), 5000);
+  console.log("hello");
+};
 
 // Nolan
 // conversation Function to show cute messages
 // type param: 'greeting', 'noDefend', 'defend', 'attack'
 // who param: 'me', 'enemy'
 const conversation = (type, who) => {
-  const meTalk = document.getElementById('me-talk');
-  const enemyTalk = document.getElementById('enemy-talk');
+  const meTalk = document.getElementById("me-talk");
+  const enemyTalk = document.getElementById("enemy-talk");
   const phrase = myBattle.talk(type);
-  if (who === 'me') {
+  if (who === "me") {
     meTalk.textContent = phrase;
-    meTalk.parentElement.style.display = 'block';
+    meTalk.parentElement.style.display = "block";
     setTimeout(() => {
-      meTalk.parentElement.style.display = 'none'
+      meTalk.parentElement.style.display = "none";
     }, 5000);
   } else {
     enemyTalk.textContent = phrase;
-    enemyTalk.parentElement.style.display = 'block';
+    enemyTalk.parentElement.style.display = "block";
     setTimeout(() => {
-      enemyTalk.parentElement.style.display = 'none'
+      enemyTalk.parentElement.style.display = "none";
     }, 5000);
-  };
+  }
+};
+//function for enemy-hit
+const hitFace = (who) => {
+  if (who === "me") {
+    petImage.src = `/assets/images/battle/pets/${myPet.type}/hit_face/right.png`;
+    setTimeout(() => {
+      petImage.src = `/assets/images/battle/pets/${myPet.type}/normal_face/right.png`;
+    }, 5000);
+  } else {
+    enemyImage.src = `/assets/images/battle/pets/${enemyPet.type}/hit_face/left.png`;
+
+    setTimeout(() => {
+      enemyImage.src = `/assets/images/battle/pets/${enemyPet.type}/normal_face/left.png`;
+    }, 5000);
+  }
 };
 
-
 // If opponent disconnects, end game
-socket.on('user-left', () => {
+socket.on("user-left", () => {
+  // If game is already ended, return
+  if (myBattle.isEnded) return;
   // Call end game function with win case
   endGame(true);
-  console.log('Opponent left');
+  console.log("Opponent left");
+});
 
-})
-
-socket.on('you-first', (roomId) => {
+socket.on("you-first", (roomId) => {
   // emit you-second event to send to other user
   // send the room Id, and this user's pet
-  socket.emit('you-second', roomId, myPet);
+  socket.emit("you-second", roomId, myPet);
   myBattle.room = roomId;
 });
 
 // If you-second, this gets enemyPet
-socket.on('you-second', (roomId, pet) => {
+socket.on("you-second", (roomId, pet) => {
+  const hpDivs = document.querySelectorAll('.hp-div');
+  for (const hpDiv of hpDivs) {
+    hpDiv.style.display = 'block';
+  }
   room = roomId;
   enemyPet = pet;
-  enemyPet.maxHp = enemyPet.hp
+  enemyPet.maxHp = enemyPet.hp;
+  enemyImage.src = `/assets/images/battle/pets/${enemyPet.type}/normal_face/left.png`;
+  enemyImage.style.display = "block";
+  petImage.style.display = "block";
   myBattle.room = roomId;
-  socket.emit('transfer-pet', roomId, myPet);
-  let maxHp = document.getElementById('enemy-hp')
-  maxHp.setAttribute('max', enemyPet.hp);
+  socket.emit("transfer-pet", roomId, myPet);
+  let maxHp = document.getElementById("enemy-hp");
+  maxHp.setAttribute("max", enemyPet.hp);
   updateHealthBar();
-  conversation('greeting', 'me');
-  conversation('greeting', 'enemy');
+  conversation("greeting", "me");
+  conversation("greeting", "enemy");
 });
 
 // If you-first, this gets enemyPet
-socket.on('transfer-pet', (pet) => {
+socket.on("transfer-pet", (pet) => {
+  const hpDivs = document.querySelectorAll('.hp-div');
+  for (const hpDiv of hpDivs) {
+    hpDiv.style.display = 'block';
+  }
   enemyPet = pet;
-  enemyPet.maxHp = enemyPet.hp
-  let maxHp = document.getElementById('enemy-hp')
-  maxHp.setAttribute('max', enemyPet.hp);
+  enemyPet.maxHp = enemyPet.hp;
+  enemyImage.src = `/assets/images/battle/pets/${enemyPet.type}/normal_face/left.png`;
+  enemyImage.style.display = "block";
+  petImage.style.display = "block";
+  let maxHp = document.getElementById("enemy-hp");
+  maxHp.setAttribute("max", enemyPet.hp);
   updateHealthBar();
-  conversation('greeting', 'me');
-  conversation('greeting', 'enemy');
+  conversation("greeting", "me");
+  conversation("greeting", "enemy");
   startBattle();
 });
 
@@ -147,10 +219,10 @@ socket.on('transfer-pet', (pet) => {
 // 'defend' listener
 // needs to appropriately handle Pet's hp value for our enemyPet
 // needs to call startBattle()
-socket.on('defend', (enemyHp) => {
+socket.on("defend", (enemyHp) => {
   enemyPet.hp = enemyHp;
   console.log(enemyHp);
-  conversation('defend', 'enemy');
+  conversation("defend", "enemy");
   startBattle();
   updateHealthBar();
 });
@@ -159,25 +231,28 @@ socket.on('defend', (enemyHp) => {
 // write a 'no-defend' listener
 // needs to appropriately handle Pet's hp value
 // needs to call startBattle()
-socket.on('no-defend', (enemyHp) => {
+socket.on("no-defend", (enemyHp) => {
   enemyPet.hp = enemyHp;
   console.log(enemyHp);
-  conversation('noDefend', 'enemy');
+  conversation("noDefend", "enemy");
   startBattle();
   updateHealthBar();
+  hitFace('enemy');
 });
 
-socket.on('you-win',() => {
+socket.on("you-win", () => {
+  myBattle.isEnded = true;
+  enemyPet.hp = 0;
+  updateHealthBar();
   endGame(true);
-
 });
 
 // Nolan
 // Function for Starts Battle
 const startBattle = () => {
-  conversation('attack', 'me');
+  conversation("attack", "me");
   // Increment Round
-  myBattle.round++
+  myBattle.round++;
   // generate a new sequence
   myBattle.generateSequence(myBattle.round + 3);
   // display the sequence
@@ -196,7 +271,7 @@ const displaySequence = async () => {
   // Timeout function to clear the sequenceDiv
   // Shorter timeout each round
   const clearDiv = async () => {
-    console.log('HEELLOOOO', myBattle.round);
+    console.log("HEELLOOOO", myBattle.round);
     const hideTime = 4000 / (myBattle.round + 3);
     const pauseTime = 3200 / (myBattle.round + 3);
     await new Promise((resolve) => {
@@ -210,62 +285,60 @@ const displaySequence = async () => {
   for (const direction of sequence) {
     // Create and append appropriate Arrow image for every
     // direction in the sequence array one at a time
-    let arrowImg = document.createElement('img');
-    arrowImg.src = '/assets/images/battle/' + direction + 'Arrow.svg';
+    let arrowImg = document.createElement("img");
+    arrowImg.src = "/assets/images/battle/" + direction + "Arrow.svg";
     sequenceDiv.append(arrowImg);
     // Call clearDiv() to clear div with setTimeout timing
     await clearDiv();
-  };
+  }
   // Show buttons to the user
-  const gammingBtnDiv = document.getElementById('gamingButtons');
-  gammingBtnDiv.style.display = 'block';
+  const gammingBtnDiv = document.getElementById("gamingButtons");
+  gammingBtnDiv.style.display = "block";
 };
 
 // Function to emit success or fail to other socket user
 // Param is either true for guessed sequence or false for failed guess
 const defend = (success) => {
   // Hide buttons from User
-  const gammingBtnDiv = document.getElementById('gamingButtons');
-  gammingBtnDiv.style.display = 'none';
+  const gammingBtnDiv = document.getElementById("gamingButtons");
+  gammingBtnDiv.style.display = "none";
   if (success) {
-    // Display conversation bubbles
-    conversation('defend', 'me');
-    conversation('attack', 'enemy');
-    // emit a 'defend' using socket
-    //emit an event
-    //This is for the client being attack
+
     console.log(myPet.hp);
     if (enemyPet.attack > myPet.defense) {
-      myPet.hp -= (enemyPet.attack - myPet.defense)
+      myPet.hp -= enemyPet.attack - myPet.defense;
     }
     if (myPet.hp <= 0) {
       //endBattle
+      updateHealthBar();
       endGame(false);
-      socket.emit('you-win', myBattle.room)
-      console.log('endGame');
-    }
-    else {
-      socket.emit('defend', myBattle.room, myPet.hp)
+      myBattle.isEnded = true;
+      socket.emit("you-win", myBattle.room);
+      console.log("endGame");
+    } else {
+      // Display conversation bubbles
+      conversation("defend", "me");
+      conversation("attack", "enemy");
+      socket.emit("defend", myBattle.room, myPet.hp);
       updateHealthBar();
     }
-
-  }
-  else {
+  } else {
+    // Subtract enemy attack from myPet hp
+    myPet.hp -= enemyPet.attack;
     if (myPet.hp <= 0) {
-      //endBattle
+      updateHealthBar();
       endGame(false);
-      socket.emit('you-win', myBattle.room)
-      console.log('endGame');
-    }
-    else {
-       // Display conversation bubbles
-    conversation('noDefend', 'me');
-    conversation('attack', 'enemy');
-    // emit a 'no-defend' using socket
-    myPet.hp -= enemyPet.attack
-    socket.emit('no-defend', myBattle.room, myPet.hp)
-    updateHealthBar();
-    console.log('fail')
+      myBattle.isEnded = true;
+      socket.emit("you-win", myBattle.room);
+      console.log("endGame");
+    } else {
+      // Display conversation bubbles
+      conversation("noDefend", "me");
+      conversation("attack", "enemy");
+      // emit a 'no-defend' using socket
+      socket.emit("no-defend", myBattle.room, myPet.hp);
+      updateHealthBar();
+      hitFace('me');
     }
   }
 };
@@ -298,11 +371,11 @@ battleButtons.forEach((btn) => {
 
 // Nolan
 // start button for the battle to emit joined event
-const startBtn = document.querySelector('.start-btn');
-startBtn.addEventListener('click', () => {
-  socket.emit('joined');
+const startBtn = document.querySelector(".start-btn");
+startBtn.addEventListener("click", () => {
+  socket.emit("joined");
   // Hide the start button
-  startDiv.style.display = 'none';
+  startDiv.style.display = "none";
 });
 
 // Start the app initialization

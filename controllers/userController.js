@@ -75,6 +75,7 @@ const signOut = async (req, res) => {
       res.json({ success: true });
     });
   }
+  res.json({message: `User is not logged in`});
 };
 
 module.exports = {
