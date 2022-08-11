@@ -21,25 +21,25 @@ const drawImg = async (filePath, x1, x2, y1, y2) => {
     });
 };
 
-const drawImgAnimate = async (filePath, x1, x2, y1, y2) => {
-    let img = new Image();
-    await new Promise((resolve) => {
-        img.onload = function () {
-            ctxAnimate.drawImage(img, x1, x2, y1, y2);
-            resolve();
-        };
-        img.src = filePath;
-    });
-};
+// const drawImgAnimate = async (filePath, x1, x2, y1, y2) => {
+//     let img = new Image();
+//     await new Promise((resolve) => {
+//         img.onload = function () {
+//             ctxAnimate.drawImage(img, x1, x2, y1, y2);
+//             resolve();
+//         };
+//         img.src = filePath;
+//     });
+// };
 
 let characterImg = new Image();
 characterImg.src = "/assets/images/big_yeti.png"
 
-let x1 = 100*xNorm;
-let y1 = 100*yNorm;
+let x1 = 100 * xNorm;
+let y1 = 100 * yNorm;
 
-let x2 = 100*xNorm + 100*xNorm; // how wide want to be
-let y2 = 100*yNorm + 100*yNorm;
+let x2 = 400 * xNorm;
+let y2 = 650 * yNorm;
 
 console.log(x1, y1, x2, y2);
 
@@ -48,32 +48,47 @@ let dx = 2 * xNorm;
 const drawAnimate = async () => {
     ctxAnimate.clearRect(0, 0, canvas.width, canvas.height);
     console.log('before drawImgAnimate');
-    ctxAnimate.drawImage(characterImg, x1, y1, x2, y2);
+    // ctxAnimate.drawImage(characterImg, x1, y1, 400 * xNorm, 650 * yNorm);
     drawBall();
     console.log("im hit");
     changeDirection();
-    x1 = x1 + dx;
+    x1 = (x1 + dx);
     // y1 = y1 + dy1;
-    x2 = x1 + 100*xNorm;
+    x2 = x2 + dx;
     // y2 = y2 + dy2;
     requestAnimationFrame(drawAnimate);
-    
+
 }
-
-// setInterval(drawAnimate(), 10);
-
-
 
 
 function changeDirection() {
-    if (x1 > 1400 * xNorm || x1 < 10 * xNorm) {
+    ctxAnimate.clearRect(0, 0, canvas.width, canvas.height);
+    ctxAnimate.drawImage(characterImg, x1, y1, 400 * xNorm, 650 * yNorm);
+    if (x1 > 600 * xNorm || x1 < 80 * xNorm) {
+        ctxAnimate.translate(canvas.width, 0);
+        ctxAnimate.scale(-1, 1);
         dx = -dx;
     };
-    // if (x2 > 100 || x2 < 0) {
-    //     dx2 = -dx2;
-    // }
 }
 
+// function changeDirection() {
+//     var speed = 10;
+//     if (x1 > 600 * xNorm || x1 < 80 * xNorm) {
+//         ctxAnimate.clearRect(0, 0, canvas.width, canvas.height);
+//         ctx.save();
+
+//         ctxAnimate.translate(canvas.width, 0);
+//         ctxAnimate.scale(-1, 1);
+//         dx = -dx;
+//         ctxAnimate.restore();
+//         speed *= -1;
+//         // const savex2 = x2;
+//         // x2 = x1;
+//         // x1 = savex2;
+
+//         // if with image source flipping
+//     };
+// }
 
 // drawing ball
 // to be replace with character
