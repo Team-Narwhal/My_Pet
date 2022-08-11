@@ -35,9 +35,13 @@
                 <span class="navbar-toggler-icon"></span>
             </button> --}}
             <div class="text-right" id="navbarNavAltMarkup">
+                {{#if isBattlePage}}
+                <a href="/playpen" title="Back to safety!"><button class="nes-btn is-warning" id="retreatBtn">Ack! Retreat!</button></a>
+                {{/if}}
                 {{#if isLoggedIn}}
                 <button class="nes-btn is-success" id="signOutBtn" href="api/signout">Sign Out</button>
                 {{/if}}
+                
             </div>
         </div>
     </nav>

@@ -1,27 +1,7 @@
-// Add required files/modules
-// const sequelize = require('sequelize');
-// const {
-//     Pet,
-//     Jackalope,
-//     Unicorn,
-//     Yeti,
-// } = require('../../models');
-
-/*use create()
-every time you finish something, it should update its status
-base your comparison on the updatedAt column vs. currentTime column
-How would we do the interval thing?
-Have a field in your user object for lastLoginTime (dateTime)
-set currentTime  (signInDateTime) to LastLoginTime
-Base it on the user rather than the pet
-If it's been a day, the pet would be hungry
-Maybe use just hunger for now and get the logic working */
-
-/*table for pet types*/
-
 // Add global variables here.
 var myPet;
 
+// Create an init function.
 const init = async () => {
     // Await query for user's activ pet.
     const userResponse = await fetch("/api/user/getUserId");
