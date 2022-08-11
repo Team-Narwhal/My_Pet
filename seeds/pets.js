@@ -23,7 +23,7 @@ const petsData = [
         isAlive: false,
         attack: 100,
         hp: 600,
-        type: 'Jackalope',
+        type: 'Unicorn',
         defense: 50,
     },
     {
@@ -32,7 +32,7 @@ const petsData = [
         userId: '8022d134-c225-494b-9845-41f594577e85',
         attack: 100,
         hp: 600,
-        type: 'Jackalope',
+        type: 'Yeti',
         defense: 50,
     },
     {
@@ -43,7 +43,7 @@ const petsData = [
         isAlive: false,
         attack: 100,
         hp: 600,
-        type: 'Jackalope',
+        type: 'Yeti',
         defense: 50,
     },
 ];
