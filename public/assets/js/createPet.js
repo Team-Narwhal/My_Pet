@@ -36,25 +36,13 @@ createPetBtn.addEventListener('click', async (event) => {
                 userId: userId,
                 type: petType,
                 name: name,
-                // hunger,
-                // energy,
-                // health,
-                // isAlive,
-                // isActive,
-                // poop,
-                // level,
-                // isHappy,
-                // attack,
-                // hp,
-                // type,
-                // defense,
             }),
         });
         console.log(response);
         await response.json();
         console.log(response);
         // Change user window to the /playpen (environment) endpoint.
-        // window.location.href = '/playpen';
+        window.location.href = '/playpen';
     } catch (error) {
         console.log(error);
         alert(error);
