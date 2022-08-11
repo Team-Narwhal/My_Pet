@@ -37,7 +37,6 @@ let dx = 2 * xNorm;
 
 const drawAnimate = async () => {
     ctxAnimate.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall();
     await changeDirection();
     x1 = x1 + dx;
     requestAnimationFrame(drawAnimate);
