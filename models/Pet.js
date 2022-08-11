@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-// import our database connection from config.js
+// Import our database connection from config.js
 const sequelize = require('../config/connection');
 
 // Initialize Product model (table) by extending off Sequelize's Model class
@@ -18,7 +18,6 @@ Pet.init(
       defaultValue: 'Bubbles',
       validate: {
         len: [1, 14],
-        // isAlphanumeric: true,
       },
     },
     hunger: {

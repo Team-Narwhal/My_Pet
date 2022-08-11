@@ -11,6 +11,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-image: url('/assets/images/bg-meadow.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .navbar {
@@ -38,7 +40,10 @@ a:hover {
 #signupForm button,
 #signOutBtn,
 #retreatBtn,
-#createPetForm button {
+#createPetForm button,
+#loggedInCard a,
+#careButtons button,
+#battleButtons button {
     margin: 10px;
     text-transform: uppercase;
     font-weight: bold;
@@ -60,23 +65,14 @@ a:hover {
     padding-bottom: 5vh;
 }
 
-#careButtons button,
-#battleButtons button {
-    margin: 10px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
 #canvasContainer {
     /* display: flex;
     justify-content: center; */
     width: 60vw;
     height: 34vw;
+    border-radius: 18px;
+    border: 10px double black;
 }
-
-/* #petMoveCanvas {
-    position: absolute;
-} */
 
 .btn {
     color: #fff;
@@ -88,6 +84,29 @@ a:hover {
     background-color: var(--dark-green);
 }
 
-.nes-pointer {
-    cursor: pointer;
-}
+@media only screen and (max-width: 568px) {
+    #character-container {
+      width: 100vw;
+      height: 95vw;
+      background-color: rgb(228, 238, 248);
+      border-radius: 18px;
+      border: 10px double black;
+      position: relative;
+    }
+  
+    /* Sequence Arrow */
+    #sequence-div img {
+      width: 40vw;
+      height: auto;
+      user-select: none;
+      z-index: 3;
+    }
+  
+    /* Character image resize */
+    .character-img {
+      width: 40%;
+      height: 30%;
+      user-select: none;
+      display: none;
+    }
+  }

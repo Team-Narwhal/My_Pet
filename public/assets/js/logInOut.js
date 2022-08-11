@@ -30,7 +30,6 @@ signinBtn?.addEventListener('click', async (event) => {
             })
         });
         await response.json();
-        console.log(response);
 
          // change user window to the /playpen endpoint
        if (response.ok) window.location.href = '/playpen'; 
@@ -48,7 +47,6 @@ signOutBtn?.addEventListener('click', async (event) => {
             method: 'POST',
         });
         await response.json();
-        console.log(response);
         window.location.href = '/';
     } catch (error) {
         console.log(error);

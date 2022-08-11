@@ -10,11 +10,9 @@ const init = async () => {
     // Await query for user's activ pet.
     const userResponse = await fetch("/api/user/getUserId");
     const userId = await userResponse.json();
-    console.log(userId);
     // Use petResponse to get active pet from the user's ID.
     const petResponse = await fetch(`/api/pet/${userId}`);
     const petData = await petResponse.json();
-    console.log(petData);
 
     // Add logic to create an instance of a creature class.
     if (petData.type === 'Jackalope') {
@@ -51,12 +49,10 @@ const init = async () => {
 }
 
 function fastForward(updatedAt) {
-    console.log(updatedAt);
     // updatedAt time compared to current date and time
     const nowDate = Date.now();
     const lastDate = new Date(updatedAt).getTime();
     const elapsedTime = nowDate - lastDate;
-    console.log(elapsedTime);
 
     const multiplier = Math.round(elapsedTime / 10000);
     decay(multiplier);
@@ -102,7 +98,6 @@ setInterval(decay, 1000 * 10);
 
 // Save a new instance of the pet.
 const savePet = async () => {
-    console.log(myPet.id);
     try {
         const newPetInstance = await fetch(`/api/pet/${myPet.id}`, {
             method: 'PUT',

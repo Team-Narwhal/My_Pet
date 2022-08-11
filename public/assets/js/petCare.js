@@ -12,7 +12,8 @@ const startBattleBtn = document.getElementById('startBattleBtn');
 // A button to feed your hungry pet
 feedBtn.addEventListener('click', async () => {
     if (myPet.hunger >= 100) {
-        alert(`${myPet.name} is already full!`);
+        // Replace with modal in the future.
+        // alert(`${myPet.name} is already full!`);
         return;
     }
     try {
@@ -28,16 +29,17 @@ feedBtn.addEventListener('click', async () => {
             })
         });
         await response.json();
-        draw(health, poop, hunger); 
+        draw(health, poop, hunger);
     } catch (error) {
-        alert(error);
+        console.log(error);
     }
 });
 
 // A button give medicine to improve health
 medicineBtn.addEventListener('click', async (event) => {
     if (myPet.health >= 8) {
-        alert(`${myPet.name} doesn't need medicine!`);
+        // Replace with modal in the future.
+        // alert(`${myPet.name} doesn't need medicine!`);
         return;
     }
     try {
@@ -53,7 +55,7 @@ medicineBtn.addEventListener('click', async (event) => {
             })
         });
         await response.json();
-        draw(health, poop, hunger); 
+        draw(health, poop, hunger);
     } catch (error) {
         alert(error);
     }
@@ -61,8 +63,9 @@ medicineBtn.addEventListener('click', async (event) => {
 
 // A button to clean up poop
 cleanBtn.addEventListener('click', async (event) => {
-  if (myPet.poop < 1) {
-        alert(`${myPet.name}'s playpen is clean. Yay!`);
+    if (myPet.poop < 1) {
+        // Replace with modal in the future.
+        // alert(`${myPet.name}'s playpen is clean. Yay!`);
         return;
     }
     try {
@@ -78,9 +81,9 @@ cleanBtn.addEventListener('click', async (event) => {
             })
         });
         await response.json();
-        draw(health, poop, hunger); 
+        draw(health, poop, hunger);
     } catch (error) {
-        alert(error);
+        console.log(error);
     }
 });
 
