@@ -36,13 +36,15 @@ const getAlivePetByUserId = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+
 //POST request will create a new pet
 const createNewPet = async (req, res) => {
     try {
         const createPet = await Pet.create(req.body);
-
+        console.log(createPet);
         res.status(200).json(createPet);
     } catch (err){
+        console.log(err);
         res.status(400).json(err);
     }
 };

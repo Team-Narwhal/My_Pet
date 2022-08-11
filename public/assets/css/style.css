@@ -37,6 +37,7 @@ a:hover {
 #signInForm button,
 #signupForm button,
 #signOutBtn,
+#retreatBtn,
 #createPetForm button {
     margin: 10px;
     text-transform: uppercase;
