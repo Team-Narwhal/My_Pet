@@ -7,9 +7,8 @@ const typeSelect = document.getElementById('choosePetType');
 
 createPetBtn.addEventListener('click', async (event) => {
     event.preventDefault();
-    // const petType = choosePetType.value;
-    // const name = petNameInput.value;
-    // const type = typeSelect.value;
+    const petType = typeSelect.value;
+    const name = petNameInput.value;
 
     // Checks to make sure a type of pet is selected.
     if (typeSelect.length === 0) {
@@ -35,8 +34,8 @@ createPetBtn.addEventListener('click', async (event) => {
             },
             body: JSON.stringify({
                 userId: userId,
-                type: typeSelect.value,
-                name: petNameInput.value,
+                type: petType,
+                name: name,
                 // hunger,
                 // energy,
                 // health,
