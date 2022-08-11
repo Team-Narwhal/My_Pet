@@ -1,21 +1,33 @@
 // const choosePetType = document.getElementById('choosePetType');
 const petNameInput = document.getElementById('petNameInput');
 const createPetBtn = document.getElementById('createPetBtn');
-
+const typeSelect = document.getElementById('choosePetType');
+// let value = select.options[select.selectedIndex].value;
+// console.log(value, 'Roar!');
 
 createPetBtn.addEventListener('click', async (event) => {
     event.preventDefault();
     // const petType = choosePetType.value;
     const name = petNameInput.value;
+    const type = typeSelect.value;
 
-    // checks to make sure petName is not empty
-    if (name.trim().length === 0) {
-        alert('Please give a name to your pet.');
+    // Checks to make sure a type of pet is selected.
+    if (type.length === 0) {
+        alert('Please select a pet type.');
         return;
     }
-    // posts the user input to the  endpoint
+
+    // Checks to make sure petName is not empty.
+    if (name.trim().length === 0) {
+        alert('Please give your pet a name.');
+        return;
+    }
+
+    // Posts the user input to the endpoint.
     try {
-        const userId = await fetch('/api/user/getUserId');
+        const userResponse = await fetch('/api/user/getUserId');
+        const userId = await userResponse.json();
+        console.log(userId, 'GERONIMOOOOOO!');
         const response = await fetch('/api/pet', {
             method: 'POST',
             headers: {
@@ -23,15 +35,28 @@ createPetBtn.addEventListener('click', async (event) => {
             },
             body: JSON.stringify({
                 userId,
-                // petType,
+                type,
                 name,
-            })
+                // hunger,
+                // energy,
+                // health,
+                // isAlive,
+                // isActive,
+                // poop,
+                // level,
+                // isHappy,
+                // attack,
+                // hp,
+                // type,
+                // defense,
+            }),
         });
         await response.json();
         console.log(response);
-        // change user window to the /playpen (environment) endpoint
-        window.location.href = '/playpen';
+        // Change user window to the /playpen (environment) endpoint.
+        // window.location.href = '/playpen';
     } catch (error) {
+        console.log(error);
         alert(error);
     }
 });

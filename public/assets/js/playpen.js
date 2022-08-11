@@ -1,38 +1,17 @@
-// Add required files/modules
-// const sequelize = require('sequelize');
-// const {
-//     Pet,
-//     Jackalope,
-//     Unicorn,
-//     Yeti,
-// } = require('../../models');
-
-/*use create()
-every time you finish something, it should update its status
-base your comparison on the updatedAt column vs. currentTime column
-How would we do the interval thing?
-Have a field in your user object for lastLoginTime (dateTime)
-set currentTime  (signInDateTime) to LastLoginTime
-Base it on the user rather than the pet
-If it's been a day, the pet would be hungry
-Maybe use just hunger for now and get the logic working */
-
-/*table for pet types*/
-
 // Add global variables here.
-export var myPet;
+var myPet;
 
-export const init = async () => {
+// Create an init function.
+const init = async () => {
     // Await query for user's activ pet.
     const userResponse = await fetch("/api/user/getUserId");
     const userId = await userResponse.json();
-    // console.log(userId);
-    // Use userResponse to get active pet.
+    console.log(userId);
+    // Use petResponse to get active pet from the user's ID.
     const petResponse = await fetch(`/api/pet/${userId}`);
-    console.log(petResponse);
     const petData = await petResponse.json();
-
-    // Add logic to create instance of creature class
+    console.log(petData);
+    // Add logic to create an instance of a creature class.
     if (petData.type === 'Jackalope') {
         myPet = new Jackalope(petData);
     } else if (petData.type === 'Unicorn') {
@@ -40,84 +19,85 @@ export const init = async () => {
     } else if (petData.type === 'Yeti') {
         myPet = new Yeti(petData);
     }
+    // Call canvas to render the canvas screen.
+    draw(myPet.health, myPet.poop, myPet.hunger);
 
-    console.log(myPet);
-    decay(petData.updatedAt);
+    // Call fastForward to update the pet's stats.
     fastForward(petData.updatedAt);
-}
-
-function decay(updatedAt) {
-    // subtract attribute points at intervals (e.g., hunger, energy, etc.)
-    console.log(updatedAt);
 }
 
 function fastForward(updatedAt) {
     console.log(updatedAt);
-    // Last updated at vs current time
+    // updatedAt time compared to current date and time
+    const nowDate = Date.now();
+    const lastDate = new Date(updatedAt).getTime();
+    const elapsedTime = nowDate - lastDate;
+    console.log(elapsedTime);
 
-    // const dateNow = new Date
+    const multiplier = Math.round(elapsedTime / 10000);
+    decay(multiplier);
 }
 
-/* Add asychronous init function
-myPet.init('addStuffHere', async (req, res) => {
-    await loading logged in user's pet
-    create new instance of specific type of Pet class
-    trueStatus('last updated at' from database) {
-        check when pet was last updated
-        compare current time w/last updated time
-        subtract necessary amount from hunger
-        add poop
-        etc.
-        from current new Pet instance
-        }
+// Set poopIndex to zero.
+let poopIndex = 0;
 
-        decay();
-        canvasDrawing();
+// Subtract attribute points at 10-second intervals.
+const decay = (multiplier = 1) => {
+    // Every 10 seconds, remove 1 point from hunger meter.
+    if ((myPet.hunger - 1 * multiplier) < 0) {
+        myPet.hunger = 0;
+    } else {
+        myPet.hunger -= 1 * multiplier;
     }
-});
 
-updateDatabase(async (req, res) => {
-        try {
-            const updateSomething = await fetch('/', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    update: somethings.value,
-                })
-            });
+    // Every 10 seconds, remove 1 energy.
+    if ((myPet.energy - 1 * multiplier) < 0) {
+        myPet.energy = 0;
+    } else {
+        myPet.energy -= 1 * multiplier;
+    }
 
-            await response.json();
-            window.location.reload();
-        } catch (error) {
-            alert(error);
-        }
-    });
+    // Every 10 seconds, increase the poop index.
+    poopIndex += 1 * multiplier;
 
+    // When poopIndex is greater than or equal to 20, and myPet.poop is less than 4, increase pet's poop by 1.
+    // If the poopIndex is greater than or equal to 40 and the pet's poop is less than four, set the pet's poop to 4 and the poopIndex to 0.
+    if (poopIndex >= 40 && myPet.poop < 4) {
+        myPet.poop = 4;
+        poopIndex = 0;
+    } else if (poopIndex >= 20 && myPet.poop < 4) {
+        myPet.poop++;
+        poopIndex = 0;
+    }
 
-
-
-decay() {
-    subtract attribute points at intervals (e.g., hunger, energy, etc.)
+    savePet();
 }
 
-*/
+// Run decay every 10 seconds.
+setInterval(decay, 1000 * 10);
 
-// updateDatabase(async (req, res) => {
-//     try {
-//         const updateSomething = await fetch('/', {
-//             method: 'PUT',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({
-//                 update: somethings.value,
-//             })
-//         });
-//     } catch (error) {
-//         alert(error);
-//     }
-// });
+// Save a new instance of the pet.
+const savePet = async () => {
+    console.log(myPet.id);
+    try {
+        const newPetInstance = await fetch(`/api/pet/${myPet.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                energy: myPet.energy,
+                health: myPet.health,
+                hunger: myPet.hunger,
+                isHappy: myPet.isHappy,
+                poop: myPet.poop,
+            }),
+        });
+
+        console.log(await newPetInstance.json());
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 init();

@@ -14,12 +14,12 @@ signUpBtn.addEventListener('click', async (event) => {
         alert('Your passwords do not match.');
         return;
     }
-    // checks to make sure username is not empty
+    // Checks to make sure username is not empty
     if (email.trim().length === 0) {
         alert('Please enter a valid email');
         return;
     }
-    // checks that password is greater than 6 characters
+    // Checks that password is greater than 6 characters
     if (password.trim().length < 6) {
         alert('Please enter a valid password. Password must be 6 characters long.');
         return;

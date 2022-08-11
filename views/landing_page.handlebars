@@ -5,28 +5,24 @@
     <form id="signInForm">
         <div class="row mb-3">
             <label for="signInEmailInput" class="form-label">Email</label>
-            <input type="text" class="form-control" id="signInEmailInput" placeholder="example@example.com"
-                aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="signInEmailInput" autocomplete="email"
+                placeholder="example@example.com" aria-describedby="emailHelp">
             {{!-- <div id="emailHelp" class="form-text">Please enter your email address.</div> --}}
         </div>
         <div class="row mb-3">
             <label for="signInPasswordInput" class="form-label">Password</label>
-            <input type="password" class="form-control" id="signInPasswordInput"
+            <input type="password" class="form-control" id="signInPasswordInput" autocomplete="current-password"
                 placeholder="Super Secret Password Here">
             {{!-- <div id="passwordHelp" class="form-text">Please enter your password.</div> --}}
 
         </div>
         <div class="col text-center">
-            <button type="submit" class="btn" id="signinBtn">Visit your pet!</button>
+            <button type="submit" class="nes-btn is-success" id="signinBtn">Visit your pet!</button>
         </div>
         <br />
 
-        <p id="signup" class="text-center">Dont have an account?
+        <p id="signup" class="text-center">Don't have an account?
             <a id="signUpHereBtn" href="/signup">Sign up here!</a>
         </p>
     </form>
 </section>
-
-{{!-- NIFER - removed duplicate call on logInOut.js --}}
-{{!--
-<script src="/assets/js/logInOut.js"></script> --}}
