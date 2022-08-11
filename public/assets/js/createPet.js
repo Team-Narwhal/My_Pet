@@ -8,17 +8,17 @@ const typeSelect = document.getElementById('choosePetType');
 createPetBtn.addEventListener('click', async (event) => {
     event.preventDefault();
     // const petType = choosePetType.value;
-    const name = petNameInput.value;
-    const type = typeSelect.value;
+    // const name = petNameInput.value;
+    // const type = typeSelect.value;
 
     // Checks to make sure a type of pet is selected.
-    if (type.length === 0) {
+    if (typeSelect.length === 0) {
         alert('Please select a pet type.');
         return;
     }
 
     // Checks to make sure petName is not empty.
-    if (name.trim().length === 0) {
+    if (petNameInput.value.trim().length === 0) {
         alert('Please give your pet a name.');
         return;
     }
@@ -34,9 +34,9 @@ createPetBtn.addEventListener('click', async (event) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                userId,
-                type,
-                name,
+                userId: userId,
+                type: typeSelect.value,
+                name: petNameInput.value,
                 // hunger,
                 // energy,
                 // health,
@@ -51,6 +51,7 @@ createPetBtn.addEventListener('click', async (event) => {
                 // defense,
             }),
         });
+        console.log(response);
         await response.json();
         console.log(response);
         // Change user window to the /playpen (environment) endpoint.
