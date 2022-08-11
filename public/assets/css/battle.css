@@ -13,6 +13,7 @@
     border-radius: 18px;
     border: 10px double black;
     position: relative;
+    user-select: none;
 }
 
 /* Sequence Arrow */
@@ -55,7 +56,10 @@
 .health-bar {
     height: 30px;
 }
-
+.hplabel {
+  color:black;
+  font-family: 'Press Start 2P';
+}
 /* Balloons */
 .nes-balloon {
     display: none;
@@ -67,6 +71,7 @@
     width: 50%;
     height: 50%;
     user-select: none;
+    display: none;
 }
 
 @media only screen and (max-width: 568px) {
