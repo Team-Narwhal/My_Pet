@@ -14,6 +14,15 @@
     border: 10px double black;
     position: relative;
     user-select: none;
+  
+}
+#battle-message{
+  background-image: url('/assets/images/battle/pets/battle-cover-image.png');
+    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
 }
 
 /* Sequence Arrow */

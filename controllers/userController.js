@@ -74,6 +74,7 @@ const signOut = async (req, res) => {
     req.session.destroy(() => {
       res.json({ success: true });
     });
+    return;
   }
   res.json({message: `User is not logged in`});
 };

@@ -1,6 +1,12 @@
-<section class="col-8 offset-2 align-content-center" id="canvasPage">
-    <canvas class="col-8 offset-2 align-content-center" id="petCanvas" width="585" height="329" style="background-color: #7b00ff;"></canvas>
-    {{!-- <div id="sequence-div" style="width: 300px; height: 300px;"></div> --}}
+<div style="position: relative;">
+    <canvas id="petCanvas" width="585" height="329"
+        style="position: absolute; left: 0; top: 0; z-index: 0; background-color: black;"></canvas>
+
+    <canvas id="petMoveCanvas" width="585" height="329"
+        style="position: absolute; left: 0; top: 0; z-index: 5; background-color: transparent;"></canvas>
+</div>
+
+{{!-- <div id="sequence-div" style="width: 300px; height: 300px;"></div> --}}
 
     <div class="col d-flex justify-content-center align-items-center" id="careButtons">
         {{!-- <button type="button" id="wakeBtn" data-description='wake' class="nes-btn is-secondary care-button">Wake
@@ -17,6 +23,14 @@
             class="nes-btn is-error is-danger care-button">⚔️ Battle Another Critter ⚔️</button>
     </div>
 </section>
+
+<div class="modal-dialog modal-dialog-centered" id="petIsFull">
+  Your pet is already full!
+</div>
+
+<div class="modal-dialog modal-dialog-centered">
+  
+</div>
 
 {{!-- JS file for feed pet, etc. --}}
 <script src="/assets/js/playpenCanvas.js"></script>

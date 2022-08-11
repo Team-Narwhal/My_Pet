@@ -177,6 +177,8 @@ socket.on("you-first", (roomId) => {
 
 // If you-second, this gets enemyPet
 socket.on("you-second", (roomId, pet) => {
+  const battletext = document.getElementById('battle-message');
+  battletext.style.display = 'none';
   const hpDivs = document.querySelectorAll('.hp-div');
   for (const hpDiv of hpDivs) {
     hpDiv.style.display = 'block';
@@ -198,6 +200,8 @@ socket.on("you-second", (roomId, pet) => {
 
 // If you-first, this gets enemyPet
 socket.on("transfer-pet", (pet) => {
+  const battletext = document.getElementById('battle-message');
+  battletext.style.display = 'none';
   const hpDivs = document.querySelectorAll('.hp-div');
   for (const hpDiv of hpDivs) {
     hpDiv.style.display = 'block';
