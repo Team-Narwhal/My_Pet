@@ -68,15 +68,15 @@ a:hover {
 }
 
 #canvasContainer {
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
     width: 60vw;
     height: 34vw;
 }
 
-#petMoveCanvas {
+/* #petMoveCanvas {
     position: absolute;
-}
+} */
 
 .btn {
     color: #fff;

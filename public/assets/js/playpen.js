@@ -16,11 +16,6 @@ const init = async () => {
     const petData = await petResponse.json();
     console.log(petData);
 
-    // const characterImg = new Image();
-    // characterImg.src = `/assets/images/${petData.type}.png`;
-
-    // drawAnimate(characterImg);
-    // console.log(characterImg);
     // Add logic to create an instance of a creature class.
     if (petData.type === 'Jackalope') {
         myPet = new Jackalope(petData);
@@ -29,6 +24,25 @@ const init = async () => {
     } else if (petData.type === 'Yeti') {
         myPet = new Yeti(petData);
     }
+
+    const canvas = document.getElementById('petCanvas');
+    const canvasMove = document.getElementById('petMoveCanvas');
+    fitToContainer(canvas, canvasMove);
+
+    function fitToContainer(canvas, canvasMove) {
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.width = 585;
+        canvas.height = 329;
+
+        canvasMove.style.width = '100%';
+        canvasMove.style.height = '100%';
+        canvasMove.width = 585;
+        canvasMove.height = 329;
+    }
+
+
+
     // Call canvas to render the canvas screen.
     draw(myPet.health, myPet.poop, myPet.hunger);
 
