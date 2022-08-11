@@ -67,36 +67,16 @@ a:hover {
     font-weight: bold;
 }
 
-/* #canvasContainer {
+#canvasContainer {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    /* position: relative; */
-/* } */
-
-/* #petCanvas {
-    position: relative;
-    background-color: #000;
-    /* position: relative;
-    /* width: 50vw;
-    height: 28vh; */
-    /* width: 30%; */
-    /* height: 329px; */
-    /* z-index: 0;
-    background-color: black;
+    width: 60vw;
+    height: 34vw;
 }
 
 #petMoveCanvas {
-    /* position: absolute;
-    top: 0px; */
-    /* position: absolute;
-    top: 0;
-    
-    z-index: 5;
-    background-color: transparent;  */
-    /* width: 30%; */
-    /* height: 329px; */
-/* } */
+    position: absolute;
+}
 
 .btn {
     color: #fff;

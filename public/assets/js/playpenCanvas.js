@@ -33,7 +33,26 @@ const drawImg = async (filePath, x1, x2, y1, y2) => {
 // };
 
 let characterImg = new Image();
-characterImg.src = "/assets/images/big_yeti.png"
+
+async function initDraw() {
+    // Await query for user's activ pet.
+    const userResponse = await fetch("/api/user/getUserId");
+    const userId = await userResponse.json();
+    console.log(userId);
+    // Use petResponse to get active pet from the user's ID.
+    const petResponse = await fetch(`/api/pet/${userId}`);
+    const petData = await petResponse.json();
+    console.log(petData);
+
+    // characterImg = new Image();
+    characterImg.src = `/assets/images/${petData.type}.png`;
+    console.log(characterImg);
+    drawAnimate();
+    console.log('HELLO!');
+}
+
+// let characterImg = new Image();
+// characterImg.src = "/assets/images/big_yeti.png"
 
 let x1 = 100 * xNorm;
 let y1 = 200 * yNorm;
@@ -57,9 +76,7 @@ const drawAnimate = async () => {
     x2 = x2 + dx;
     // y2 = y2 + dy2;
     requestAnimationFrame(drawAnimate);
-
 }
-
 
 function changeDirection() {
     ctxAnimate.clearRect(0, 0, canvas.width, canvas.height);
@@ -110,7 +127,7 @@ function drawBall() {
 // drawing onload
 window.onload = () => {
     draw();
-    drawAnimate();
+    // drawAnimate(characterImg);
     console.log('calling drawAnimate');
 };
 
@@ -190,3 +207,5 @@ async function poopStatus(poop) {
         await drawImg("/assets/images/poop.svg", 1000 * xNorm, 720 * yNorm, 90 * xNorm, 80 * yNorm);
     }
 }
+
+initDraw();
