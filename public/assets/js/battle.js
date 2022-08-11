@@ -9,7 +9,7 @@ let room;
 let myCanvas = document.createElement("canvas");
 let characterContainer = document.getElementById("character-container");
 myCanvas.style =
-  "width: 100%; height: 100%; position: absolute; top: 0; z-index: -1;";
+  "width: 100%; height: 100%; position: absolute; top: 0; z-index: 1;";
 characterContainer.appendChild(myCanvas);
 
 let myConfetti = confetti.create(myCanvas, {
