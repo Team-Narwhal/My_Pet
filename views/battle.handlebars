@@ -3,58 +3,41 @@
   <div id="character-container" class="container-xl">
 
     <div class="h-100 py-4 px-1 row d-flex justify-content-between">
-      <div
-        id="me-div"
-        class="character-div h-100 col-5 d-flex flex-column justify-content-between align-items-start"
-      >
-        <div
-          class="col-5 d-flex flex-column justify-content-start align-items-start"
-        >
-          <p id="mypettext" class="hplabel w-100"></p>
-          <progress
-            id="my-hp"
-            class="health-bar nes-progress is-primary w-100"
-            value="600"
-            max="600"
-          ></progress>
+      
+      <div id="me-div" class="character-div h-100 col-5 d-flex flex-column justify-content-between align-items-start">
+        
+        <div class="hp-div">
+          <div class="col-5 d-flex flex-column justify-content-start align-items-start">
+            <p id="mypettext" class="hplabel w-100"></p>
+            <progress id="my-hp" class="health-bar nes-progress is-primary w-100" value="600" max="600"></progress>
+          </div>
         </div>
+      
         <div class="d-flex flex-column align-items-start">
           <div class="nes-balloon from-left">
             <p id="me-talk">I'm good!</p>
           </div>
-          <img
-            id="me-img"
-            class="character-img"
-            src="/assets/images/battle/fullHeart.png"
-            alt="characterImg"
-          />
+          <img id="me-img" class="character-img" src="/assets/images/battle/fullHeart.png" alt="characterImg" />
         </div>
+
       </div>
+
       <div id="sequence-div" class="col-2 d-flex align-items-center">
       </div>
 
-      <div
-        id="enemy-div"
-        class="character-div h-100 col-5 d-flex flex-column justify-content-between align-items-end">
-        <div class="col-5 d-flex flex-column justify-content-start align-items-start">
-          <p id="myenemytext" class="hplabel"></p>
-          <progress
-            id="enemy-hp"
-            class="health-bar nes-progress is-primary"
-            value="600"
-            max="600"
-          ></progress>
+      <div id="enemy-div" class="character-div h-100 col-5 d-flex flex-column justify-content-between align-items-end">
+        <div class="hp-div">
+          <div class="col-5 d-flex flex-column justify-content-start align-items-start">
+            <p id="myenemytext" class="hplabel"></p>
+            <progress id="enemy-hp" class="health-bar nes-progress is-primary" value="600" max="600"></progress>
+          </div>
         </div>
+
         <div class="d-flex flex-column align-items-end">
           <div class="nes-balloon from-right">
             <p id="enemy-talk">I'm bad!</p>
           </div>
-          <img
-            id="enemy-img"
-            class="character-img"
-            src="/assets/images/battle/halfHeart.png"
-            alt="enemyImg"
-          />
+          <img id="enemy-img" class="character-img" src="/assets/images/battle/halfHeart.png" alt="enemyImg" />
         </div>
       </div>
     </div>
@@ -63,47 +46,26 @@
 
   <div id="gamingButtons" class="mt-5">
     <div class="container d-flex justify-content-center align-items-center">
-      <button
-        type="button"
-        data-description="l"
-        class="m-1 nes-btn is-warning battle-button"
-      ><img src="/assets/images/battle/lArrow.svg" /></button>
+      <button type="button" data-description="l" class="m-1 nes-btn is-warning battle-button"><img
+          src="/assets/images/battle/lArrow.svg" /></button>
 
       <div class="d-flex flex-column align-items-center">
-        <button
-          type="button"
-          data-description="u"
-          class="m-1 nes-btn is-primary battle-button"
-        ><img src="/assets/images/battle/uArrow.svg" /></button>
-        <button
-          type="button"
-          data-description="d"
-          class="m-1 nes-btn is-success battle-button"
-        ><img src="/assets/images/battle/dArrow.svg" /></button>
+        <button type="button" data-description="u" class="m-1 nes-btn is-primary battle-button"><img
+            src="/assets/images/battle/uArrow.svg" /></button>
+        <button type="button" data-description="d" class="m-1 nes-btn is-success battle-button"><img
+            src="/assets/images/battle/dArrow.svg" /></button>
       </div>
 
-      <button
-        type="button"
-        data-description="r"
-        class="m-1 nes-btn is-error battle-button"
-      ><img src="/assets/images/battle/rArrow.svg" /></button>
+      <button type="button" data-description="r" class="m-1 nes-btn is-error battle-button"><img
+          src="/assets/images/battle/rArrow.svg" /></button>
     </div>
   </div>
 
   <div id="start-div">
-    <div
-      class="container d-flex flex-column align-items-center justify-content-center mt-3"
-    >
-      <button
-        type="button"
-        class="m-2 nes-btn is-success text-dark fw-bold start-btn"
-      >START</button>
-      <button
-        type="button"
-        class="m-2 nes-btn is-warning text-dark fw-bold"
-        data-bs-toggle="modal"
-        data-bs-target="#instructions-modal"
-      >HELP</button>
+    <div class="container d-flex flex-column align-items-center justify-content-center mt-3">
+      <button type="button" class="m-2 nes-btn is-success text-dark fw-bold start-btn">START</button>
+      <button type="button" class="m-2 nes-btn is-warning text-dark fw-bold" data-bs-toggle="modal"
+        data-bs-target="#instructions-modal">HELP</button>
     </div>
   </div>
 
@@ -124,11 +86,7 @@
         </p>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn nes-btn is-success"
-          data-bs-dismiss="modal"
-        >Close</button>
+        <button type="button" class="btn nes-btn is-success" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -138,9 +96,7 @@
 <script src="/socket.io/socket.io.js"></script>
 
 {{! confetti CDN }}
-<script
-  src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
 {{! Custon Battle Script }}
 

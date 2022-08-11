@@ -49,6 +49,10 @@
 } */
 
 /* Health Bars */
+.hp-div { 
+  display: none;
+}
+
 #enemy-hp {
     transform: rotate(180deg);
 }
