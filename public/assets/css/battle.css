@@ -68,11 +68,13 @@
 .nes-balloon {
     display: none;
     user-select: none;
+    height: fit-content;
+    width: fit-content;
 }
 
 /* Character Images */
 .character-img {
-    width: 50%;
+    width: 40%;
     height: 50%;
     user-select: none;
     display: none;
@@ -90,10 +92,19 @@
 
     /* Sequence Arrow */
     #sequence-div img {
-        width: 30vw;
+        width: 40vw;
         height: auto;
         user-select: none;
+        z-index: 3;
     }
+
+    /* Character image resize */
+    .character-img {
+      width: 40%;
+      height: 30%;
+      user-select: none;
+      display: none;
+  }
 }
 
 /* Animation for winner/looser message */

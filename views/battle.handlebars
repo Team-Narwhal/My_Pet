@@ -2,18 +2,18 @@
 <div class="d-flex flex-column align-items-center">
   <div id="character-container" class="container-xl">
 
-    <div class="h-100 py-4 px-1 row d-flex justify-content-between">
+    <div class="h-100 py-3 px-1 row">
       
       <div id="me-div" class="character-div h-100 col-5 d-flex flex-column justify-content-between align-items-start">
         
-        <div class="hp-div">
-          <div class="col-5 d-flex flex-column justify-content-start align-items-start">
+        <div class="hp-div w-100 h-25">
+          <div class="w-100 col-5 d-flex flex-column justify-content-start align-items-start">
             <p id="mypettext" class="hplabel w-100"></p>
             <progress id="my-hp" class="health-bar nes-progress is-primary w-100" value="600" max="600"></progress>
           </div>
         </div>
       
-        <div class="d-flex flex-column align-items-start">
+        <div class="w-100 h-75 d-flex flex-column justify-content-end align-items-start">
           <div class="nes-balloon from-left">
             <p id="me-talk">I'm good!</p>
           </div>
@@ -26,14 +26,15 @@
       </div>
 
       <div id="enemy-div" class="character-div h-100 col-5 d-flex flex-column justify-content-between align-items-end">
-        <div class="hp-div">
-          <div class="col-5 d-flex flex-column justify-content-start align-items-start">
+        
+        <div class="hp-div w-100 h-25">
+          <div class="w-100 col-5 d-flex flex-column justify-content-start align-items-end">
             <p id="myenemytext" class="hplabel"></p>
             <progress id="enemy-hp" class="health-bar nes-progress is-primary" value="600" max="600"></progress>
           </div>
         </div>
 
-        <div class="d-flex flex-column align-items-end">
+        <div class="w-100 h-75 d-flex flex-column justify-content-end align-items-end">
           <div class="nes-balloon from-right">
             <p id="enemy-talk">I'm bad!</p>
           </div>
