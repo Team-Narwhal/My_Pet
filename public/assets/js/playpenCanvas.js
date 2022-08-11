@@ -1,8 +1,12 @@
 let canvas = document.getElementById("petCanvas");
+let canvasAnimate = document.getElementById("petMoveCanvas");
 let ctx = canvas.getContext("2d");
+let ctxAnimate = canvasAnimate.getContext("2d");
 
 let xNorm = canvas.width / 1600;
 let yNorm = canvas.height / 900;
+
+
 
 // ctx.globalCompositeOperation = 'source-over';
 
@@ -17,30 +21,106 @@ const drawImg = async (filePath, x1, x2, y1, y2) => {
     });
 };
 
-// drawing ball
-// to be replace with character
-// function drawBall() {
-//     let ballRadius = 10;
-//     let x = canvas.width - 100;
-//     let y = canvas.height - 10;
-//     ctx.beginPath();
-//     ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-//     ctx.fillStyle = "#0095DD";
-//     ctx.fill();
-//     ctx.closePath();
+// const drawImgAnimate = async (filePath, x1, x2, y1, y2) => {
+//     let img = new Image();
+//     await new Promise((resolve) => {
+//         img.onload = function () {
+//             ctxAnimate.drawImage(img, x1, x2, y1, y2);
+//             resolve();
+//         };
+//         img.src = filePath;
+//     });
 // };
 
-// drawing the heart, poop, food bubble
-// window.onload = () => {
-//     draw(8, 4, 800);
-// };
+let characterImg = new Image();
+characterImg.src = "/assets/images/big_yeti.png"
+
+let x1 = 100 * xNorm;
+let y1 = 200 * yNorm;
+
+let x2 = 400 * xNorm;
+let y2 = 650 * yNorm;
+
+console.log(x1, y1, x2, y2);
+
+let dx = 2 * xNorm;
+
+const drawAnimate = async () => {
+    ctxAnimate.clearRect(0, 0, canvas.width, canvas.height);
+    console.log('before drawImgAnimate');
+    // ctxAnimate.drawImage(characterImg, x1, y1, 400 * xNorm, 650 * yNorm);
+    drawBall();
+    console.log("im hit");
+    changeDirection();
+    x1 = x1 + dx;
+    // y1 = y1 + dy1;
+    x2 = x2 + dx;
+    // y2 = y2 + dy2;
+    requestAnimationFrame(drawAnimate);
+
+}
+
+
+function changeDirection() {
+    ctxAnimate.clearRect(0, 0, canvas.width, canvas.height);
+    ctxAnimate.drawImage(characterImg, x1, y1, 400 * xNorm, 650 * yNorm);
+    if (x1 > 600 * xNorm || x1 < 80 * xNorm) {
+        ctxAnimate.translate(canvas.width, 0);
+        ctxAnimate.scale(-1, 1);
+        dx = -dx;
+    };
+}
+
+// function changeDirection() {
+//     var speed = 10;
+//     if (x1 > 600 * xNorm || x1 < 80 * xNorm) {
+//         ctxAnimate.clearRect(0, 0, canvas.width, canvas.height);
+//         ctx.save();
+
+//         ctxAnimate.translate(canvas.width, 0);
+//         ctxAnimate.scale(-1, 1);
+//         dx = -dx;
+//         ctxAnimate.restore();
+//         speed *= -1;
+//         // const savex2 = x2;
+//         // x2 = x1;
+//         // x1 = savex2;
+
+//         // if with image source flipping
+//     };
+// }
+
+// drawing ball
+// to be replace with character
+function drawBall() {
+    let ballRadius = 10;
+    let x = canvas.width - 100;
+    let y = canvas.height - 10;
+    ctxAnimate.beginPath();
+    ctxAnimate.arc(x, y, ballRadius, 0, Math.PI * 2);
+    ctxAnimate.fillStyle = "#0095DD";
+    ctxAnimate.fill();
+    ctxAnimate.closePath();
+};
+
+// function drawPet() {
+//     drawImg("/assets/images/big_yeti.png", 800 * xNorm, 200 * yNorm, 400 * xNorm, 650 * yNorm);
+// }
+
+// drawing onload
+window.onload = () => {
+    draw();
+    drawAnimate();
+    console.log('calling drawAnimate');
+};
 
 const draw = async (health, poop, hunger) => {
     await drawImg("/assets/images/bg-playpen.png", 0, 0, canvas.width, canvas.height);
     // drawBall();
+    // drawPet();
     await heartStatus(health);
     await poopStatus(poop);
-    await hungerStatus (hunger);
+    await hungerStatus(hunger);
 };
 
 
