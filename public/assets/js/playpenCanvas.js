@@ -38,17 +38,16 @@ async function initDraw() {
     // Await query for user's activ pet.
     const userResponse = await fetch("/api/user/getUserId");
     const userId = await userResponse.json();
-    console.log(userId);
+    // console.log(userId);
     // Use petResponse to get active pet from the user's ID.
     const petResponse = await fetch(`/api/pet/${userId}`);
     const petData = await petResponse.json();
-    console.log(petData);
+    // console.log(petData);
 
     // characterImg = new Image();
     characterImg.src = `/assets/images/${petData.type}.png`;
-    console.log(characterImg);
+    // console.log(characterImg);
     drawAnimate();
-    console.log('HELLO!');
 }
 
 // let characterImg = new Image();
@@ -66,10 +65,8 @@ let dx = 2 * xNorm;
 
 const drawAnimate = async () => {
     ctxAnimate.clearRect(0, 0, canvas.width, canvas.height);
-    console.log('before drawImgAnimate');
     // ctxAnimate.drawImage(characterImg, x1, y1, 400 * xNorm, 650 * yNorm);
     drawBall();
-    console.log("im hit");
     await changeDirection();
     x1 = x1 + dx;
     // y1 = y1 + dy1;
@@ -147,10 +144,10 @@ async function heartStatus(health) {
     } else if (health === 2) {
         await drawImg("/assets/images/fullHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
     } else if (health === 3) {
-        console.log("hittt");
+        // console.log("hittt");
         await drawImg("/assets/images/fullHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
         await drawImg("/assets/images/halfHeart.svg", 140 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
-        console.log("finisheddd")
+        // console.log("finisheddd")
     } else if (health === 4) {
         await drawImg("/assets/images/fullHeart.svg", 30 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
         await drawImg("/assets/images/fullHeart.svg", 140 * xNorm, 30 * yNorm, 90 * xNorm, 80 * yNorm);
@@ -191,7 +188,7 @@ async function hungerStatus(hunger) {
 // drawing the poop status conditions
 async function poopStatus(poop) {
     if (poop === 1) {
-        console.log('poop hit')
+        // console.log('poop hit')
         await drawImg("/assets/images/poop.svg", 100 * xNorm, 740 * yNorm, 90 * xNorm, 80 * yNorm);
     } else if (poop === 2) {
         await drawImg("/assets/images/poop.svg", 100 * xNorm, 720 * yNorm, 90 * xNorm, 80 * yNorm);

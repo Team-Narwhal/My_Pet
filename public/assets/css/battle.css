@@ -4,52 +4,68 @@
   border: 10px double black;
 }
 
+#instructions-modal {
+  font-family: 'Press Start 2P';
+}
+
 /* Character Container */
 #character-container {
-    width: 90vw;
-    height: 50vw;
-    max-height: 634px;
-    background-color: rgb(228, 238, 248);
-    border-radius: 18px;
-    border: 10px double black;
-    position: relative;
-    user-select: none;
-  
+  width: 90vw;
+  height: 50vw;
+  max-height: 634px;
+  background-color: rgb(228, 238, 248);
+  border-radius: 18px;
+  border: 10px double black;
+  position: relative;
+  user-select: none;
+
 }
-#battle-message{
+
+#battle-message {
   background-image: url('/assets/images/battle/pets/battle-cover-image.png');
-    background-size: cover;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+}
+
+#battle-message-text {
+  border: 10px double black;
+  border-radius: 18px;
+  background-color: #e4eef8;
+  width: 100%;
+  font-family: 'Press Start 2P';
+}
+
+#battleBtnContainer {
+  display: flex;
 }
 
 /* Sequence Arrow */
 #sequence-div img {
-    width: 17vw;
-    height: auto;
-    user-select: none;
+  width: 17vw;
+  height: auto;
+  user-select: none;
 }
-
 
 /* Start Button */
 #start-div {
-    display: none;
+  display: none;
 }
 
 .start-btn {
-    color: black;
+  color: black;
 }
 
 /* Battle Buttons */
 #gamingButtons {
-    display: none;
+  display: none;
 }
 
 .battle-button {
-    width: 50px;
-    height: 40px;
+  width: 50px;
+  height: 40px;
 }
 
 /* Character Div */
@@ -58,70 +74,72 @@
 } */
 
 /* Health Bars */
-.hp-div { 
+.hp-div {
   display: none;
 }
 
 #enemy-hp {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .health-bar {
-    height: 30px;
+  height: 30px;
 }
+
 .hplabel {
-  color:black;
+  color: black;
   font-family: 'Press Start 2P';
 }
+
 /* Balloons */
 .nes-balloon {
-    display: none;
-    user-select: none;
-    height: fit-content;
-    width: fit-content;
+  display: none;
+  user-select: none;
+  height: fit-content;
+  width: fit-content;
 }
 
 /* Character Images */
 .character-img {
-    width: 40%;
-    height: 50%;
-    user-select: none;
-    display: none;
+  width: 40%;
+  height: 50%;
+  user-select: none;
+  display: none;
 }
 
 @media only screen and (max-width: 568px) {
-    #character-container {
-        width: 100vw;
-        height: 95vw;
-        background-color: rgb(228, 238, 248);
-        border-radius: 18px;
-        border: 10px double black;
-        position: relative;
-    }
+  #character-container {
+    width: 100vw;
+    height: 95vw;
+    background-color: rgb(228, 238, 248);
+    border-radius: 18px;
+    border: 10px double black;
+    position: relative;
+  }
 
-    /* Sequence Arrow */
-    #sequence-div img {
-        width: 40vw;
-        height: auto;
-        user-select: none;
-        z-index: 3;
-    }
+  /* Sequence Arrow */
+  #sequence-div img {
+    width: 40vw;
+    height: auto;
+    user-select: none;
+    z-index: 3;
+  }
 
-    /* Character image resize */
-    .character-img {
-      width: 40%;
-      height: 30%;
-      user-select: none;
-      display: none;
+  /* Character image resize */
+  .character-img {
+    width: 40%;
+    height: 30%;
+    user-select: none;
+    display: none;
   }
 }
 
 /* Animation for winner/looser message */
 .jello-vertical {
-    user-select: none;
-    text-align: center;
-	-webkit-animation: jello-vertical 2s infinite both;
-	        animation: jello-vertical 2s infinite both;
+  user-select: none;
+  text-align: center;
+  -webkit-animation: jello-vertical 2s infinite both;
+  animation: jello-vertical 2s infinite both;
 }
 
 /* ----------------------------------------------
@@ -136,64 +154,76 @@
  * animation jello-vertical
  * ----------------------------------------
  */
- @-webkit-keyframes jello-vertical {
-    0% {
-      -webkit-transform: scale3d(1, 1, 1);
-              transform: scale3d(1, 1, 1);
-    }
-    30% {
-      -webkit-transform: scale3d(0.75, 1.25, 1);
-              transform: scale3d(0.75, 1.25, 1);
-    }
-    40% {
-      -webkit-transform: scale3d(1.25, 0.75, 1);
-              transform: scale3d(1.25, 0.75, 1);
-    }
-    50% {
-      -webkit-transform: scale3d(0.85, 1.15, 1);
-              transform: scale3d(0.85, 1.15, 1);
-    }
-    65% {
-      -webkit-transform: scale3d(1.05, 0.95, 1);
-              transform: scale3d(1.05, 0.95, 1);
-    }
-    75% {
-      -webkit-transform: scale3d(0.95, 1.05, 1);
-              transform: scale3d(0.95, 1.05, 1);
-    }
-    100% {
-      -webkit-transform: scale3d(1, 1, 1);
-              transform: scale3d(1, 1, 1);
-    }
+@-webkit-keyframes jello-vertical {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
   }
-  @keyframes jello-vertical {
-    0% {
-      -webkit-transform: scale3d(1, 1, 1);
-              transform: scale3d(1, 1, 1);
-    }
-    30% {
-      -webkit-transform: scale3d(0.75, 1.25, 1);
-              transform: scale3d(0.75, 1.25, 1);
-    }
-    40% {
-      -webkit-transform: scale3d(1.25, 0.75, 1);
-              transform: scale3d(1.25, 0.75, 1);
-    }
-    50% {
-      -webkit-transform: scale3d(0.85, 1.15, 1);
-              transform: scale3d(0.85, 1.15, 1);
-    }
-    65% {
-      -webkit-transform: scale3d(1.05, 0.95, 1);
-              transform: scale3d(1.05, 0.95, 1);
-    }
-    75% {
-      -webkit-transform: scale3d(0.95, 1.05, 1);
-              transform: scale3d(0.95, 1.05, 1);
-    }
-    100% {
-      -webkit-transform: scale3d(1, 1, 1);
-              transform: scale3d(1, 1, 1);
-    }
+
+  30% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
   }
-  
+
+  40% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(0.85, 1.15, 1);
+    transform: scale3d(0.85, 1.15, 1);
+  }
+
+  65% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  75% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes jello-vertical {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(0.85, 1.15, 1);
+    transform: scale3d(0.85, 1.15, 1);
+  }
+
+  65% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  75% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
