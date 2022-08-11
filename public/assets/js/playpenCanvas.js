@@ -123,7 +123,6 @@ const draw = async (health, poop, hunger) => {
     await hungerStatus(hunger);
 };
 
-
 // drawing the heart status conditions
 async function heartStatus(health) {
     if (health === 1) {

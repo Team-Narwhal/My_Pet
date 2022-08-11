@@ -1,3 +1,7 @@
+// Hide modals
+const petIsFull = document.getElementById('petIsFull');
+petIsFull.style.display === 'none';
+
 // Add global variables here.
 var myPet;
 
