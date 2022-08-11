@@ -110,6 +110,7 @@
 /* Animation for winner/looser message */
 .jello-vertical {
     user-select: none;
+    text-align: center;
 	-webkit-animation: jello-vertical 2s infinite both;
 	        animation: jello-vertical 2s infinite both;
 }
