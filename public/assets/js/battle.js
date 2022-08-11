@@ -62,13 +62,13 @@ const updateHealthBar = async () => {
   let mypettext = document.getElementById('mypettext')
   let myenemytext = document.getElementById('myenemytext')
   myHp.setAttribute("value", myPet.hp);
-  mypettext.textContent = `${myPet.name} ${Math.round((myPet.hp / myPet.maxHp)* 100)}%`;
+  mypettext.textContent = `${myPet.name} ${Math.round((myPet.hp / myPet.maxHp) * 100)}%`;
   console.log(myPet.hp);
   console.log(enemyPet);
   if (enemyPet) {
     let enemyhp = document.getElementById("enemy-hp");
     enemyhp.setAttribute("value", enemyPet.hp);
-    myenemytext.textContent = `${enemyPet.name} ${Math.round((enemyPet.hp / enemyPet.maxHp)* 100)}%`;
+    myenemytext.textContent = `${enemyPet.name} ${Math.round((enemyPet.hp / enemyPet.maxHp) * 100)}%`;
   }
 };
 
@@ -177,8 +177,10 @@ socket.on("you-first", (roomId) => {
 
 // If you-second, this gets enemyPet
 socket.on("you-second", (roomId, pet) => {
-  const battletext = document.getElementById('battle-message');
-  battletext.style.display = 'none';
+  const waitingDiv = document.getElementById('waiting-div');
+  waitingDiv.style.display = 'none';
+  const battleText = document.getElementById('battle-message');
+  battleText.style.display = 'none';
   const hpDivs = document.querySelectorAll('.hp-div');
   for (const hpDiv of hpDivs) {
     hpDiv.style.display = 'block';
@@ -200,8 +202,10 @@ socket.on("you-second", (roomId, pet) => {
 
 // If you-first, this gets enemyPet
 socket.on("transfer-pet", (pet) => {
-  const battletext = document.getElementById('battle-message');
-  battletext.style.display = 'none';
+  const waitingDiv = document.getElementById('waiting-div');
+  waitingDiv.style.display = 'none';
+  const battleText = document.getElementById('battle-message');
+  battleText.style.display = 'none';
   const hpDivs = document.querySelectorAll('.hp-div');
   for (const hpDiv of hpDivs) {
     hpDiv.style.display = 'block';
@@ -379,6 +383,11 @@ battleButtons.forEach((btn) => {
 // start button for the battle to emit joined event
 const startBtn = document.querySelector(".start-btn");
 startBtn.addEventListener("click", () => {
+  // Show waiting-div
+  const waitingText = document.getElementById('waiting-div');
+  waitingText.style.display = 'block';
+  console.log(waitingText);
+
   socket.emit("joined");
   // Hide the start button
   startDiv.style.display = "none";

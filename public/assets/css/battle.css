@@ -38,8 +38,21 @@
   font-family: 'Press Start 2P';
 }
 
+#waiting-div {
+  border: 10px double black;
+  border-radius: 18px;
+  background-color: #e4eef8;
+  width: 60vw;
+  font-family: 'Press Start 2P';
+  margin: 10px;
+}
+
 #battleBtnContainer {
   display: flex;
+}
+
+#waiting-div {
+  display: none;
 }
 
 /* Sequence Arrow */
