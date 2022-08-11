@@ -36,7 +36,7 @@ let characterImg = new Image();
 characterImg.src = "/assets/images/big_yeti.png"
 
 let x1 = 100 * xNorm;
-let y1 = 100 * yNorm;
+let y1 = 200 * yNorm;
 
 let x2 = 400 * xNorm;
 let y2 = 650 * yNorm;
@@ -52,7 +52,7 @@ const drawAnimate = async () => {
     drawBall();
     console.log("im hit");
     changeDirection();
-    x1 = (x1 + dx);
+    x1 = x1 + dx;
     // y1 = y1 + dy1;
     x2 = x2 + dx;
     // y2 = y2 + dy2;
@@ -107,7 +107,7 @@ function drawBall() {
 //     drawImg("/assets/images/big_yeti.png", 800 * xNorm, 200 * yNorm, 400 * xNorm, 650 * yNorm);
 // }
 
-// drawing the heart, poop, food bubble
+// drawing onload
 window.onload = () => {
     draw();
     drawAnimate();
