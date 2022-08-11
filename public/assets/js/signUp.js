@@ -16,12 +16,12 @@ signUpBtn.addEventListener('click', async (event) => {
     }
     // Checks to make sure username is not empty
     if (email.trim().length === 0) {
-        alert('Please enter a valid email');
+        alert('Please enter a valid email.');
         return;
     }
     // Checks that password is greater than 6 characters
     if (password.trim().length < 6) {
-        alert('Please enter a valid password. Password must be 6 characters long.');
+        alert('Please enter a valid password. Password must be at least 6 characters long.');
         return;
     }
     // posts the user input to the /api/signup endpoint

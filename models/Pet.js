@@ -7,7 +7,7 @@ class Pet extends Model { }
 
 Pet.init(
   {
-    // define columns
+    // Define database columns
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -78,7 +78,6 @@ Pet.init(
       defaultValue: 70,
       validate: {
         isNumeric: true,
-        isNull: false,
       }
     },
     hp: {
@@ -87,7 +86,6 @@ Pet.init(
       defaultValue: 400,
       validate: {
         isNumeric: true,
-        isNull: false,
       }
     },
     type: {
@@ -95,7 +93,6 @@ Pet.init(
       allowNull: false,
       validate: {
         isAlphanumeric: true,
-        isNull: false,
       }
     },
     defense: {
@@ -104,7 +101,6 @@ Pet.init(
       defaultValue: 40,
       validate: {
         isInt: true,
-        isNull: false,
       }
     },
     userId: {
