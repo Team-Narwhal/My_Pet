@@ -28,6 +28,7 @@ body {
     font-weight: 400;
     font-style: normal;
     font-size: 50px;
+    margin: 10px;
 }
 
 #navbar-brand a:link,
@@ -50,7 +51,7 @@ a:hover {
 }
 
 #signOutBtn {
-    margin-right: 10px;
+    /* margin-right: 10px; */
 }
 
 #header-freak {
@@ -66,8 +67,6 @@ a:hover {
 }
 
 #canvasContainer {
-    /* display: flex;
-    justify-content: center; */
     width: 60vw;
     height: 34vw;
     border-radius: 18px;
@@ -85,17 +84,33 @@ a:hover {
 }
 
 @media only screen and (max-width: 568px) {
-    #character-container {
+    #canvasContainer {
       width: 100vw;
-      height: 95vw;
-      background-color: rgb(228, 238, 248);
+      height: 56vw;
+      background-color: #000;
       border-radius: 18px;
-      border: 10px double black;
+      border: 10px solid black;
       position: relative;
+      margin-bottom: 10px;
+    }
+
+    .navbar-brand {
+        font-size: 30px;
+        margin: 0px;
+    }
+
+    .navbar button {
+        width: 20vw;
+        font-size: 10px;
+        margin: 0px;
+    }
+
+    #signOutBtn {
+        margin-right: auto;
     }
   
     /* Sequence Arrow */
-    #sequence-div img {
+    /* #sequence-div img {
       width: 40vw;
       height: auto;
       user-select: none;
@@ -103,10 +118,10 @@ a:hover {
     }
   
     /* Character image resize */
-    .character-img {
+    /* .character-img {
       width: 40%;
       height: 30%;
       user-select: none;
       display: none;
-    }
+    } */
   }
