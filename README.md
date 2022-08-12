@@ -28,7 +28,7 @@ Freakimono is a NodeJS application utilizing Socket.IO and NPM express.  This en
 ## User Story
 ```md
 AS A PERSON that can’t have pets, 
-we WereT a game that requires regular login, 
+I WANT a game that requires regular login, 
 SO THAT I can experience having a critter of my own to raise and nourish.
 ```
 
