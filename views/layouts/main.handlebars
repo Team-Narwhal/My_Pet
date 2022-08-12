@@ -45,12 +45,20 @@
                 {{#if isBattlePage}}
                 <a href="/playpen" title="Back to safety!"><button class="nes-btn is-warning" id="retreatBtn">Ack!
                         Retreat!</button></a>
+                <button class="nes-btn is-success" id="signOutBtn" href="api/signout">Sign Out</button>
                 {{/if}}
                 {{#if isLoggedIn}}
-                {{#unless isBattlePage}}
-                <a href="/playpen" title="Back to safety!"><button class="nes-btn is-warning"
-                        id="retreatBtn">Playpen</button></a>
-                {{/unless}}
+                    {{!-- {{#unless isBattlePage}}
+                    <a href="/playpen" title="Back to safety!"><button class="nes-btn is-warning"
+                            id="retreatBtn">Playpen</button></a>
+                    {{/unless}} --}}
+                    {{#if isLandingPage}}
+                    <a href="/playpen" title="Back to safety!"><button class="nes-btn is-warning"
+                            id="retreatBtn">Playpen</button></a>
+                    <button class="nes-btn is-success" id="signOutBtn" href="api/signout">Sign Out</button>
+                    {{/if}}
+                {{/if}}
+                {{#if isPlaypen}}
                 <button class="nes-btn is-success" id="signOutBtn" href="api/signout">Sign Out</button>
                 {{/if}}
 

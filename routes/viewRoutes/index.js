@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
     // Will add more here later.
     res.render('landing_page', {
         isLoggedIn: req.session.isLoggedIn || false,
+        isLandingPage: true,
     });
 });
 
@@ -35,6 +36,7 @@ router.get('/playpen', (req, res) => {
     // };
     res.render('playpen', {
         isLoggedIn: req.session.isLoggedIn || false,
+        isPlaypen: true,
     })
 });
 
