@@ -3,7 +3,7 @@ const signInEmailInput = document.getElementById('signInEmailInput');
 const signInPasswordInput = document.getElementById('signInPasswordInput');
 const signOutBtn = document.getElementById('signOutBtn');
 
-signinBtn.addEventListener('click', async (event) => {
+signinBtn?.addEventListener('click', async (event) => {
     event.preventDefault();
     const email = signInEmailInput.value;
     const password = signInPasswordInput.value;
@@ -20,7 +20,7 @@ signinBtn.addEventListener('click', async (event) => {
     }
         try {
         const response = await fetch('/api/user/signin', {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -30,32 +30,27 @@ signinBtn.addEventListener('click', async (event) => {
             })
         });
         await response.json();
-        console.log(response);
 
          // change user window to the /playpen endpoint
-        window.location.href = '/environment';
-        
+       if (response.ok) window.location.href = '/playpen'; 
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error });
+        alert(error);
       }
 });
 
-signOutBtn.addEventListener('click', async (event) => {
+signOutBtn?.addEventListener('click', async (event) => {
     event.preventDefault();
 
     try {
         const response = await fetch('/api/user/signout', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: req.session.isLoggedIn
+            method: 'POST',
         });
         await response.json();
-        console.log(response);
+        window.location.href = '/';
     } catch (error) {
         console.log(error);
         res.status(500).json({ error });
       }
 });
+

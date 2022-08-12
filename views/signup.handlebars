@@ -1,26 +1,37 @@
-<form class="signupForm">
-    {{!-- Option commented out to add the user's name in the future. --}}
-    {{!-- <div class="form-group">
-        <label for="signUpNameInput">Name</label>
-        <input type="text" class="form-control" id="signUpNameInput" placeholder="Name">
-    </div> --}}
-    <div class="form-group">
-        <label for="signUpEmailInput">Email address</label>
-        <input type="email" class="form-control" id="signUpEmailInput" aria-describedby="emailHelp"
-            placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-        <label for="signUpPasswordInput">Password</label>
-        <input type="password" class="form-control" id="signUpPasswordInput" placeholder="Password">
-        <small id="passwordHelp" class="form-text text-muted">Please make a password greater than 6 characters
-            long.</small>
-    </div>
-    <div class="form-group">
-        <label for="signUpPasswordConfirmInput">Confirm Your Password</label>
-        <input type="password" class="form-control" id="signUpPasswordConfirmInput" placeholder="Password Confirm">
-    </div>
-    <button id="signUpBtn" type="submit" class="btn btn-primary">Submit</button>
-</form>
+<section class="col-6 offset-3">
+    <h2 class="text-center">Sign Up for Freakimono</h2>
+    <p class="text-center">Input your information below to register and adopt your new critter!</p>
+    <form id="signupForm">
+        {{!-- Option commented out to add the user's name in the future. --}}
+        {{!-- <div class="form-group">
+            <label for="signUpNameInput">Name</label>
+            <input type="text" class="form-control" id="signUpNameInput" placeholder="Name">
+        </div> --}}
+        <div class="row mb-3">
+            <label for="signUpEmailInput">Email Address</label>
+            <input type="email" class="form-control" id="signUpEmailInput" autocomplete="email"
+                aria-describedby="emailHelp" placeholder="example@example.com">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="row mb-3">
+            <label for="signUpPasswordInput">Create Your Password</label>
+            <input type="password" class="form-control" id="signUpPasswordInput" autocomplete="new-password"
+                placeholder="Password">
+            <small id="passwordHelp" class="form-text text-muted">Please create a password that's more than 6
+                characters long.</small>
+        </div>
+        <div class="row mb-3">
+            <label for="signUpPasswordConfirmInput">Confirm Your Password</label>
+            <input type="password" class="form-control" id="signUpPasswordConfirmInput" autocomplete="new-password"
+                placeholder="Password Confirm">
+            <small id="passwordHelp" class="form-text text-muted">Please type your new password again to confirm
+                it.</small>
+
+        </div>
+        <div class="col text-center">
+            <button id="signUpBtn" type="submit" class="nes-btn is-success">Sign Up</button>
+        </div>
+    </form>
+</section>
 
 <script src="/assets/js/signUp.js"></script>

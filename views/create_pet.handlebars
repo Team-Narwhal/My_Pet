@@ -1,0 +1,49 @@
+<section class="col-6 offset-3 mb-3">
+
+    <h2 class="text-center">Now the exciting part:<br />let's create your pet!</h2>
+
+    <form class="mb-3" id="createPetForm">
+        <div class="dropdown col-md-12 mb-3">
+            <div class='form-field mb-3'>
+                <label for='choosePet'>What kind of pet would you like?</label>
+
+                <select id='choosePetType' class='form-control'>
+                    <option value="" selected disabled>Choose a critter!</option>
+                    <option value="Jackalope">Jackalope</option>
+                    <option value="Yeti">Yeti</option>
+                    <option value="Unicorn">Unicorn</option>
+                    {{#each petType}}
+                    <option value="{{this}}">{{this.petType}}</option>
+                    {{/each}}
+                </select>
+                <div id="choosePetHelp" class="form-text">Select one of the critters from the dropdown.</div>
+            </div>
+            {{!-- Option to add color in future development --}}
+            {{!-- <div class="btn-group">
+                <button id="colorSelectBtn" type="button" class="btn btn-info btn-sm dropdown-toggle"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Color</button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Red</a>
+                    <a class="dropdown-item" href="#">Orange</a>
+                    <a class="dropdown-item" href="#">Yellow</a>
+                    <a class="dropdown-item" href="#">Green</a>
+                    <a class="dropdown-item" href="#">Blue</a>
+                    <a class="dropdown-item" href="#">Purple</a>
+                    <a class="dropdown-item" href="#">Black</a>
+                    <a class="dropdown-item" href="#">Brown</a>
+                    <a class="dropdown-item" href="#">Grey</a>
+                    <a class="dropdown-item" href="#">White</a>
+                </div>
+            </div> --}}
+            <div class="mb-3">
+                <label for="petNameInput" class="form-label">What would you like to name your pet?</label>
+                <input type="text" class="form-control" id="petNameInput" aria-describedby="namePetHelp">
+                <div id="namePetHelp" class="form-text">Name must be 1-14 characters long. It can't be change once your pet it is created.</div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="nes-btn is-success" id="createPetBtn">Create your pet now!</button>
+            </div>
+    </form>
+</section>
+
+<script src="/assets/js/createPet.js"></script>

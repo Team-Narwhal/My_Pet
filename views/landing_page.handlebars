@@ -1,18 +1,42 @@
-<form>
-    <div class="mb-3">
-        <label for="signInEmailInput" class="form-label">Email</label>
-        <input type="text" class="form-control" id="signInEmailInput" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">Please enter your email address.</div>
-    </div>
-    <div class="mb-3">
-        <label for="signInPasswordInput" class="form-label">Password</label>
-        <input type="password" class="form-control" id="signInPasswordInput">
-    </div>
-    <button type="submit" class="btn btn-primary" id="signinBtn">Visit your pet!</button>
+<section class="col-6 offset-3 align-content-center">
+    {{#unless isLoggedIn}}
+    <h2 class="text-center">Welcome to <span id="header-freak">Freakimono</span>!</h2>
+    <p class="text-center">Sign in below to visit your pet.</p>
 
-    <p id="signup">Dont have an account?
-        <a id="signUpHereBtn" href="/signup">Make your pet here!</a>
-    </p>
-</form>
+    <form id="signInForm">
+        <div class="row mb-3">
+            <label for="signInEmailInput" class="form-label">Email</label>
+            <input type="text" class="form-control" id="signInEmailInput" autocomplete="email"
+                placeholder="example@example.com" aria-describedby="emailHelp">
+            {{!-- <div id="emailHelp" class="form-text">Please enter your email address.</div> --}}
+        </div>
+        <div class="row mb-3">
+            <label for="signInPasswordInput" class="form-label">Password</label>
+            <input type="password" class="form-control" id="signInPasswordInput" autocomplete="current-password"
+                placeholder="Super Secret Password Here">
+            {{!-- <div id="passwordHelp" class="form-text">Please enter your password.</div> --}}
 
-<script src="/assets/js/logInOut.js"></script>
+        </div>
+        <div class="col text-center">
+            <button type="submit" class="nes-btn is-success" id="signinBtn">Visit your pet!</button>
+        </div>
+        <br />
+
+        <p id="signup" class="text-center">Don't have an account?
+            <a id="signUpHereBtn" href="/signup">Sign up here!</a>
+        </p>
+        {{/unless}}
+
+        {{#if isLoggedIn}}
+        <div class="card container text-center" id="loggedInCard" style="width: 20rem;">
+            <img src="/assets/images/already_logged_in.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Oops, You're Already Logged In!</h5>
+                <p class="card-text">Looks like you're already logged in.  Click the buttons below to either visit your pet, or head into battle!</p>
+                <a href="/playpen" class="nes-btn is-warning is-centered">Visit Your Pet</a>
+                <a href="/battle" class="nes-btn is-error is-centered">Battle Another Pet</a>
+            </div>
+        </div>
+        {{/if}}
+    </form>
+</section>

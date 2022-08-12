@@ -11,20 +11,23 @@ signUpBtn.addEventListener('click', async (event) => {
 
     // Checks to see if email inputs match
     if (password !== passwordConfirm) {
+        // Replace with modal in the future.
         alert('Your passwords do not match.');
         return;
     }
-    // checks to make sure username is not empty
+    // Checks to make sure username is not empty
     if (email.trim().length === 0) {
-        alert('Please enter a valid email');
+        // Replace with modal in the future.
+        alert('Please enter a valid email address.');
         return;
     }
-    // checks that password is greater than 6 characters
+    // Checks that password is greater than 6 characters
     if (password.trim().length < 6) {
-        alert('Please enter a valid password. Password must be 6 characters long.');
+        // Replace with modal in the future.
+        alert('Please enter a valid password. Password must be at least six characters long.');
         return;
     }
-    // posts the user input to the /api/signup endpoint
+    // Posts the user input to the /api/signup endpoint
     try {
         const response = await fetch('/api/user/signup', {
             method: 'POST',
@@ -37,10 +40,9 @@ signUpBtn.addEventListener('click', async (event) => {
             })
         });
         await response.json();
-        console.log(response);
-        // change user window to the /playpen endpoint
-        window.location.href = '/environment';
+        // Redirects users to the create_pet page.
+        window.location.href = '/create_pet';
     } catch (error) {
-        alert(error);
+        console.log(error);
     }
 });

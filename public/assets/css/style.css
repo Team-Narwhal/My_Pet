@@ -1,0 +1,127 @@
+:root {
+    --light-green: #63C561;
+    --dark-green: #35A433;
+    --pink: #E92A9C;
+    --maroon: #BF0073;
+    --light-gray: #838282;
+    --dark-gray: #4F4F4F;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('/assets/images/bg-meadow.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.navbar {
+    border-bottom: 5px solid var(--dark-gray);
+    background-image: linear-gradient(to right,
+            #fff 40%,
+            var(--light-green),
+            var(--pink));
+}
+
+.navbar-brand {
+    font-family: strumpf-std-contour, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+    margin: 10px;
+}
+
+#navbar-brand a:link,
+a:visited,
+a:hover {
+    text-decoration: none;
+}
+
+#signInForm button,
+#signupForm button,
+#signOutBtn,
+#retreatBtn,
+#createPetForm button,
+#loggedInCard a,
+#careButtons button,
+#battleButtons button {
+    margin: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#signOutBtn {
+    /* margin-right: 10px; */
+}
+
+#header-freak {
+    font-family: strumpf-std-contour, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+}
+
+#main {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+#canvasContainer {
+    width: 60vw;
+    height: 34vw;
+    border-radius: 18px;
+    border: 10px double black;
+}
+
+.btn {
+    color: #fff;
+    background-color: var(--maroon);
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: var(--dark-green);
+}
+
+@media only screen and (max-width: 568px) {
+    #canvasContainer {
+      width: 100vw;
+      height: 56vw;
+      background-color: #000;
+      border-radius: 18px;
+      border: 10px solid black;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .navbar-brand {
+        font-size: 30px;
+        margin: 0px;
+    }
+
+    .navbar button {
+        width: 20vw;
+        font-size: 10px;
+        margin: 0px;
+    }
+
+    #signOutBtn {
+        margin-right: auto;
+    }
+  
+    /* Sequence Arrow */
+    /* #sequence-div img {
+      width: 40vw;
+      height: auto;
+      user-select: none;
+      z-index: 3;
+    }
+  
+    /* Character image resize */
+    /* .character-img {
+      width: 40%;
+      height: 30%;
+      user-select: none;
+      display: none;
+    } */
+  }

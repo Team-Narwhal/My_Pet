@@ -1,0 +1,39 @@
+<section class="col-12 align-items-center" id="playpenSection">
+    <div class="container" style="position: relative;" id="canvasContainer">
+    <canvas id="petCanvas" width="585" height="329"
+        style="position: absolute; left: 0; top: 0; z-index: 0; background-color: black;"></canvas>
+
+    <canvas id="petMoveCanvas" width="585" height="329"
+        style="position: absolute; left: 0; top: 0; z-index: 5; background-color: transparent;"></canvas>
+</div>
+
+    {{!-- <div id="sequence-div" style="width: 300px; height: 300px;"></div> --}}
+
+    <div class="col d-flex justify-content-center align-items-center" id="careButtons">
+        {{!-- <button type="button" id="wakeBtn" data-description='wake' class="nes-btn is-secondary care-button">Wake
+            up</button> --}}
+        <button type="button" id="feedBtn" data-description='feed'
+            class="nes-btn nes-pointer is-success care-button">Feed</button>
+        <button type="button" id="medicineBtn" data-description='medicine'
+            class="nes-btn nes-pointer is-primary care-button">Medicate</button>
+        <button type="button" id="cleanBtn" data-description='clean'
+            class="nes-btn nes-pointer is-warning care-button">Clean
+            Poop</button>
+    </div>
+
+    <div class="col d-flex justify-content-center align-items-center" id="battleButtons">
+        <button type="button" id="startBattleBtn" data-description='battleStart'
+            class="nes-btn is-error is-danger care-button">⚔️ Battle Another Critter ⚔️</button>
+    </div>
+</section>
+
+{{!-- <div class="modal-dialog modal-dialog-centered">
+
+</div> --}}
+
+{{!-- JS file for feed pet, etc. --}}
+<script src="/assets/js/playpenCanvas.js"></script>
+<script src="/assets/lib/Pet.js"></script>
+<script src="/assets/lib/Creatures.js"></script>
+<script src="/assets/js/playpen.js"></script>
+<script src="/assets/js/petCare.js"></script>

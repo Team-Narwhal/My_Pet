@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
     // Will add more here later.
     res.render('landing_page', {
         isLoggedIn: req.session.isLoggedIn || false,
+        isLandingPage: true,
     });
 });
 
@@ -20,15 +21,22 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
+// Nifer
+// Renders create_pet.handlebars
+router.get('/create_pet', (req, res) => {
+    res.render('create_pet');
+});
+
 // Nolan
 // Renders the environment.handlebars
 router.get('/playpen', (req, res) => {
     // redirect to landing_page if not logged in
-    if (!req.session.isLoggedIn) {
-        return res.redirect('/');
-    };
-    res.render('environment', {
+    // if (!req.session.isLoggedIn) {
+    //     return res.redirect('/');
+    // };
+    res.render('playpen', {
         isLoggedIn: req.session.isLoggedIn || false,
+        isPlaypen: true,
     })
 });
 
@@ -37,10 +45,11 @@ router.get('/playpen', (req, res) => {
 router.get('/battle', (req, res) => {
     // redirect to landing_page if not logged in
     if (!req.session.isLoggedIn) {
-        return res.redirect('/');
-    };
+    return res.redirect('/');
+     };
     res.render('battle', {
         isLoggedIn: req.session.isLoggedIn || false,
+        isBattlePage: true,
     });
 });
 
