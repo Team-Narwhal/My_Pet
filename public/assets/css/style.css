@@ -74,6 +74,7 @@ a:hover {
     font-size: 12px;
     background-color: var(--dark-gray);
     border-top: #000 solid 5px;
+    margin-top: 20px;
 }
 
 .footer img {
@@ -100,6 +101,10 @@ a:hover {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+#playpenSection {
+    margin-bottom: 50px;
 }
 
 .btn {
