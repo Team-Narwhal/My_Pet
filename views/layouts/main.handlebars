@@ -47,11 +47,11 @@
                 <button class="nes-btn is-success" id="signOutBtn" href="api/signout">Sign Out</button>
                 {{/if}}
                 {{#if isLoggedIn}}
-                    {{#if isLandingPage}}
-                    <a href="/playpen" title="Back to safety!"><button class="nes-btn is-warning"
-                            id="retreatBtn">Playpen</button></a>
-                    <button class="nes-btn is-success" id="signOutBtn" href="api/signout">Sign Out</button>
-                    {{/if}}
+                {{#if isLandingPage}}
+                <a href="/playpen" title="Back to safety!"><button class="nes-btn is-warning"
+                        id="retreatBtn">Playpen</button></a>
+                <button class="nes-btn is-success" id="signOutBtn" href="api/signout">Sign Out</button>
+                {{/if}}
                 {{/if}}
                 {{#if isPlaypen}}
                 <button class="nes-btn is-success" id="signOutBtn" href="api/signout">Sign Out</button>
@@ -64,6 +64,17 @@
     <main id="main">
         {{{body}}}
     </main>
+
+    <footer class="footer text-center text-white fixed-bottom">
+        <div class="footer-copyright d-flex">
+            <div class="d-flex justify-content-center align-items-center" id="team-narwhal">
+                <a href="https://github.com/Team-Narwhal" target="_blank" alt="Visit our GitHub page!">
+                    <img src="/assets/images/GitHub-Mark-32px-white.png" alt="Visit our GitHub page!" id="github-btn" />
+                </a>
+                <p>© 2022 Team NaNarwhal</p>
+            </div>
+        </div>
+    </footer>
 
     {{!-- Bootstrap --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
