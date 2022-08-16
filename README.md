@@ -1,4 +1,4 @@
-<img src ="./public/assets/images/freakimono_logo.png">
+<img src ="./public/assets/images/freakimono_logo.png" />
 
 <br/>
 
@@ -23,7 +23,7 @@
 ## Description
 Welcome to Freakimono!  This immersive app combines the joy of creating and caring for a loveable little creature and the fun of connecting with other users to battle it out in a dynamic battle environment.  Upon first visit, we'll guide you through the process of setting up a new account and the inception of your new adorable digital friend.  Once your new friend is created and named, you be introduced to the playpen where you can adore and care for your new pet's needs.  Lucky for you, the messes are virtual and the means to meet your little friends needs are costless!  When you are ready to take on the virtual network of other creatures, visit the battle page to duke it out with other users in a head to head memory challenge.  Fight for your life and get rewarded.
 
-Freakimono is a NodeJS application utilizing Socket.IO and NPM express.  This enables the user to be able to interact and connect with other online users in a live and dynamic way on the battle page.  Fun digital graphics were lovingly made by our developers with the help of multiple team members artistic skills; afterwards, they were implemented not only as standard HTML images, but also as dynamically animated graphics using the Canvas API.  In order for user's pets data to persist, Sequelize ORM was utilized to interact with a JawsDB  database.  This way, we can guarantee that all user progress will stay saved on some majestic data storage somewhere out there in data-land.Freakimono is deployed live on Heroku.
+Freakimono is a NodeJS application utilizing Socket.IO and NPM express.  This enables the user to be able to interact and connect with other online users in a live and dynamic way on the battle page.  Fun digital graphics were lovingly made by our developers with the help of multiple team members artistic skills; afterwards, they were implemented not only as standard HTML images, but also as dynamically animated graphics using the Canvas API.  In order for user's pets data to persist, Sequelize ORM was utilized to interact with a JawsDB  database.  This way, we can guarantee that all user progress will stay saved on some majestic data storage somewhere out there in data-land. Freakimono is deployed live on Heroku.
   
 ## User Story
 ```md
@@ -60,6 +60,7 @@ THEN I can press the signout button and session data is destroyed
 ```
 
 ## Links
+
 - [Github URL](https://github.com/Team-Narwhal/My_Pet)
 - [Heroku URL](https://freakimono.herokuapp.com/)
 
@@ -72,6 +73,7 @@ THEN I can press the signout button and session data is destroyed
 ![Live demo of Battle](./public/assets/images/win-battle.gif/)
 
 ## About Socket.io
+
 Socket.IO was a dynamic and useful technology to work with, but also came with some challenges to overcome.  Once one basic event listener/emitter was setup, the process for passing data through events to clients became natural.  However, a considerable challenge arose when trying to connect two users in a first come first serve fashion.  Below is the code logic handling the connection of 2 users in a unique room.
 
 #### Code Snippets
@@ -93,6 +95,7 @@ Socket.IO was a dynamic and useful technology to work with, but also came with s
     console.log(`User: ${socket.id} joined room: ${room}`);
     });
 ```
+
 First, we utilized a `joined` event that a client emits from the front end when they initialize a battle.  From there, all active rooms are stored into a const; the next challenge was the data-type of the `io.sockets.adapter.rooms`. We had to use a for/of loop because `rooms` was a `Map` of `Set` data-types; by using the for/of loop we had access to the room id and the members currently in that room.  Now a simple if statement can check if the room was created by this room builder using regex, and check if that room had less than two people.  If the conditions are met, the user will join that room.  Upon joining a `you-first` event will be emitted letting the other user begin the battle processs.
 
 If there are no rooms available meeting those conditions, a user will simply be added to a new dynamically created room based off of the size of the rooms `Map` and will wait for a player to join.  Once an available user joins their room, they receive the `you-first` event and will start the battle process.  Next, we had to solve the problem of a user disconnecting during game play.
