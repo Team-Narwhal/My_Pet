@@ -1,6 +1,6 @@
-<img src ="./public/assets/images/freakimono_logo.png" />
+<img src ="./public/assets/images/freakimono_logo.png">
 
-<br />
+<br/>
 
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
@@ -11,13 +11,19 @@
 - [About Socket.io](#about-socketio)
     - [Code Snippets](#code-snippets)
 - [Useful Resources](#useful-resources)
+- [Authors](#authors)
+  - [Nifer Kilakila](#nifer-kilakila)
+  - [Angie Soto](#angie-soto)
+  - [Ivy Chang](#ivy-chang)
+  - [Nolan Spence](#nolan-spence)
+  - [Asha Chakre](#asha-chakre)
 - [Built With](#built-with)
 - [License](#license)
 
 ## Description
 Welcome to Freakimono!  This immersive app combines the joy of creating and caring for a loveable little creature and the fun of connecting with other users to battle it out in a dynamic battle environment.  Upon first visit, we'll guide you through the process of setting up a new account and the inception of your new adorable digital friend.  Once your new friend is created and named, you be introduced to the playpen where you can adore and care for your new pet's needs.  Lucky for you, the messes are virtual and the means to meet your little friends needs are costless!  When you are ready to take on the virtual network of other creatures, visit the battle page to duke it out with other users in a head to head memory challenge.  Fight for your life and get rewarded.
 
-Freakimono is a NodeJS application utilizing Socket.IO and NPM express.  This enables the user to be able to interact and connect with other online users in a live and dynamic way on the battle page.  Fun digital graphics were lovingly made by one of our developers with the help of multiple team members artistic skills; afterwards, they were implemented not only as standard HTML images, but also as dynamically animated graphics using the Canvas API.  In order for user's pets data to persist, Sequelize ORM was utilized to interact with a JawsDB  database.  This way, we can guarantee that all user progress will stay saved on some majestic data storage somewhere out there in data-land.  Freakimono is deployed live on Heroku.
+Freakimono is a NodeJS application utilizing Socket.IO and NPM express.  This enables the user to be able to interact and connect with other online users in a live and dynamic way on the battle page.  Fun digital graphics were lovingly made by our developers with the help of multiple team members artistic skills; afterwards, they were implemented not only as standard HTML images, but also as dynamically animated graphics using the Canvas API.  In order for user's pets data to persist, Sequelize ORM was utilized to interact with a JawsDB  database.  This way, we can guarantee that all user progress will stay saved on some majestic data storage somewhere out there in data-land.Freakimono is deployed live on Heroku.
   
 ## User Story
 ```md
@@ -87,14 +93,13 @@ Socket.IO was a dynamic and useful technology to work with, but also came with s
     console.log(`User: ${socket.id} joined room: ${room}`);
     });
 ```
-
-First, we utilized a `joined` event that a client emits from the front end when they initialize a battle.  From there, all active rooms are stored into a const; the next challenge was the data-type of the `io.sockets.adapter.rooms`.  We had to use a for/of loop because `rooms` was a `Map` of `Set` data-types; by using the for/of loop we had access to the room id and the members currently in that room.  Now a simple if statement can check if the room was created by this room builder using regex, and check if that room had less than two people.  If the conditions are met, the user will join that room.  Upon joining a `you-first` event will be emitted letting the other user begin the battle processs.
+First, we utilized a `joined` event that a client emits from the front end when they initialize a battle.  From there, all active rooms are stored into a const; the next challenge was the data-type of the `io.sockets.adapter.rooms`. We had to use a for/of loop because `rooms` was a `Map` of `Set` data-types; by using the for/of loop we had access to the room id and the members currently in that room.  Now a simple if statement can check if the room was created by this room builder using regex, and check if that room had less than two people.  If the conditions are met, the user will join that room.  Upon joining a `you-first` event will be emitted letting the other user begin the battle processs.
 
 If there are no rooms available meeting those conditions, a user will simply be added to a new dynamically created room based off of the size of the rooms `Map` and will wait for a player to join.  Once an available user joins their room, they receive the `you-first` event and will start the battle process.  Next, we had to solve the problem of a user disconnecting during game play.
 
 We learned through some trial and error/google searches about two important built in events that handle users disconnecting.  They are the `disconnecting` event and the `disconnect` event.  The important difference in the case of this project was that the `disconnecting` event still had access to the socket instance of the disconnecting user and the rooms that they are join in.  Below is a code snippet of how we could still emit an event to their joined rooms:
 
-```JavaScript
+```js
   socket.on('disconnecting', () => {
     for (const room of socket.rooms) {
       if (room !== socket.id) {
@@ -111,11 +116,34 @@ As seen above, we were able to emit a `user-left` event to the room/s that the d
 - [Socket.IO ex. Chat App](https://socket.io/get-started/chat) - This is a great example of implementing Socket.IO for a chat app.  This was a useful resource for implementing rooms and connecting users.
 - [CSS Viewport Units](https://www.sitepoint.com/css-viewport-units-quick-start/) - This blog posts provides an easy to read quick reference for using viewport units in CSS.  It was very helpful in implementing a mobile first design style.
 - [MDN HTML Canvas Game Tutorial](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript) - If you need a quick and effective intro for using an HTML canvas in a javascript game, this MDN tutorial is for you.  Teaches the basics and provides a great foundation quickly.
-- [NES-style CSS Framework](https://nostalgic-css.github.io/NES.css/)
+  
 - [Stack Overflow](https://stackoverflow.com/questions/10214873/make-canvas-as-wide-and-as-high-as-parent)
+
 - [W3Schools](https://www.w3schools.com/cssref/pr_background-attachment.asp)
+
 - [Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
 
+- [NES-style CSS Framework](https://nostalgic-css.github.io/NES.css/)
+
+## Authors
+
+### Nifer Kilakila
+- GitHub - [NaNifer](https://github.com/NaNifer)
+- Portfolio - [Nifer Kilakila](https://nanifer.github.io/Nifer-Kilakila-Portfolio-h2/)
+### Angie Soto
+- Website - [Angie Soto](https://anakela.github.io/homework2)
+- Github - [anakela](https://github.com/anakela)
+### Ivy Chang
+- Website - [Ivy Chang](https://howl-lab.github.io/Portfolio/)
+- Github - [howl-lab](https://github.com/howl-lab)
+### Nolan Spence
+- Website - [Nolan Spence](https://unicorn-barf.github.io/Portfolio_Website_HTML_CSS/)
+- Github - [Unicorn-Barf](https://github.com/Unicorn-Barf)
+### Asha Chakre
+- Website - [Asha Chakre](https://github.com/ashachakre0906/Professional-Portfolio)
+- Github - [ashachakre0906](https://github.com/ashachakre0906)
+
+  
 ## Built With
 <p align ="center">
     <img src="https://img.shields.io/badge/Javascript-yellow" />
@@ -134,10 +162,20 @@ As seen above, we were able to emit a `user-left` event to the room/s that the d
 
 ## License
 MIT License
-<img src="https://img.shields.io/badge/MIT-License-blue" />
 Copyright (c) [2022] [Angie Soto](https://github.com/anakela), [Asha Chakre](https://github.com/ashachakre0906), [Ivy Chang](https://github.com/howl-lab), [Nifer Kilakila](https://github.com/NaNifer), [Nolan Spence](https://github.com/Unicorn-Barf)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-- The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
