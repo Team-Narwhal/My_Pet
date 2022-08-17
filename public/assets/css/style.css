@@ -50,10 +50,6 @@ a:hover {
     font-weight: bold;
 }
 
-#signOutBtn {
-    /* margin-right: 10px; */
-}
-
 #header-freak {
     font-family: strumpf-std-contour, sans-serif;
     font-weight: 400;
@@ -71,6 +67,44 @@ a:hover {
     height: 34vw;
     border-radius: 18px;
     border: 10px double black;
+}
+
+.footer {
+    font-family: 'Press Start 2P';
+    font-size: 12px;
+    background-color: var(--dark-gray);
+    border-top: #000 solid 5px;
+    margin-top: 20px;
+}
+
+.footer img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 5px
+}
+
+.footer p {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+.footer-copyright {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#team-narwhal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#playpenSection {
+    margin-bottom: 50px;
 }
 
 .btn {
