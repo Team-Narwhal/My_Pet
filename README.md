@@ -1,4 +1,4 @@
-<img src ="./public/assets/images/freakimono_logo.png" />
+<img src ="./public/assets/images/freakimono_logo.png">
 
 <br/>
 
