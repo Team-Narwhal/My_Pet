@@ -77,7 +77,7 @@ THEN I can press the signout button and session data is destroyed
 Socket.IO was a dynamic and useful technology to work with, but also came with some challenges to overcome.  Once one basic event listener/emitter was setup, the process for passing data through events to clients became natural.  However, a considerable challenge arose when trying to connect two users in a first come first serve fashion.  Below is the code logic handling the connection of 2 users in a unique room.
 
 #### Code Snippets
-```JavaScript
+```js
   // Join users to first come, first serve two people rooms
   socket.on("joined", (data) => {
     const rooms = io.sockets.adapter.rooms;
