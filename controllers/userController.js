@@ -20,10 +20,10 @@ const getAllUsers = async (req, res) => {
 };
 
 const getUserId = async (req, res) => {
-  if (req.session.isLoggedIn) {
+    if (req.session.isLoggedIn) {
     res.json(req.session.user.id);
   } else {
-    res.json({ error: "Not logged in." });
+    res.status(404).json({ error: "Not logged in." });
   }
 };
 
@@ -43,7 +43,7 @@ const signUp = async (req, res) => {
 };
 
 const signIn = async (req, res) => {
-  try {
+    try {
     const existingUser = await User.findOne({
       where: {
         email: req.body.email,
@@ -62,7 +62,7 @@ const signIn = async (req, res) => {
     req.session.save(() => {
       req.session.user = existingUser;
       req.session.isLoggedIn = true;
-      res.json({ success: true });
+            res.json({ success: true });
     });
   } catch (error) {
     console.log(error);

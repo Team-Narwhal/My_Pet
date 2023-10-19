@@ -6,13 +6,13 @@ const { User, Pet } = require('../models');
 // Get active pet with specific Userid
 const getActivePetByUserId = async (req, res) => {
     try {
-        const userPet = await Pet.findOne({
+                const userPet = await Pet.findOne({
             where: {
                 userId: req.params.userId,
                 isActive: true,
             }
         });
-        res.status(200).json(userPet);
+                res.status(200).json(userPet);
 
     } catch (error) {
         console.log('petController.js getActivePetByUserId()', error);
